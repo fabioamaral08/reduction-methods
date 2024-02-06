@@ -88,10 +88,24 @@ class Decoder(nn.Module):
 
 
 class ConvAutoencoderModule(nn.Module):
-    def __init__(self, latent_dim):
+    def __init__(self, latent_dim, max_in = 1, min_in = 0) -> None:
+        super().__init__()
+        # for normalization 
+        self.min = min_in
+        self.input_range = max_in - min_in
+
         self.encoder = Encoder(latent_dim)
         self.decoder = Decoder(latent_dim)
         
     def forward(self, x):
+        # Normalize input:
+        x = (x - self.min)/self.input_range
+
+        # run autoencoder 
         latent = self.encoder(x)
-        return self.decoder(latent)
+        decode = self.decoder(latent)
+
+        # denormalize
+        output = decode * self.input_range + self.min
+        
+        return output

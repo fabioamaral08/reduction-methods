@@ -8,9 +8,12 @@ Autoencoder for inputs with shape (Ns, Nc, Nx, Ny) -> (-1, 5, 80, 80)
 """
 
 class AutoencoderModule(nn.Module):
-    def __init__(self, n_input, latent_dim) -> None:
+    def __init__(self, n_input, latent_dim, max_in = 1, min_in = 0) -> None:
         super().__init__()
-
+        # for normalization 
+        self.min = min_in
+        self.input_range = max_in - min_in
+        
         self.encoder = nn.Sequential(
             nn.Linear(n_input,8192), # 2^13
             nn.ReLU(),
@@ -39,6 +42,14 @@ class AutoencoderModule(nn.Module):
         )
 
     def forward(self, x):
-        
+        # Normalize input:
+        x = (x - self.min)/self.input_range
+
+        # run autoencoder 
         latent = self.encoder(x)
-        return self.decoder(latent)
+        decode = self.decoder(latent)
+
+        # denormalize
+        output = decode * self.input_range + self.min
+        
+        return output
