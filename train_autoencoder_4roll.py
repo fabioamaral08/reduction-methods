@@ -21,7 +21,7 @@ if __name__ == '__main__':
     # type of simulation
     case = '4roll'
     #read file
-    X, Xmean = get_data(Re,Wi,beta, case, n_data= -2, dir_path='..EnergyReduction/npz_data')
+    X, Xmean = get_data(Re,Wi,beta, case, n_data= -2, dir_path='../EnergyReduction/npz_data')
 
     Nt = X.shape[1] # number of snapshots
     X_data = X.reshape((-1,5,Nt))
