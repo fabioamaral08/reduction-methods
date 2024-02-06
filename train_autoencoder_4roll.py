@@ -11,6 +11,10 @@ import os
 
 if __name__ == '__main__':
 
+    torch.manual_seed(42) # reprodutibility
+    device_type = "cuda" if torch.cuda.is_available() else "cpu"
+    device = torch.device(device_type)
+
     latent_dim = 2
     ## Data reading
 
@@ -31,8 +35,8 @@ if __name__ == '__main__':
     X_torch = torch.from_numpy(X_data)
 
     #normalize data inside autoencoder
-    lower_bound = torch.from_numpy(X_data.min(axis = (0,2)).reshape((1,5,1))).float()
-    upper_bound = torch.from_numpy(X_data.max(axis = (0,2)).reshape((1,5,1))).float()
+    lower_bound = torch.from_numpy(X_data.min(axis = (0,2)).reshape((1,5,1))).float().to(device)
+    upper_bound = torch.from_numpy(X_data.max(axis = (0,2)).reshape((1,5,1))).float().to(device)
     # X_torch = (X_torch - lower_bound)/(upper_bound - lower_bound)
 
     # NN part
@@ -40,9 +44,10 @@ if __name__ == '__main__':
     bs = 100
     num_epochs = 5000
 
-    autoencoder = Autoencoder.AutoencoderModule(n_input= X_torch.shape[-1], latent_dim = latent_dim, max_in=upper_bound, min_in=lower_bound)
+    autoencoder = Autoencoder.AutoencoderModule(n_input= X_torch.shape[-1], latent_dim = latent_dim, max_in=upper_bound, min_in=lower_bound).to(device)
 
-    dataset = TensorDataset(X_torch.float(),X_torch.float())
+    X_torch = X_torch.float().to(device)
+    dataset = TensorDataset(X_torch,X_torch)
     loader = DataLoader(dataset, shuffle= True, batch_size=bs)
     loss_fn = torch.nn.MSELoss()
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
