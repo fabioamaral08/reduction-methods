@@ -31,8 +31,8 @@ if __name__ == '__main__':
     X_torch = torch.from_numpy(X_data)
 
     #normalize data inside autoencoder
-    lower_bound = X_data.min(axis = (0,2)).reshape((1,5,1))
-    upper_bound = X_data.max(axis = (0,2)).reshape((1,5,1))
+    lower_bound = torch.from_numpy(X_data.min(axis = (0,2)).reshape((1,5,1))).float()
+    upper_bound = torch.from_numpy(X_data.max(axis = (0,2)).reshape((1,5,1))).float()
     # X_torch = (X_torch - lower_bound)/(upper_bound - lower_bound)
 
     # NN part
@@ -42,7 +42,7 @@ if __name__ == '__main__':
 
     autoencoder = Autoencoder.AutoencoderModule(n_input= X_torch.shape[-1], latent_dim = latent_dim, max_in=upper_bound, min_in=lower_bound)
 
-    dataset = TensorDataset(X_torch.float(),X_torch)
+    dataset = TensorDataset(X_torch.float(),X_torch.float())
     loader = DataLoader(dataset, shuffle= True, batch_size=bs)
     loss_fn = torch.nn.MSELoss()
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
