@@ -56,7 +56,7 @@ if __name__ == '__main__':
     # Early stop
     best_vloss = 1_000_000
     last_loss = best_vloss
-
+    patience = 0
     #training
     autoencoder.train(True)
     for e in range(num_epochs):
