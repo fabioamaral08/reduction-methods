@@ -4,7 +4,7 @@ from torch.nn import functional as F
 
 __all__ = ['ConvAutoencoderModule']
 """
-Autoencoder for inputs with shape (Ns, Nc, Nx, Ny) -> (-1, 5, 80, 80)
+Autoencoder for inputs with shape (Ns, Nc, Nx, Ny) -> (-1, 5, 64, 64)
 
 """
 
