@@ -1,12 +1,1 @@
 nohup: ignoring input
-Traceback (most recent call last):
-  File "/node/fabio/reduction-methods/train_autoencoder_4roll.py", line 24, in <module>
-    X, Xmean = get_data(Re,Wi,beta, case, n_data= -2, dir_path='..EnergyReduction/npz_data')
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/node/fabio/reduction-methods/utils/utils.py", line 53, in get_data
-    fields = np.load(f'{dir_path}/{in_filename}', allow_pickle=True)["fields"].item()
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/fabio/miniconda3/envs/torch/lib/python3.11/site-packages/numpy/lib/npyio.py", line 427, in load
-    fid = stack.enter_context(open(os_fspath(file), "rb"))
-                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: '..EnergyReduction/npz_data/4_roll6_Re1_Wi5_beta0.1_dataset.npz'
