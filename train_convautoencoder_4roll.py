@@ -66,6 +66,7 @@ if __name__ == '__main__':
         patience = 0
         #training
         autoencoder.train(True)
+        print('\n\n\nINIT TRAIN LATENT %i' % latent_dim)
         for e in range(num_epochs):
             if last_loss < best_vloss:
                             best_vloss = last_loss
