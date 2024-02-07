@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
 
         # Results directory
-        pasta = f'ModelsTorch/Dense_Latent_{latent_dim}'
+        pasta = f'ModelsTorch/Conv_Latent_{latent_dim}'
         os.makedirs(pasta, exist_ok=True)
 
         # Early stop
@@ -71,7 +71,7 @@ if __name__ == '__main__':
             if last_loss < best_vloss:
                             best_vloss = last_loss
                             torch.save({'optimizer_state_dict':optimizer.state_dict(), 'loss':loss, 'epoch':e}, f'{pasta}/optimizer_conv_checkpoint.pt')
-                            torch.save(autoencoder.state_dict(), f'{pasta}/best_autoencoder')
+                            torch.save(autoencoder.state_dict(), f'{pasta}/best_conv_autoencoder')
                             patience = 0
             else:
                 patience += 1
