@@ -1,0 +1,5404 @@
+
+
+
+INIT TRAIN LATENT 2
+Epoch 0: running loss: 1389.1685
+Exec. Time of epoch: 1.970s(0.049s/batch)
+
+Epoch 1: running loss: 968.4563
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 2: running loss: 842.4432
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 3: running loss: 773.1994
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 4: running loss: 726.2642
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 5: running loss: 690.6211
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 6: running loss: 661.2440
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 7: running loss: 633.9126
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 8: running loss: 607.3754
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 9: running loss: 580.1163
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 10: running loss: 552.2978
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 11: running loss: 524.6438
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 12: running loss: 495.1626
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 13: running loss: 464.8102
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 14: running loss: 435.0128
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 15: running loss: 405.7119
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 16: running loss: 377.4875
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 17: running loss: 350.4823
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 18: running loss: 325.1557
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 19: running loss: 301.8395
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 20: running loss: 279.9606
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 21: running loss: 260.7044
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 22: running loss: 243.0903
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 23: running loss: 227.1263
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 24: running loss: 212.8508
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 25: running loss: 200.1321
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 26: running loss: 188.3089
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 27: running loss: 177.7064
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 28: running loss: 167.9398
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 29: running loss: 158.9504
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 30: running loss: 150.3333
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 31: running loss: 142.5762
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 32: running loss: 135.2820
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 33: running loss: 127.9650
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 34: running loss: 121.5283
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 35: running loss: 115.7438
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 36: running loss: 110.0243
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 37: running loss: 104.9764
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 38: running loss: 100.1909
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 39: running loss: 95.8242
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 40: running loss: 91.8327
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 41: running loss: 87.8905
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 42: running loss: 84.3643
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 43: running loss: 81.0367
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 44: running loss: 78.3704
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 45: running loss: 75.5214
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 46: running loss: 72.8519
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 47: running loss: 70.5674
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 48: running loss: 68.5631
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 49: running loss: 66.6894
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 50: running loss: 64.7737
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 51: running loss: 63.2798
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 52: running loss: 61.6666
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 53: running loss: 60.5498
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 54: running loss: 59.3845
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 55: running loss: 58.2406
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 56: running loss: 57.2151
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 57: running loss: 56.2554
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 58: running loss: 55.7661
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 59: running loss: 54.8915
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 60: running loss: 54.0311
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 61: running loss: 53.5017
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 62: running loss: 52.7843
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 63: running loss: 52.2903
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 64: running loss: 51.7987
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 65: running loss: 51.2927
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 66: running loss: 50.8983
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 67: running loss: 50.7181
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 68: running loss: 50.2154
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 69: running loss: 49.8882
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 70: running loss: 49.6071
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 71: running loss: 49.2291
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 72: running loss: 48.6580
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 73: running loss: 48.4896
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 74: running loss: 48.2036
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 75: running loss: 47.9579
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 76: running loss: 47.7002
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 77: running loss: 47.3955
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 78: running loss: 47.2489
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 79: running loss: 47.1325
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 80: running loss: 46.6631
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 81: running loss: 46.5844
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 82: running loss: 46.1031
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 83: running loss: 45.9806
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 84: running loss: 45.9875
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 85: running loss: 45.5728
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 86: running loss: 45.2190
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 87: running loss: 45.2151
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 88: running loss: 44.8590
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 89: running loss: 44.4916
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 90: running loss: 44.3399
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 91: running loss: 44.1065
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 92: running loss: 44.0390
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 93: running loss: 43.4768
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 94: running loss: 43.2838
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 95: running loss: 43.1121
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 96: running loss: 42.8114
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 97: running loss: 42.5647
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 98: running loss: 42.2752
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 99: running loss: 41.8719
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 100: running loss: 41.6345
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 101: running loss: 41.2654
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 102: running loss: 41.3037
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 103: running loss: 40.9543
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 104: running loss: 40.8271
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 105: running loss: 40.4586
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 106: running loss: 40.2227
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 107: running loss: 39.9495
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 108: running loss: 39.9358
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 109: running loss: 39.7263
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 110: running loss: 39.6199
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 111: running loss: 39.0359
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 112: running loss: 39.0585
+Exec. Time of epoch: 0.265s(0.007s/batch)
+
+Epoch 113: running loss: 38.7365
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 114: running loss: 38.5295
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 115: running loss: 38.2239
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 116: running loss: 37.8674
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 117: running loss: 37.6870
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 118: running loss: 37.2828
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 119: running loss: 37.3413
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 120: running loss: 37.1789
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 121: running loss: 36.9188
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 122: running loss: 36.7967
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 123: running loss: 36.4003
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 124: running loss: 36.0842
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 125: running loss: 35.8228
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 126: running loss: 35.5476
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 127: running loss: 35.3868
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 128: running loss: 35.2709
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 129: running loss: 35.1025
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 130: running loss: 34.5528
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 131: running loss: 34.6463
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 132: running loss: 34.1783
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 133: running loss: 34.0502
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 134: running loss: 33.9220
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 135: running loss: 33.8269
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 136: running loss: 33.7546
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 137: running loss: 33.5022
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 138: running loss: 33.2674
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 139: running loss: 33.1249
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 140: running loss: 32.8620
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 141: running loss: 32.6927
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 142: running loss: 32.5934
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 143: running loss: 32.5008
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 144: running loss: 32.2673
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 145: running loss: 31.8802
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 146: running loss: 32.1420
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 147: running loss: 31.8166
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 148: running loss: 31.7532
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 149: running loss: 31.4209
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 150: running loss: 31.2186
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 151: running loss: 31.1789
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 152: running loss: 31.0438
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 153: running loss: 30.7210
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 154: running loss: 30.7190
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 155: running loss: 30.5375
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 156: running loss: 30.6468
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 157: running loss: 30.3376
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 158: running loss: 30.0047
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 159: running loss: 30.0273
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 160: running loss: 29.8238
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 161: running loss: 30.0555
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 162: running loss: 29.7230
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 163: running loss: 29.5182
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 164: running loss: 29.4846
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 165: running loss: 29.3152
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 166: running loss: 29.3617
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 167: running loss: 29.0937
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 168: running loss: 28.9838
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 169: running loss: 28.8284
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 170: running loss: 28.7799
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 171: running loss: 28.6110
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 172: running loss: 28.7244
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 173: running loss: 28.3295
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 174: running loss: 28.1386
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 175: running loss: 28.1863
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 176: running loss: 28.0639
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 177: running loss: 27.8286
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 178: running loss: 27.6144
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 179: running loss: 27.7708
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 180: running loss: 27.4701
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 181: running loss: 27.3826
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 182: running loss: 27.4233
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 183: running loss: 27.2440
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 184: running loss: 27.0536
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 185: running loss: 26.9193
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 186: running loss: 26.7507
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 187: running loss: 26.6679
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 188: running loss: 26.7090
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 189: running loss: 26.5920
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 190: running loss: 26.4684
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 191: running loss: 26.3390
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 192: running loss: 26.1840
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 193: running loss: 26.0967
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 194: running loss: 26.0522
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 195: running loss: 26.0488
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 196: running loss: 25.7482
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 197: running loss: 25.7762
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 198: running loss: 25.6638
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 199: running loss: 25.5529
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 200: running loss: 25.4069
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 201: running loss: 25.3637
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 202: running loss: 25.4889
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 203: running loss: 25.2256
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 204: running loss: 25.1191
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 205: running loss: 25.0616
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 206: running loss: 24.9038
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 207: running loss: 24.8162
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 208: running loss: 24.6741
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 209: running loss: 24.6502
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 210: running loss: 24.5113
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 211: running loss: 24.4591
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 212: running loss: 24.4014
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 213: running loss: 24.4498
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 214: running loss: 24.3076
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 215: running loss: 24.1280
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 216: running loss: 24.0025
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 217: running loss: 24.1525
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 218: running loss: 23.8725
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 219: running loss: 23.6927
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 220: running loss: 23.8342
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 221: running loss: 23.6084
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 222: running loss: 23.7128
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 223: running loss: 23.5081
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 224: running loss: 23.4708
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 225: running loss: 23.4624
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 226: running loss: 23.4049
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 227: running loss: 23.2021
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 228: running loss: 23.0211
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 229: running loss: 23.1505
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 230: running loss: 23.0641
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 231: running loss: 22.9836
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 232: running loss: 22.8328
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 233: running loss: 22.8587
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 234: running loss: 22.7211
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 235: running loss: 22.5880
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 236: running loss: 22.5376
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 237: running loss: 22.5435
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 238: running loss: 22.4087
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 239: running loss: 22.3278
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 240: running loss: 22.2061
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 241: running loss: 22.1592
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 242: running loss: 22.0964
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 243: running loss: 22.0088
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 244: running loss: 21.9983
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 245: running loss: 21.9084
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 246: running loss: 21.6803
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 247: running loss: 21.7601
+Exec. Time of epoch: 0.266s(0.007s/batch)
+
+Epoch 248: running loss: 21.7632
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 249: running loss: 21.6168
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 250: running loss: 21.4753
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 251: running loss: 21.3081
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 252: running loss: 21.3772
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 253: running loss: 21.2815
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 254: running loss: 21.2573
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 255: running loss: 20.9488
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 256: running loss: 20.8991
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 257: running loss: 20.7452
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 258: running loss: 20.7399
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 259: running loss: 20.5912
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 260: running loss: 20.5604
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 261: running loss: 20.5972
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 262: running loss: 20.5110
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 263: running loss: 20.4370
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 264: running loss: 20.3020
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 265: running loss: 20.1110
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 266: running loss: 20.0090
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 267: running loss: 19.9476
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 268: running loss: 19.7095
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 269: running loss: 19.7584
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 270: running loss: 19.5813
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 271: running loss: 19.5603
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 272: running loss: 19.4448
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 273: running loss: 19.4679
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 274: running loss: 19.3368
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 275: running loss: 19.1430
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 276: running loss: 19.3572
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 277: running loss: 18.9799
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 278: running loss: 19.0436
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 279: running loss: 18.9499
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 280: running loss: 18.7704
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 281: running loss: 18.7278
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 282: running loss: 18.6280
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 283: running loss: 18.5853
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 284: running loss: 18.4605
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 285: running loss: 18.4262
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 286: running loss: 18.3131
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 287: running loss: 18.1471
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 288: running loss: 18.0961
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 289: running loss: 18.1674
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 290: running loss: 17.9872
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 291: running loss: 17.8385
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 292: running loss: 17.8805
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 293: running loss: 17.8795
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 294: running loss: 17.8184
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 295: running loss: 17.6615
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 296: running loss: 17.7100
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 297: running loss: 17.6931
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 298: running loss: 17.5894
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 299: running loss: 17.5052
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 300: running loss: 17.4216
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 301: running loss: 17.3337
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 302: running loss: 17.1609
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 303: running loss: 17.3151
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 304: running loss: 17.0592
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 305: running loss: 16.9601
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 306: running loss: 16.9952
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 307: running loss: 16.9708
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 308: running loss: 16.7730
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 309: running loss: 16.8020
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 310: running loss: 16.7300
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 311: running loss: 16.6157
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 312: running loss: 16.5532
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 313: running loss: 16.7277
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 314: running loss: 16.5830
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 315: running loss: 16.5694
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 316: running loss: 16.4489
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 317: running loss: 16.3285
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 318: running loss: 16.2317
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 319: running loss: 16.2945
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 320: running loss: 16.0591
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 321: running loss: 15.9620
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 322: running loss: 16.0650
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 323: running loss: 16.0195
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 324: running loss: 15.9295
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 325: running loss: 15.8790
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 326: running loss: 15.8980
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 327: running loss: 15.8537
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 328: running loss: 15.6464
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 329: running loss: 15.7659
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 330: running loss: 15.5620
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 331: running loss: 15.5345
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 332: running loss: 15.4757
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 333: running loss: 15.3280
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 334: running loss: 15.3766
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 335: running loss: 15.2717
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 336: running loss: 15.3634
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 337: running loss: 15.3127
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 338: running loss: 15.1933
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 339: running loss: 15.1025
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 340: running loss: 15.1753
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 341: running loss: 15.0909
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 342: running loss: 14.9733
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 343: running loss: 14.8799
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 344: running loss: 14.8053
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 345: running loss: 14.8843
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 346: running loss: 14.7255
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 347: running loss: 14.5748
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 348: running loss: 14.7127
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 349: running loss: 14.6262
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 350: running loss: 14.4851
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 351: running loss: 14.5255
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 352: running loss: 14.5246
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 353: running loss: 14.4373
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 354: running loss: 14.3104
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 355: running loss: 14.1719
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 356: running loss: 14.2651
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 357: running loss: 14.1796
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 358: running loss: 14.2568
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 359: running loss: 14.1674
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 360: running loss: 14.1611
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 361: running loss: 14.0186
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 362: running loss: 14.0481
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 363: running loss: 13.9983
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 364: running loss: 14.0033
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 365: running loss: 14.0116
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 366: running loss: 14.0530
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 367: running loss: 13.8725
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 368: running loss: 13.8149
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 369: running loss: 13.7771
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 370: running loss: 13.7886
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 371: running loss: 13.7219
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 372: running loss: 13.7569
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 373: running loss: 13.6930
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 374: running loss: 13.6105
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 375: running loss: 13.6341
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 376: running loss: 13.5626
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 377: running loss: 13.5395
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 378: running loss: 13.6140
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 379: running loss: 13.4861
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 380: running loss: 13.4391
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 381: running loss: 13.4149
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 382: running loss: 13.4718
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 383: running loss: 13.3954
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 384: running loss: 13.3436
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 385: running loss: 13.2823
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 386: running loss: 13.3120
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 387: running loss: 13.2560
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 388: running loss: 13.2739
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 389: running loss: 13.2855
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 390: running loss: 13.2337
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 391: running loss: 13.2233
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 392: running loss: 13.2601
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 393: running loss: 13.1298
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 394: running loss: 13.0263
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 395: running loss: 13.0156
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 396: running loss: 13.0941
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 397: running loss: 13.1070
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 398: running loss: 12.9908
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 399: running loss: 12.8514
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 400: running loss: 12.8829
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 401: running loss: 12.9159
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 402: running loss: 12.8739
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 403: running loss: 12.8326
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 404: running loss: 12.7697
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 405: running loss: 12.7600
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 406: running loss: 12.7788
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 407: running loss: 12.7636
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 408: running loss: 12.6818
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 409: running loss: 12.7837
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 410: running loss: 12.6450
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 411: running loss: 12.7200
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 412: running loss: 12.5743
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 413: running loss: 12.5811
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 414: running loss: 12.5131
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 415: running loss: 12.4993
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 416: running loss: 12.4821
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 417: running loss: 12.4560
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 418: running loss: 12.4178
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 419: running loss: 12.3951
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 420: running loss: 12.3825
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 421: running loss: 12.4417
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 422: running loss: 12.4787
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 423: running loss: 12.4120
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 424: running loss: 12.3436
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 425: running loss: 12.3523
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 426: running loss: 12.2527
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 427: running loss: 12.2949
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 428: running loss: 12.1376
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 429: running loss: 12.2889
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 430: running loss: 12.1658
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 431: running loss: 12.2387
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 432: running loss: 12.0541
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 433: running loss: 12.1367
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 434: running loss: 12.0525
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 435: running loss: 12.1066
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 436: running loss: 12.0260
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 437: running loss: 12.0863
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 438: running loss: 12.0033
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 439: running loss: 12.0544
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 440: running loss: 11.9317
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 441: running loss: 11.9466
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 442: running loss: 11.9136
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 443: running loss: 11.9350
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 444: running loss: 11.9201
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 445: running loss: 11.8784
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 446: running loss: 11.8637
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 447: running loss: 11.8599
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 448: running loss: 11.7930
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 449: running loss: 11.8071
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 450: running loss: 11.7079
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 451: running loss: 11.7361
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 452: running loss: 11.6600
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 453: running loss: 11.6799
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 454: running loss: 11.6489
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 455: running loss: 11.6811
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 456: running loss: 11.5937
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 457: running loss: 11.7134
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 458: running loss: 11.6734
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 459: running loss: 11.6390
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 460: running loss: 11.6247
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 461: running loss: 11.6749
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 462: running loss: 11.6810
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 463: running loss: 11.4561
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 464: running loss: 11.5545
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 465: running loss: 11.5756
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 466: running loss: 11.4881
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 467: running loss: 11.4353
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 468: running loss: 11.4135
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 469: running loss: 11.3342
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 470: running loss: 11.4878
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 471: running loss: 11.3167
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 472: running loss: 11.4171
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 473: running loss: 11.5312
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 474: running loss: 11.3573
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 475: running loss: 11.2975
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 476: running loss: 11.2781
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 477: running loss: 11.3468
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 478: running loss: 11.2405
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 479: running loss: 11.3071
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 480: running loss: 11.2852
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 481: running loss: 11.2942
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 482: running loss: 11.2649
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 483: running loss: 11.2564
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 484: running loss: 11.1682
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 485: running loss: 11.2192
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 486: running loss: 11.1158
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 487: running loss: 11.1483
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 488: running loss: 11.2081
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 489: running loss: 11.2225
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 490: running loss: 11.0782
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 491: running loss: 11.1505
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 492: running loss: 11.1078
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 493: running loss: 11.0897
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 494: running loss: 11.0605
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 495: running loss: 11.1062
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 496: running loss: 11.0589
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 497: running loss: 10.9814
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 498: running loss: 11.0090
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 499: running loss: 10.9102
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 500: running loss: 10.9632
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 501: running loss: 10.9796
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 502: running loss: 10.9200
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 503: running loss: 10.9436
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 504: running loss: 10.8465
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 505: running loss: 10.8950
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 506: running loss: 10.8943
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 507: running loss: 10.8842
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 508: running loss: 10.9218
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 509: running loss: 10.8577
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 510: running loss: 11.0193
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 511: running loss: 10.9019
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 512: running loss: 10.8082
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 513: running loss: 10.9281
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 514: running loss: 10.8718
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 515: running loss: 10.7573
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 516: running loss: 10.7174
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 517: running loss: 10.8204
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 518: running loss: 10.7991
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 519: running loss: 10.6782
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 520: running loss: 10.6767
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 521: running loss: 10.8403
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 522: running loss: 10.7619
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 523: running loss: 10.7957
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 524: running loss: 10.6978
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 525: running loss: 10.7902
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 526: running loss: 10.6990
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 527: running loss: 10.6157
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 528: running loss: 10.5644
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 529: running loss: 10.5916
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 530: running loss: 10.6880
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 531: running loss: 10.6176
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 532: running loss: 10.5497
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 533: running loss: 10.6071
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 534: running loss: 10.5910
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 535: running loss: 10.5581
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 536: running loss: 10.5236
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 537: running loss: 10.5139
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 538: running loss: 10.6240
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 539: running loss: 10.5022
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 540: running loss: 10.5810
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 541: running loss: 10.4983
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 542: running loss: 10.5262
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 543: running loss: 10.4458
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 544: running loss: 10.4539
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 545: running loss: 10.4292
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 546: running loss: 10.4134
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 547: running loss: 10.4854
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 548: running loss: 10.4334
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 549: running loss: 10.3545
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 550: running loss: 10.4008
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 551: running loss: 10.4318
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 552: running loss: 10.3440
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 553: running loss: 10.3702
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 554: running loss: 10.3449
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 555: running loss: 10.3447
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 556: running loss: 10.3357
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 557: running loss: 10.2984
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 558: running loss: 10.3186
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 559: running loss: 10.3201
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 560: running loss: 10.3550
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 561: running loss: 10.3794
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 562: running loss: 10.2768
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 563: running loss: 10.3504
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 564: running loss: 10.2297
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 565: running loss: 10.2259
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 566: running loss: 10.3064
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 567: running loss: 10.2267
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 568: running loss: 10.2383
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 569: running loss: 10.1847
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 570: running loss: 10.2292
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 571: running loss: 10.2316
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 572: running loss: 10.1773
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 573: running loss: 10.1909
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 574: running loss: 10.2078
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 575: running loss: 10.1675
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 576: running loss: 10.2202
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 577: running loss: 10.3237
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 578: running loss: 10.1515
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 579: running loss: 10.2671
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 580: running loss: 10.0698
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 581: running loss: 10.0745
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 582: running loss: 10.1175
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 583: running loss: 10.0991
+Exec. Time of epoch: 0.267s(0.007s/batch)
+
+Epoch 584: running loss: 10.0729
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 585: running loss: 10.0936
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 586: running loss: 10.0697
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 587: running loss: 10.1727
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 588: running loss: 10.1532
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 589: running loss: 10.0667
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 590: running loss: 10.1412
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 591: running loss: 10.1071
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 592: running loss: 10.0838
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 593: running loss: 10.0531
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 594: running loss: 10.1182
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 595: running loss: 10.1017
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 596: running loss: 10.0652
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 597: running loss: 9.9966
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 598: running loss: 9.9531
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 599: running loss: 9.8952
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 600: running loss: 9.8723
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 601: running loss: 9.8344
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 602: running loss: 9.9380
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 603: running loss: 9.9450
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 604: running loss: 9.9323
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 605: running loss: 9.9203
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 606: running loss: 9.9130
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 607: running loss: 9.8900
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 608: running loss: 9.8755
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 609: running loss: 9.8853
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 610: running loss: 9.9169
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 611: running loss: 9.8815
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 612: running loss: 9.8460
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 613: running loss: 9.7930
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 614: running loss: 9.9538
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 615: running loss: 9.7981
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 616: running loss: 9.8358
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 617: running loss: 9.9241
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 618: running loss: 9.8130
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 619: running loss: 9.8922
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 620: running loss: 9.8505
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 621: running loss: 9.8233
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 622: running loss: 9.9032
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 623: running loss: 9.7948
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 624: running loss: 9.7443
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 625: running loss: 9.7725
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 626: running loss: 9.8303
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 627: running loss: 9.7816
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 628: running loss: 9.7757
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 629: running loss: 9.6796
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 630: running loss: 9.7594
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 631: running loss: 9.7178
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 632: running loss: 9.6683
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 633: running loss: 9.8077
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 634: running loss: 9.7064
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 635: running loss: 9.7598
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 636: running loss: 9.6926
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 637: running loss: 9.7128
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 638: running loss: 9.6610
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 639: running loss: 9.6618
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 640: running loss: 9.5808
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 641: running loss: 9.8028
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 642: running loss: 9.6753
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 643: running loss: 9.6802
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 644: running loss: 9.6422
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 645: running loss: 9.6957
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 646: running loss: 9.6668
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 647: running loss: 9.6583
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 648: running loss: 9.6112
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 649: running loss: 9.6970
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 650: running loss: 9.5737
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 651: running loss: 9.5711
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 652: running loss: 9.6266
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 653: running loss: 9.5519
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 654: running loss: 9.5624
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 655: running loss: 9.5390
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 656: running loss: 9.5810
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 657: running loss: 9.5486
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 658: running loss: 9.6051
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 659: running loss: 9.5314
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 660: running loss: 9.6088
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 661: running loss: 9.5222
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 662: running loss: 9.4510
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 663: running loss: 9.5127
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 664: running loss: 9.4566
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 665: running loss: 9.5013
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 666: running loss: 9.5339
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 667: running loss: 9.4177
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 668: running loss: 9.5023
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 669: running loss: 9.5518
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 670: running loss: 9.4884
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 671: running loss: 9.4599
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 672: running loss: 9.5978
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 673: running loss: 9.4509
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 674: running loss: 9.4065
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 675: running loss: 9.4564
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 676: running loss: 9.3880
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 677: running loss: 9.4452
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 678: running loss: 9.3944
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 679: running loss: 9.3634
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 680: running loss: 9.3818
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 681: running loss: 9.4133
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 682: running loss: 9.3171
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 683: running loss: 9.3088
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 684: running loss: 9.3704
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 685: running loss: 9.3559
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 686: running loss: 9.3015
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 687: running loss: 9.3639
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 688: running loss: 9.4143
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 689: running loss: 9.3309
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 690: running loss: 9.3168
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 691: running loss: 9.4033
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 692: running loss: 9.2039
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 693: running loss: 9.3042
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 694: running loss: 9.3654
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 695: running loss: 9.2999
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 696: running loss: 9.3563
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 697: running loss: 9.3095
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 698: running loss: 9.2825
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 699: running loss: 9.3496
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 700: running loss: 9.2706
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 701: running loss: 9.2932
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 702: running loss: 9.2129
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 703: running loss: 9.3471
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 704: running loss: 9.2692
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 705: running loss: 9.1877
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 706: running loss: 9.2614
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 707: running loss: 9.2262
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 708: running loss: 9.2024
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 709: running loss: 9.1397
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 710: running loss: 9.1477
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 711: running loss: 9.2123
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 712: running loss: 9.2583
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 713: running loss: 9.1582
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 714: running loss: 9.1353
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 715: running loss: 9.2447
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 716: running loss: 9.2882
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 717: running loss: 9.2456
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 718: running loss: 9.2769
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 719: running loss: 9.1346
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 720: running loss: 9.1269
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 721: running loss: 9.0232
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 722: running loss: 9.0169
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 723: running loss: 9.1072
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 724: running loss: 9.0712
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 725: running loss: 9.0918
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 726: running loss: 9.0297
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 727: running loss: 9.0782
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 728: running loss: 9.1042
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 729: running loss: 9.0377
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 730: running loss: 8.9972
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 731: running loss: 9.0038
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 732: running loss: 9.0441
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 733: running loss: 9.0741
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 734: running loss: 9.1016
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 735: running loss: 9.0114
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 736: running loss: 9.0601
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 737: running loss: 9.0426
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 738: running loss: 8.9750
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 739: running loss: 8.9735
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 740: running loss: 8.9837
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 741: running loss: 8.9464
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 742: running loss: 8.9521
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 743: running loss: 8.9947
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 744: running loss: 8.9687
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 745: running loss: 8.9413
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 746: running loss: 8.9536
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 747: running loss: 8.9613
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 748: running loss: 8.9172
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 749: running loss: 9.0300
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 750: running loss: 8.8781
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 751: running loss: 8.9674
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 752: running loss: 8.8712
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 753: running loss: 8.9296
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 754: running loss: 8.9381
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 755: running loss: 8.8306
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 756: running loss: 8.8404
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 757: running loss: 8.8603
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 758: running loss: 8.8851
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 759: running loss: 8.8744
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 760: running loss: 8.8979
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 761: running loss: 8.8400
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 762: running loss: 8.8779
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 763: running loss: 8.9730
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 764: running loss: 8.8349
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 765: running loss: 8.9279
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 766: running loss: 8.7606
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 767: running loss: 8.7813
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 768: running loss: 8.7819
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 769: running loss: 8.8041
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 770: running loss: 8.7561
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 771: running loss: 8.8659
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 772: running loss: 8.8542
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 773: running loss: 8.7601
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 774: running loss: 8.8077
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 775: running loss: 8.8030
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 776: running loss: 8.8271
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 777: running loss: 8.7472
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 778: running loss: 8.6881
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 779: running loss: 8.7564
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 780: running loss: 8.8636
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 781: running loss: 8.7673
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 782: running loss: 8.8613
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 783: running loss: 8.9631
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 784: running loss: 8.6775
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 785: running loss: 8.7021
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 786: running loss: 8.7416
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 787: running loss: 8.6983
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 788: running loss: 8.7211
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 789: running loss: 8.7612
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 790: running loss: 8.6870
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 791: running loss: 8.6930
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 792: running loss: 8.6166
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 793: running loss: 8.6530
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 794: running loss: 8.6608
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 795: running loss: 8.6480
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 796: running loss: 8.6303
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 797: running loss: 8.7096
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 798: running loss: 8.6659
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 799: running loss: 8.5932
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 800: running loss: 8.6802
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 801: running loss: 8.6286
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 802: running loss: 8.6532
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 803: running loss: 8.5194
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 804: running loss: 8.5800
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 805: running loss: 8.6088
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 806: running loss: 8.5677
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 807: running loss: 8.6461
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 808: running loss: 8.5862
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 809: running loss: 8.6041
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 810: running loss: 8.5940
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 811: running loss: 8.5643
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 812: running loss: 8.6046
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 813: running loss: 8.5177
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 814: running loss: 8.5587
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 815: running loss: 8.5144
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 816: running loss: 8.5205
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 817: running loss: 8.4879
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 818: running loss: 8.5509
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 819: running loss: 8.5215
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 820: running loss: 8.4719
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 821: running loss: 8.4578
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 822: running loss: 8.5402
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 823: running loss: 8.5224
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 824: running loss: 8.5398
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 825: running loss: 8.5994
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 826: running loss: 8.5039
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 827: running loss: 8.4306
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 828: running loss: 8.4312
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 829: running loss: 8.4368
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 830: running loss: 8.4200
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 831: running loss: 8.4217
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 832: running loss: 8.4169
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 833: running loss: 8.4247
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 834: running loss: 8.4098
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 835: running loss: 8.4914
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 836: running loss: 8.3661
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 837: running loss: 8.4128
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 838: running loss: 8.4133
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 839: running loss: 8.3572
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 840: running loss: 8.3894
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 841: running loss: 8.4440
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 842: running loss: 8.4008
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 843: running loss: 8.4008
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 844: running loss: 8.3755
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 845: running loss: 8.3752
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 846: running loss: 8.3763
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 847: running loss: 8.4054
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 848: running loss: 8.4771
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 849: running loss: 8.4791
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 850: running loss: 8.4508
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 851: running loss: 8.3985
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 852: running loss: 8.4565
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 853: running loss: 8.3985
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 854: running loss: 8.3341
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 855: running loss: 8.3063
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 856: running loss: 8.3308
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 857: running loss: 8.2823
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 858: running loss: 8.3720
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 859: running loss: 8.3412
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 860: running loss: 8.2980
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 861: running loss: 8.3459
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 862: running loss: 8.2695
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 863: running loss: 8.2647
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 864: running loss: 8.2569
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 865: running loss: 8.3647
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 866: running loss: 8.3117
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 867: running loss: 8.2732
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 868: running loss: 8.2185
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 869: running loss: 8.2332
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 870: running loss: 8.2506
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 871: running loss: 8.2271
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 872: running loss: 8.2185
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 873: running loss: 8.2722
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 874: running loss: 8.2430
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 875: running loss: 8.2612
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 876: running loss: 8.2161
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 877: running loss: 8.2956
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 878: running loss: 8.2313
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 879: running loss: 8.2145
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 880: running loss: 8.2770
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 881: running loss: 8.2111
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 882: running loss: 8.1987
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 883: running loss: 8.1967
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 884: running loss: 8.1253
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 885: running loss: 8.1758
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 886: running loss: 8.1014
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 887: running loss: 8.1612
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 888: running loss: 8.1257
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 889: running loss: 8.1761
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 890: running loss: 8.1770
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 891: running loss: 8.1432
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 892: running loss: 8.1720
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 893: running loss: 8.1418
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 894: running loss: 8.1441
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 895: running loss: 8.1040
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 896: running loss: 8.1355
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 897: running loss: 8.1360
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 898: running loss: 8.1931
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 899: running loss: 8.1292
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 900: running loss: 8.1736
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 901: running loss: 8.2456
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 902: running loss: 8.1484
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 903: running loss: 8.1636
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 904: running loss: 8.0862
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 905: running loss: 8.0900
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 906: running loss: 8.0968
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 907: running loss: 8.1810
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 908: running loss: 8.1932
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 909: running loss: 8.0755
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 910: running loss: 8.1449
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 911: running loss: 8.0525
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 912: running loss: 8.0766
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 913: running loss: 8.0988
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 914: running loss: 8.0846
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 915: running loss: 8.0689
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 916: running loss: 8.0580
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 917: running loss: 8.0556
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 918: running loss: 8.0320
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 919: running loss: 8.0505
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 920: running loss: 8.0905
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 921: running loss: 8.0551
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 922: running loss: 7.9638
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 923: running loss: 8.0913
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 924: running loss: 7.9902
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 925: running loss: 8.0133
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 926: running loss: 8.0462
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 927: running loss: 7.9956
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 928: running loss: 8.0109
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 929: running loss: 8.0156
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 930: running loss: 8.0351
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 931: running loss: 8.0050
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 932: running loss: 7.9854
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 933: running loss: 7.9778
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 934: running loss: 7.9634
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 935: running loss: 8.0061
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 936: running loss: 8.0221
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 937: running loss: 8.0158
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 938: running loss: 7.9073
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 939: running loss: 8.0827
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 940: running loss: 8.0321
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 941: running loss: 7.9810
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 942: running loss: 7.9857
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 943: running loss: 7.9184
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 944: running loss: 7.9035
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 945: running loss: 7.9163
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 946: running loss: 7.9992
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 947: running loss: 7.9685
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 948: running loss: 7.9111
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 949: running loss: 7.9475
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 950: running loss: 7.8607
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 951: running loss: 7.9920
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 952: running loss: 7.8864
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 953: running loss: 7.8986
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 954: running loss: 7.8939
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 955: running loss: 7.9856
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 956: running loss: 7.9282
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 957: running loss: 7.8845
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 958: running loss: 7.8817
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 959: running loss: 7.9258
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 960: running loss: 7.8537
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 961: running loss: 7.8588
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 962: running loss: 7.8876
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 963: running loss: 7.8955
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 964: running loss: 7.9053
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 965: running loss: 7.8236
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 966: running loss: 7.8505
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 967: running loss: 7.9071
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 968: running loss: 7.9111
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 969: running loss: 7.9277
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 970: running loss: 7.8865
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 971: running loss: 7.8520
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 972: running loss: 7.8403
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 973: running loss: 7.8858
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 974: running loss: 7.8876
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 975: running loss: 7.8419
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 976: running loss: 7.8930
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 977: running loss: 7.8962
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 978: running loss: 7.8025
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 979: running loss: 7.7806
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 980: running loss: 7.8304
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 981: running loss: 7.8607
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 982: running loss: 7.7834
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 983: running loss: 7.8703
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 984: running loss: 7.8719
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 985: running loss: 7.8084
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 986: running loss: 7.7466
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 987: running loss: 7.7960
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 988: running loss: 7.8615
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 989: running loss: 7.7878
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 990: running loss: 7.7864
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 991: running loss: 7.7738
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 992: running loss: 7.7880
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 993: running loss: 7.8873
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 994: running loss: 7.9004
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 995: running loss: 7.8107
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 996: running loss: 7.7514
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 997: running loss: 7.7825
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 998: running loss: 7.7556
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 999: running loss: 7.7549
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1000: running loss: 7.7247
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1001: running loss: 7.7265
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1002: running loss: 7.7929
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1003: running loss: 7.7472
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1004: running loss: 7.8440
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1005: running loss: 7.7122
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1006: running loss: 7.8631
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1007: running loss: 7.7905
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1008: running loss: 7.7018
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1009: running loss: 7.7857
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1010: running loss: 7.6927
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1011: running loss: 7.6711
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1012: running loss: 7.7709
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1013: running loss: 7.7301
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1014: running loss: 7.7475
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1015: running loss: 7.7029
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1016: running loss: 7.6441
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1017: running loss: 7.7260
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1018: running loss: 7.6651
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1019: running loss: 7.7372
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1020: running loss: 7.7062
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1021: running loss: 7.7934
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1022: running loss: 7.7450
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1023: running loss: 7.7864
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1024: running loss: 7.8625
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1025: running loss: 7.9154
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1026: running loss: 7.7625
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1027: running loss: 7.7643
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1028: running loss: 7.6345
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1029: running loss: 7.8393
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1030: running loss: 7.7778
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1031: running loss: 7.7288
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1032: running loss: 7.6544
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1033: running loss: 7.6635
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1034: running loss: 7.6356
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1035: running loss: 7.7511
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1036: running loss: 7.6352
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1037: running loss: 7.6696
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1038: running loss: 7.6616
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1039: running loss: 7.7010
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1040: running loss: 7.6170
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1041: running loss: 7.6437
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1042: running loss: 7.6246
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1043: running loss: 7.6411
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1044: running loss: 7.6294
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1045: running loss: 7.6802
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1046: running loss: 7.5991
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1047: running loss: 7.6415
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1048: running loss: 7.6495
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1049: running loss: 7.5867
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1050: running loss: 7.6698
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1051: running loss: 7.5680
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1052: running loss: 7.5812
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1053: running loss: 7.6859
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1054: running loss: 7.6463
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1055: running loss: 7.6050
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1056: running loss: 7.5919
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1057: running loss: 7.5846
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1058: running loss: 7.6488
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1059: running loss: 7.5717
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1060: running loss: 7.6051
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1061: running loss: 7.6687
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1062: running loss: 7.6548
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1063: running loss: 7.5826
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1064: running loss: 7.5605
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1065: running loss: 7.5870
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1066: running loss: 7.6357
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1067: running loss: 7.5377
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1068: running loss: 7.5616
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1069: running loss: 7.6323
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1070: running loss: 7.6636
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1071: running loss: 7.6560
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1072: running loss: 7.5950
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1073: running loss: 7.5277
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1074: running loss: 7.5100
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1075: running loss: 7.5559
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1076: running loss: 7.5753
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1077: running loss: 7.5459
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1078: running loss: 7.5467
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1079: running loss: 7.5687
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1080: running loss: 7.5000
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1081: running loss: 7.5983
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1082: running loss: 7.5083
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1083: running loss: 7.5861
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1084: running loss: 7.5455
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1085: running loss: 7.5614
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1086: running loss: 7.5381
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1087: running loss: 7.5344
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1088: running loss: 7.5223
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1089: running loss: 7.5346
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1090: running loss: 7.5308
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1091: running loss: 7.5112
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1092: running loss: 7.5288
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1093: running loss: 7.5524
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1094: running loss: 7.5821
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1095: running loss: 7.6126
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1096: running loss: 7.5902
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1097: running loss: 7.5168
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1098: running loss: 7.4815
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1099: running loss: 7.5018
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1100: running loss: 7.5163
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1101: running loss: 7.4629
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1102: running loss: 7.5199
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1103: running loss: 7.5763
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1104: running loss: 7.5279
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1105: running loss: 7.5074
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1106: running loss: 7.3727
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1107: running loss: 7.4729
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1108: running loss: 7.5515
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1109: running loss: 7.4581
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1110: running loss: 7.4952
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1111: running loss: 7.4724
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1112: running loss: 7.4709
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1113: running loss: 7.5482
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1114: running loss: 7.4580
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1115: running loss: 7.4978
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1116: running loss: 7.4457
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1117: running loss: 7.5003
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1118: running loss: 7.5600
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1119: running loss: 7.6354
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1120: running loss: 7.4899
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1121: running loss: 7.5149
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1122: running loss: 7.4983
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1123: running loss: 7.3956
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1124: running loss: 7.4676
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1125: running loss: 7.4633
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1126: running loss: 7.4517
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1127: running loss: 7.4581
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1128: running loss: 7.4439
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1129: running loss: 7.4189
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1130: running loss: 7.4201
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1131: running loss: 7.3888
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1132: running loss: 7.4107
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1133: running loss: 7.4675
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1134: running loss: 7.4635
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1135: running loss: 7.4358
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1136: running loss: 7.5027
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1137: running loss: 7.4006
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1138: running loss: 7.4256
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1139: running loss: 7.4277
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1140: running loss: 7.4305
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1141: running loss: 7.4619
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1142: running loss: 7.3881
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1143: running loss: 7.4161
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1144: running loss: 7.4068
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1145: running loss: 7.4230
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1146: running loss: 7.4887
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1147: running loss: 7.3329
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1148: running loss: 7.4000
+Exec. Time of epoch: 0.276s(0.007s/batch)
+
+Epoch 1149: running loss: 7.4052
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1150: running loss: 7.3992
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1151: running loss: 7.4357
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1152: running loss: 7.4090
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1153: running loss: 7.4440
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1154: running loss: 7.3390
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1155: running loss: 7.4502
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1156: running loss: 7.3621
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1157: running loss: 7.3833
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1158: running loss: 7.3350
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1159: running loss: 7.3378
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1160: running loss: 7.4108
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1161: running loss: 7.4063
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1162: running loss: 7.3677
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1163: running loss: 7.4108
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1164: running loss: 7.4611
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1165: running loss: 7.4472
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1166: running loss: 7.4167
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1167: running loss: 7.4161
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1168: running loss: 7.4255
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1169: running loss: 7.3757
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1170: running loss: 7.3752
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1171: running loss: 7.3447
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1172: running loss: 7.3311
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1173: running loss: 7.3060
+Exec. Time of epoch: 0.274s(0.007s/batch)
+
+Epoch 1174: running loss: 7.3793
+Exec. Time of epoch: 0.272s(0.007s/batch)
+
+Epoch 1175: running loss: 7.3283
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1176: running loss: 7.3543
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1177: running loss: 7.3325
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1178: running loss: 7.3172
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1179: running loss: 7.3362
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1180: running loss: 7.3404
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1181: running loss: 7.3436
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1182: running loss: 7.3490
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1183: running loss: 7.2718
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1184: running loss: 7.3814
+Exec. Time of epoch: 0.276s(0.007s/batch)
+
+Epoch 1185: running loss: 7.3066
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1186: running loss: 7.3292
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1187: running loss: 7.3354
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1188: running loss: 7.3465
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1189: running loss: 7.3124
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1190: running loss: 7.3401
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1191: running loss: 7.3206
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1192: running loss: 7.2421
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1193: running loss: 7.3195
+Exec. Time of epoch: 0.273s(0.007s/batch)
+
+Epoch 1194: running loss: 7.3112
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1195: running loss: 7.3111
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1196: running loss: 7.3681
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1197: running loss: 7.3695
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1198: running loss: 7.4033
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1199: running loss: 7.4398
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1200: running loss: 7.3540
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1201: running loss: 7.3255
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1202: running loss: 7.3337
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1203: running loss: 7.3039
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1204: running loss: 7.2399
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1205: running loss: 7.3011
+Exec. Time of epoch: 0.276s(0.007s/batch)
+
+Epoch 1206: running loss: 7.2828
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1207: running loss: 7.2564
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1208: running loss: 7.2643
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1209: running loss: 7.2781
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1210: running loss: 7.2847
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1211: running loss: 7.2747
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1212: running loss: 7.3131
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1213: running loss: 7.2963
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1214: running loss: 7.3872
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1215: running loss: 7.2469
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1216: running loss: 7.2060
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1217: running loss: 7.2842
+Exec. Time of epoch: 0.276s(0.007s/batch)
+
+Epoch 1218: running loss: 7.3072
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1219: running loss: 7.2696
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1220: running loss: 7.2806
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1221: running loss: 7.3309
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1222: running loss: 7.2899
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1223: running loss: 7.2645
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1224: running loss: 7.2292
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1225: running loss: 7.2737
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1226: running loss: 7.2652
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1227: running loss: 7.2462
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1228: running loss: 7.2592
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1229: running loss: 7.2256
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1230: running loss: 7.2216
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1231: running loss: 7.2877
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1232: running loss: 7.2058
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1233: running loss: 7.2281
+Exec. Time of epoch: 0.275s(0.007s/batch)
+
+Epoch 1234: running loss: 7.2013
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1235: running loss: 7.2646
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1236: running loss: 7.1711
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1237: running loss: 7.3426
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1238: running loss: 7.2097
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1239: running loss: 7.1771
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1240: running loss: 7.1795
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1241: running loss: 7.2407
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1242: running loss: 7.2479
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1243: running loss: 7.2028
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1244: running loss: 7.2547
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1245: running loss: 7.2658
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1246: running loss: 7.2559
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1247: running loss: 7.2932
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1248: running loss: 7.4564
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1249: running loss: 7.2337
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1250: running loss: 7.2554
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1251: running loss: 7.2296
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1252: running loss: 7.3522
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1253: running loss: 7.2113
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1254: running loss: 7.2620
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1255: running loss: 7.2254
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1256: running loss: 7.2012
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1257: running loss: 7.1641
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1258: running loss: 7.1799
+Exec. Time of epoch: 0.276s(0.007s/batch)
+
+Epoch 1259: running loss: 7.1811
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1260: running loss: 7.1878
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1261: running loss: 7.1697
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1262: running loss: 7.2560
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1263: running loss: 7.2359
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1264: running loss: 7.2007
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1265: running loss: 7.1986
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1266: running loss: 7.1732
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1267: running loss: 7.2533
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1268: running loss: 7.2296
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1269: running loss: 7.3080
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1270: running loss: 7.1578
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1271: running loss: 7.1793
+Exec. Time of epoch: 0.269s(0.007s/batch)
+
+Epoch 1272: running loss: 7.1434
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1273: running loss: 7.1894
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1274: running loss: 7.1077
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1275: running loss: 7.1374
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1276: running loss: 7.1327
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1277: running loss: 7.2158
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1278: running loss: 7.2880
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1279: running loss: 7.1929
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1280: running loss: 7.1864
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1281: running loss: 7.2655
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1282: running loss: 7.2296
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1283: running loss: 7.1884
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1284: running loss: 7.2628
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1285: running loss: 7.1202
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1286: running loss: 7.2033
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1287: running loss: 7.1992
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1288: running loss: 7.1879
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1289: running loss: 7.1879
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1290: running loss: 7.2028
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1291: running loss: 7.1554
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1292: running loss: 7.2114
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1293: running loss: 7.1819
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1294: running loss: 7.1848
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1295: running loss: 7.1721
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1296: running loss: 7.1352
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1297: running loss: 7.1449
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1298: running loss: 7.0918
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1299: running loss: 7.1861
+Exec. Time of epoch: 0.276s(0.007s/batch)
+
+Epoch 1300: running loss: 7.1899
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1301: running loss: 7.1503
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1302: running loss: 7.1520
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1303: running loss: 7.1310
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1304: running loss: 7.1420
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1305: running loss: 7.1120
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1306: running loss: 7.0581
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1307: running loss: 7.1368
+Exec. Time of epoch: 0.270s(0.007s/batch)
+
+Epoch 1308: running loss: 7.1287
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1309: running loss: 7.1994
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1310: running loss: 7.1805
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1311: running loss: 7.1259
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1312: running loss: 7.1064
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1313: running loss: 7.1352
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1314: running loss: 7.1991
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1315: running loss: 7.1332
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1316: running loss: 7.1090
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1317: running loss: 7.1161
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1318: running loss: 7.1027
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1319: running loss: 7.1357
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1320: running loss: 7.0309
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1321: running loss: 7.0535
+Exec. Time of epoch: 0.275s(0.007s/batch)
+
+Epoch 1322: running loss: 7.0973
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1323: running loss: 7.0681
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1324: running loss: 7.1153
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1325: running loss: 7.0970
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1326: running loss: 7.1569
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1327: running loss: 7.1481
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1328: running loss: 7.0906
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1329: running loss: 7.0774
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1330: running loss: 7.0817
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1331: running loss: 7.0750
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1332: running loss: 7.0692
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1333: running loss: 7.1037
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1334: running loss: 7.1824
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1335: running loss: 7.0519
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1336: running loss: 7.2174
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1337: running loss: 7.1718
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1338: running loss: 7.1731
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1339: running loss: 7.1158
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1340: running loss: 7.0432
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1341: running loss: 7.1304
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1342: running loss: 7.0777
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1343: running loss: 7.2204
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1344: running loss: 7.0845
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1345: running loss: 7.0741
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1346: running loss: 7.0987
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1347: running loss: 7.1003
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1348: running loss: 7.0513
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1349: running loss: 7.0455
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1350: running loss: 7.1211
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1351: running loss: 7.1131
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1352: running loss: 7.0688
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1353: running loss: 7.0168
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1354: running loss: 7.1644
+Exec. Time of epoch: 0.275s(0.007s/batch)
+
+Epoch 1355: running loss: 7.0979
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1356: running loss: 7.1023
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1357: running loss: 7.0771
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1358: running loss: 7.0623
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1359: running loss: 7.0316
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1360: running loss: 7.0558
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1361: running loss: 7.0251
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1362: running loss: 7.0631
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1363: running loss: 7.0058
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1364: running loss: 7.0465
+Exec. Time of epoch: 0.269s(0.007s/batch)
+
+Epoch 1365: running loss: 7.1206
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1366: running loss: 7.0545
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1367: running loss: 7.0208
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1368: running loss: 7.0410
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1369: running loss: 7.0408
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1370: running loss: 7.0006
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1371: running loss: 7.0934
+Exec. Time of epoch: 0.288s(0.007s/batch)
+
+Epoch 1372: running loss: 7.0881
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1373: running loss: 7.0358
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1374: running loss: 7.0391
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1375: running loss: 7.0565
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1376: running loss: 7.0831
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1377: running loss: 7.1017
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1378: running loss: 7.3341
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1379: running loss: 7.0964
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1380: running loss: 7.1658
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1381: running loss: 7.0473
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1382: running loss: 7.0414
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1383: running loss: 7.0128
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1384: running loss: 7.0312
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1385: running loss: 7.0795
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1386: running loss: 7.1057
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1387: running loss: 7.0509
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1388: running loss: 7.0638
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1389: running loss: 7.0420
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1390: running loss: 7.0443
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1391: running loss: 7.0226
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1392: running loss: 7.0071
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1393: running loss: 7.0534
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1394: running loss: 7.0519
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1395: running loss: 6.9389
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1396: running loss: 7.0049
+Exec. Time of epoch: 0.276s(0.007s/batch)
+
+Epoch 1397: running loss: 7.0087
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1398: running loss: 6.9736
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1399: running loss: 6.9956
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1400: running loss: 7.0066
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1401: running loss: 7.0378
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1402: running loss: 6.9779
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1403: running loss: 6.9738
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1404: running loss: 6.9681
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1405: running loss: 6.9871
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1406: running loss: 6.9869
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1407: running loss: 7.0048
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1408: running loss: 6.9849
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1409: running loss: 7.0734
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1410: running loss: 6.9399
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1411: running loss: 6.9644
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1412: running loss: 6.9318
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1413: running loss: 6.9453
+Exec. Time of epoch: 0.276s(0.007s/batch)
+
+Epoch 1414: running loss: 6.9687
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1415: running loss: 7.0103
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1416: running loss: 6.9698
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1417: running loss: 7.0573
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1418: running loss: 6.9365
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1419: running loss: 7.0019
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1420: running loss: 7.0738
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1421: running loss: 6.9947
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1422: running loss: 6.9586
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1423: running loss: 6.9464
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1424: running loss: 7.0406
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1425: running loss: 7.0086
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1426: running loss: 6.9811
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1427: running loss: 6.8970
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1428: running loss: 6.9360
+Exec. Time of epoch: 0.275s(0.007s/batch)
+
+Epoch 1429: running loss: 6.9422
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1430: running loss: 7.0457
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1431: running loss: 6.9617
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1432: running loss: 6.9396
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1433: running loss: 6.9588
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1434: running loss: 6.9336
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1435: running loss: 6.9467
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1436: running loss: 6.9423
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1437: running loss: 6.9267
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1438: running loss: 6.9140
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1439: running loss: 7.0109
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1440: running loss: 6.9722
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1441: running loss: 7.0102
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1442: running loss: 7.0572
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1443: running loss: 6.9841
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1444: running loss: 6.9591
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1445: running loss: 6.9898
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1446: running loss: 6.9877
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1447: running loss: 6.9971
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1448: running loss: 6.9602
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1449: running loss: 6.9227
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1450: running loss: 7.0023
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1451: running loss: 7.0333
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1452: running loss: 6.8701
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1453: running loss: 6.9632
+Exec. Time of epoch: 0.275s(0.007s/batch)
+
+Epoch 1454: running loss: 6.8942
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1455: running loss: 6.9311
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1456: running loss: 6.9297
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1457: running loss: 6.9837
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1458: running loss: 6.9456
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1459: running loss: 6.9476
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1460: running loss: 6.8676
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1461: running loss: 6.9564
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1462: running loss: 6.9059
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1463: running loss: 6.9651
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1464: running loss: 6.9134
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1465: running loss: 6.9180
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1466: running loss: 7.0052
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1467: running loss: 6.9061
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1468: running loss: 6.9214
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1469: running loss: 6.8864
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1470: running loss: 6.9136
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1471: running loss: 6.8896
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1472: running loss: 6.9207
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1473: running loss: 6.8858
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1474: running loss: 6.9267
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1475: running loss: 6.9167
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1476: running loss: 6.8142
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1477: running loss: 6.9109
+Exec. Time of epoch: 0.270s(0.007s/batch)
+
+Epoch 1478: running loss: 7.0020
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1479: running loss: 6.9641
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1480: running loss: 6.8775
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1481: running loss: 6.9127
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1482: running loss: 6.9150
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1483: running loss: 6.9425
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1484: running loss: 6.8498
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1485: running loss: 6.8714
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1486: running loss: 6.9465
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1487: running loss: 6.8688
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1488: running loss: 6.8747
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1489: running loss: 6.8614
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1490: running loss: 6.8819
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1491: running loss: 6.8889
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1492: running loss: 6.8577
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1493: running loss: 6.8675
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1494: running loss: 6.8765
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1495: running loss: 6.9399
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1496: running loss: 6.9137
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1497: running loss: 6.8847
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1498: running loss: 6.8322
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1499: running loss: 6.9207
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1500: running loss: 6.8551
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1501: running loss: 6.8329
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1502: running loss: 6.8466
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1503: running loss: 6.9253
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1504: running loss: 6.9349
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1505: running loss: 6.9300
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1506: running loss: 6.8686
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1507: running loss: 6.8320
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1508: running loss: 6.9599
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1509: running loss: 6.9206
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1510: running loss: 6.8811
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1511: running loss: 6.8001
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1512: running loss: 6.8375
+Exec. Time of epoch: 0.276s(0.007s/batch)
+
+Epoch 1513: running loss: 6.8646
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1514: running loss: 6.8913
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1515: running loss: 6.8712
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1516: running loss: 6.9146
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1517: running loss: 7.0019
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1518: running loss: 6.9244
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1519: running loss: 6.9328
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1520: running loss: 6.8466
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1521: running loss: 6.7830
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1522: running loss: 6.8022
+Exec. Time of epoch: 0.276s(0.007s/batch)
+
+Epoch 1523: running loss: 6.8113
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1524: running loss: 6.9555
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1525: running loss: 6.9295
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1526: running loss: 6.8949
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1527: running loss: 6.8321
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1528: running loss: 6.8816
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1529: running loss: 6.9150
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1530: running loss: 6.8801
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1531: running loss: 6.8962
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1532: running loss: 6.7960
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1533: running loss: 6.8572
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1534: running loss: 6.7861
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1535: running loss: 6.7737
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1536: running loss: 6.8327
+Exec. Time of epoch: 0.270s(0.007s/batch)
+
+Epoch 1537: running loss: 6.9539
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1538: running loss: 6.8486
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1539: running loss: 6.8575
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1540: running loss: 6.7948
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1541: running loss: 6.8640
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1542: running loss: 6.8248
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1543: running loss: 6.8575
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1544: running loss: 6.8312
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1545: running loss: 6.7982
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1546: running loss: 6.8902
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1547: running loss: 6.8101
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1548: running loss: 6.7705
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1549: running loss: 6.8555
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1550: running loss: 6.8569
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1551: running loss: 6.8385
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1552: running loss: 6.8266
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1553: running loss: 6.8458
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1554: running loss: 6.8064
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1555: running loss: 6.8385
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1556: running loss: 6.8449
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1557: running loss: 6.7961
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1558: running loss: 6.7872
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1559: running loss: 6.7446
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1560: running loss: 6.8048
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1561: running loss: 6.8017
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1562: running loss: 6.8047
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1563: running loss: 6.8484
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1564: running loss: 6.8084
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1565: running loss: 6.7755
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1566: running loss: 6.8595
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1567: running loss: 6.7949
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1568: running loss: 6.8345
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1569: running loss: 6.7941
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1570: running loss: 6.7713
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1571: running loss: 6.8018
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1572: running loss: 6.8686
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1573: running loss: 6.8056
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1574: running loss: 6.8522
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1575: running loss: 6.7834
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1576: running loss: 6.8275
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1577: running loss: 6.7892
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1578: running loss: 6.8147
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1579: running loss: 6.8204
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1580: running loss: 6.8436
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1581: running loss: 6.9261
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1582: running loss: 6.8525
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1583: running loss: 6.8030
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1584: running loss: 6.7637
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1585: running loss: 6.7353
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1586: running loss: 6.7546
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1587: running loss: 6.7398
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1588: running loss: 6.8687
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1589: running loss: 6.7594
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1590: running loss: 6.8069
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1591: running loss: 6.9041
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1592: running loss: 6.8495
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1593: running loss: 6.8083
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1594: running loss: 6.7695
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1595: running loss: 6.7868
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1596: running loss: 6.8078
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1597: running loss: 6.7852
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1598: running loss: 6.7783
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1599: running loss: 6.8045
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1600: running loss: 6.7859
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1601: running loss: 6.7533
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1602: running loss: 6.8264
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1603: running loss: 6.7463
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1604: running loss: 6.6957
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1605: running loss: 6.7990
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1606: running loss: 6.8004
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1607: running loss: 6.7833
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1608: running loss: 6.7673
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1609: running loss: 6.7380
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1610: running loss: 6.8529
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1611: running loss: 6.7744
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1612: running loss: 6.7360
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1613: running loss: 6.7584
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1614: running loss: 6.8009
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1615: running loss: 6.7636
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1616: running loss: 6.7745
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1617: running loss: 6.8176
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1618: running loss: 6.7899
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1619: running loss: 6.7162
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1620: running loss: 6.7609
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1621: running loss: 6.7719
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1622: running loss: 6.7741
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1623: running loss: 6.7440
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1624: running loss: 6.6935
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1625: running loss: 6.7163
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1626: running loss: 6.7398
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1627: running loss: 6.7906
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1628: running loss: 6.7507
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1629: running loss: 6.7905
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1630: running loss: 6.7530
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1631: running loss: 6.8229
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1632: running loss: 6.7158
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1633: running loss: 6.7514
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1634: running loss: 6.7290
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1635: running loss: 6.7358
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1636: running loss: 6.7777
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1637: running loss: 6.7611
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1638: running loss: 6.7524
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1639: running loss: 6.7320
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1640: running loss: 6.7783
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1641: running loss: 6.7320
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1642: running loss: 6.7081
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1643: running loss: 6.7382
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1644: running loss: 6.7103
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1645: running loss: 6.8723
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1646: running loss: 6.7546
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1647: running loss: 6.7563
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1648: running loss: 6.7416
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1649: running loss: 6.7468
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1650: running loss: 6.7677
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1651: running loss: 6.7717
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1652: running loss: 6.7598
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1653: running loss: 6.7548
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1654: running loss: 6.7222
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1655: running loss: 6.7651
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1656: running loss: 6.7268
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1657: running loss: 6.7544
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1658: running loss: 6.7003
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1659: running loss: 6.7350
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1660: running loss: 6.7222
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1661: running loss: 6.7110
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1662: running loss: 6.7261
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1663: running loss: 6.7408
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1664: running loss: 6.7307
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1665: running loss: 6.7343
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1666: running loss: 6.6413
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1667: running loss: 6.7281
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1668: running loss: 6.8813
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1669: running loss: 6.8487
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1670: running loss: 6.7529
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1671: running loss: 6.7370
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1672: running loss: 6.6920
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1673: running loss: 6.7607
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1674: running loss: 6.7108
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1675: running loss: 6.7017
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1676: running loss: 6.7793
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1677: running loss: 6.7439
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1678: running loss: 6.6807
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1679: running loss: 6.6694
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1680: running loss: 6.7450
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1681: running loss: 6.7878
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1682: running loss: 6.7492
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1683: running loss: 6.6951
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1684: running loss: 6.7219
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1685: running loss: 6.6971
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1686: running loss: 6.7048
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1687: running loss: 6.7155
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1688: running loss: 6.7345
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1689: running loss: 6.7075
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1690: running loss: 6.7057
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1691: running loss: 6.6815
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1692: running loss: 6.6626
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1693: running loss: 6.6584
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1694: running loss: 6.6933
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1695: running loss: 6.7501
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1696: running loss: 6.7717
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1697: running loss: 6.7386
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1698: running loss: 6.7021
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1699: running loss: 6.7207
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1700: running loss: 6.7212
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1701: running loss: 6.6533
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1702: running loss: 6.6820
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1703: running loss: 6.7840
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1704: running loss: 6.7135
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1705: running loss: 6.6874
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1706: running loss: 6.6787
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1707: running loss: 6.6937
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1708: running loss: 6.6666
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1709: running loss: 6.6751
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1710: running loss: 6.6884
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1711: running loss: 6.6855
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1712: running loss: 6.7343
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1713: running loss: 6.6755
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1714: running loss: 6.7245
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1715: running loss: 6.6017
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1716: running loss: 6.7110
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1717: running loss: 6.6901
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1718: running loss: 6.6779
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1719: running loss: 6.7191
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1720: running loss: 6.6061
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1721: running loss: 6.6916
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1722: running loss: 6.6891
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1723: running loss: 6.6494
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1724: running loss: 6.7313
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1725: running loss: 6.6946
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1726: running loss: 6.6747
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1727: running loss: 6.6542
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1728: running loss: 6.6861
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1729: running loss: 6.6827
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1730: running loss: 6.7076
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1731: running loss: 6.7227
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1732: running loss: 6.6859
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1733: running loss: 6.6624
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1734: running loss: 6.6197
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1735: running loss: 6.6164
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1736: running loss: 6.5855
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1737: running loss: 6.6942
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1738: running loss: 6.6564
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1739: running loss: 6.6006
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1740: running loss: 6.6121
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1741: running loss: 6.6021
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1742: running loss: 6.6323
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1743: running loss: 6.6674
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1744: running loss: 6.7137
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1745: running loss: 6.7103
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1746: running loss: 6.7135
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1747: running loss: 6.5681
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1748: running loss: 6.5659
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1749: running loss: 6.6422
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1750: running loss: 6.7118
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1751: running loss: 6.7332
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1752: running loss: 6.6683
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1753: running loss: 6.6267
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1754: running loss: 6.6803
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1755: running loss: 6.6692
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1756: running loss: 6.6139
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1757: running loss: 6.6350
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1758: running loss: 6.5990
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1759: running loss: 6.6472
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1760: running loss: 6.5781
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1761: running loss: 6.5998
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1762: running loss: 6.6177
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1763: running loss: 6.6476
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1764: running loss: 6.6317
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1765: running loss: 6.6885
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1766: running loss: 6.6944
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1767: running loss: 6.5875
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1768: running loss: 6.6512
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1769: running loss: 6.6232
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1770: running loss: 6.6717
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1771: running loss: 6.5802
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1772: running loss: 6.6412
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1773: running loss: 6.6697
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1774: running loss: 6.6807
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1775: running loss: 6.6171
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1776: running loss: 6.6547
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1777: running loss: 6.6916
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1778: running loss: 6.6642
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1779: running loss: 6.6758
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1780: running loss: 6.6532
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1781: running loss: 6.5729
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1782: running loss: 6.6309
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1783: running loss: 6.6860
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1784: running loss: 6.6534
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1785: running loss: 6.6766
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1786: running loss: 6.6746
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1787: running loss: 6.7004
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1788: running loss: 6.5680
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1789: running loss: 6.5855
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1790: running loss: 6.5923
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1791: running loss: 6.6064
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1792: running loss: 6.6724
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1793: running loss: 6.6900
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1794: running loss: 6.5788
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1795: running loss: 6.5740
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1796: running loss: 6.6044
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1797: running loss: 6.6088
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1798: running loss: 6.5721
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
+Epoch 1799: running loss: 6.6459
+Exec. Time of epoch: 0.268s(0.007s/batch)
+
