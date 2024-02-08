@@ -21,7 +21,8 @@ class AutoencoderModule(nn.Module):
             nn.ReLU(),
             nn.Linear(2048,512), # 2^9
             nn.ReLU(),
-            nn.Linear(512,128), # 2^7
+            nn.Flatten(), # Merge the channels
+            nn.Linear(512*5,128), # 2^7
             nn.ReLU(),
             nn.Linear(128,32), # 2^5
             nn.ReLU(),
