@@ -33,7 +33,7 @@ def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= Fa
     if case == 'cross': # Cross-SLot Geometry
         in_filename = f"crossTurb_data_Re0.01_Wi5_beta{beta:g}.npz" # u,v,B
     elif case == '4roll': # 4-roll geometry
-        in_filename = f"4_roll6_Re1_Wi{Wi:g}_beta{beta:g}_dataset.npz"
+        in_filename = f"4_roll6_Re{Re:g}_Wi{Wi:g}_beta{beta:g}_dataset.npz"
     elif case == 'giesekus': # cavity - Giesekus Fluid
         in_filename = f"cavity_data_Re{Re:g}_Wi{Wi:g}_beta{beta:g}.npz" # u,v,B
     elif case == 'cavity': #cavity - Oldroyd fluid
