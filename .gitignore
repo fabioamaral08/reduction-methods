@@ -163,5 +163,5 @@ cython_debug/
 
 # Large files
 
-ModelsTorch/Dense_Latent*
+ModelsTorch/Dense*
 Logs/
