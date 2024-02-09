@@ -1,6 +1,6 @@
 import numpy as np
 
-__all__ = ['get_data', 'calc_energy', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk']
+__all__ = ['get_data', 'calc_energy', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk', 'strip_cross', 'reconstruct_cross']
 
 def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data', cross_center = False):
     """
