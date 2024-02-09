@@ -3,7 +3,7 @@ import torch.nn as nn
 __all__ = ['AutoencoderModule']
 
 """
-Autoencoder for inputs with shape (Ns, Nc, Nx, Ny) -> (-1, 5, 80, 80)
+Autoencoder for inputs with shape (Ns, Nc, Nx, Ny) -> (-1, 5, Nx)
 
 """
 

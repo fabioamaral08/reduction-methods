@@ -2,7 +2,7 @@ import numpy as np
 
 __all__ = ['get_data', 'calc_energy', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk']
 
-def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data'):
+def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data', cross_center = False):
     """
     Reads a file that contains the data of the simulation given the paramters.
 
@@ -33,7 +33,7 @@ def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= Fa
     if case == 'cross': # Cross-SLot Geometry
         in_filename = f"crossTurb_data_Re0.01_Wi5_beta{beta:g}.npz" # u,v,B
     elif case == '4roll': # 4-roll geometry
-        in_filename = f"4_roll6_Re1_Wi{Wi:g}_beta{beta:g}_dataset.npz"
+        in_filename = f"4_roll6_Re{Re:g}_Wi{Wi:g}_beta{beta:g}_dataset.npz"
     elif case == 'giesekus': # cavity - Giesekus Fluid
         in_filename = f"cavity_data_Re{Re:g}_Wi{Wi:g}_beta{beta:g}.npz" # u,v,B
     elif case == 'cavity': #cavity - Oldroyd fluid
@@ -60,8 +60,8 @@ def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= Fa
     Byy = fields["Byy"]
     q = np.stack((u,v,Bxx, Bxy, Byy), axis=-1)
 
-    if case == 'cross': # Consider only the center of the channel
-        q = q[65:116,65:116]
+    if case == 'cross' and cross_center: # Consider only the center of the channel
+        q = q[65:-65,65:-65]
 
     # reshape for the expected code format
     TU = q[:,:,:,0].reshape((q.shape[0]**2, q.shape[2]))
@@ -224,3 +224,26 @@ def get_mesh_vtk(nome_arq):
     y = np.array(line.split()).astype(float)
 
     return x,y
+
+def strip_cross(q):
+    """
+    Take the values of the channel on the cross slot geometry (desconsider corners)
+    """
+    _, _, Nc, Nt = q.shape
+    first_strip = q[:65,65:-65].reshape((-1, Nc, Nt))
+    second_strip = q[65:-65].reshape((-1, Nc, Nt))
+    third_strip = q[-65:,65:-65].reshape((-1, Nc, Nt))
+    return np.vstack([first_strip, second_strip, third_strip])
+
+def reconstruct_cross(strips):
+    """
+    Inverse of strip_cross() method
+    """
+    _,Nc,Nt = strips.shape
+    q = np.zeros((181,181,Nc,Nt))
+
+    q[:65,65:-65] = strips[:3315].reshape((65,51, Nc, Nt))
+    q[65:-65] = strips[3315:12546].reshape((51,181, Nc, Nt))
+    q[-65:,65:-65] = strips[12546:].reshape((65,51, Nc, Nt))
+
+    return q
