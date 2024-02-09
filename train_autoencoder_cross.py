@@ -9,6 +9,14 @@ from torch.utils.data import DataLoader
 import time
 import os
 
+class ClearCache:
+    def __enter__(self):
+        torch.cuda.empty_cache()
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        torch.cuda.empty_cache()
+
+
 if __name__ == '__main__':
 
     torch.manual_seed(42) # reprodutibility
@@ -59,7 +67,7 @@ if __name__ == '__main__':
 
     autoencoder = Autoencoder.AutoencoderModule(n_input= X_torch.shape[-1], latent_dim = latent_dim, max_in=upper_bound, min_in=lower_bound).to(device)
 
-    X_torch = X_torch.float().to(device)
+    X_torch = X_torch.float()
     dataset = TensorDataset(X_torch,X_torch)
     loader = DataLoader(dataset, shuffle= True, batch_size=bs)
     loss_fn = torch.nn.MSELoss()
@@ -93,11 +101,13 @@ if __name__ == '__main__':
         t = time.time()
         for data,_ in loader:
             optimizer.zero_grad()
-
-            reconst = autoencoder(data)
-            loss = loss_fn(data, reconst)
-            loss.backward()
-            optimizer.step()
+            # Use the context manager
+            with ClearCache():
+                data = data.to(device)
+                reconst = autoencoder(data)
+                loss = loss_fn(data, reconst)
+                loss.backward()
+                optimizer.step()
 
             cumm_loss += loss.item()
         t = time.time() - t
