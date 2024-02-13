@@ -22,7 +22,8 @@ if __name__ == '__main__':
     torch.manual_seed(42) # reprodutibility
     device_type = "cuda" if torch.cuda.is_available() else "cpu"
     device = torch.device(device_type)
-
+    
+    area_norm = 'MULT'
     latent_dim = 2
     ## Data reading
 
@@ -49,6 +50,15 @@ if __name__ == '__main__':
 
     Nt = X.shape[1] # number of snapshots
     q = X.reshape((181,181,5,-1))
+
+    #Norm data by dx
+    if area_norm == 'MULT':
+        q = (q * AREA.reshape((181,181,1,1)))
+    elif area_norm == 'DIV':
+        q = (q / AREA.reshape((181,181,1,1)))
+
+
+
     X_data = strip_cross(q)
     X_data = np.moveaxis(X_data,[0,2],[2,0]) # (Nx, Nc, Nt) -> (Nt, Nc, Nx)
 
@@ -76,7 +86,7 @@ if __name__ == '__main__':
     num_batches = len(loader)
 
     # Results directory
-    pasta = f'ModelsTorch/Dense_Cross_Latent_{latent_dim}'
+    pasta = f'ModelsTorch/Dense_Cross_Latent_{latent_dim}_{area_norm}'
     os.makedirs(pasta, exist_ok=True)
 
     # Early stop
