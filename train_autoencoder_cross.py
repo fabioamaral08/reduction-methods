@@ -23,7 +23,7 @@ if __name__ == '__main__':
     device_type = "cuda" if torch.cuda.is_available() else "cpu"
     device = torch.device(device_type)
     
-    area_norm = 'MULT'
+    area_norm = 'DIV'
     latent_dim = 2
     ## Data reading
 
