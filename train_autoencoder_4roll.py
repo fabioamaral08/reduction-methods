@@ -22,7 +22,7 @@ if __name__ == '__main__':
           (1,7.0,0.3),
           (1,7.5,0.6),
     ]
-    latent_dim = 2
+    latent_dim = 3
 
     for params in parameters:
         ## Data reading
