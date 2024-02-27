@@ -71,6 +71,7 @@ if __name__ == '__main__':
         patience = 0
         #training
         autoencoder.train(True)
+        print(f'beginning test: {params}\n')
         for e in range(num_epochs):
             if last_loss < best_vloss:
                             best_vloss = last_loss
@@ -96,7 +97,8 @@ if __name__ == '__main__':
                 cumm_loss += loss.item()
             t = time.time() - t
             last_loss = cumm_loss
-            print(f'Epoch {e}: running loss: {cumm_loss:.4f}')
-            print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)\n')
+            print(f'Epoch {e}: running loss: {cumm_loss:.4f}', end='\t')
+            print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)')
 
         torch.save(autoencoder,f'{pasta}/autoencoder_model')
+        print('\n\n')
