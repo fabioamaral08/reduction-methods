@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
     dirpath = '../EnergyReduction/npz_data/'
     plotdir = 'EnergyPlots/4roll/'
-    filelist = glob.glob({dirpath} + '4_roll6_Re*_Wi*_beta*_dataset.npz')
+    filelist = glob.glob(dirpath + '4_roll6_Re*_Wi*_beta*_dataset.npz')
     os.makedirs(plotdir, exist_ok=True)
 
     dx = 1/(2**6)
