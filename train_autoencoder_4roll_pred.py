@@ -64,7 +64,7 @@ if __name__ == '__main__':
         num_batches = len(loader)
 
         # Results directory
-        pasta = f'ModelsTorch/Dense_Latent_{latent_dim}/Re{Re}_Wi{Wi}_beta{beta}'
+        pasta = f'ModelsTorch/Dense_Pred_Latent_{latent_dim}/Re{Re}_Wi{Wi}_beta{beta}'
         os.makedirs(pasta, exist_ok=True)
 
         # Early stop
