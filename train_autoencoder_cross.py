@@ -124,5 +124,3 @@ if __name__ == '__main__':
         last_loss = cumm_loss
         print(f'Epoch {e}: running loss: {cumm_loss:.4f}')
         print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)\n')
-
-    torch.save(autoencoder,f'{pasta}/autoencoder_model')
