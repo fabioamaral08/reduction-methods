@@ -38,5 +38,5 @@ if __name__ == '__main__':
         _, _, total = calc_energy(X,Wi,beta,Re, dx =DX.reshpe((-1,1)), dy = DY.reshape((-1,1)))
 
         plt.plot(total, label = 'SIMULATION')
-        plt.savefig(f'{plotdir}energy_4roll_Re{Re:g}_Wi{Wi:g}_beta{beta:g}_.png')
+        plt.savefig(f'{plotdir}energy_cross_Re{Re:g}_Wi{Wi:g}_beta{beta:g}_.png')
         plt.close()
