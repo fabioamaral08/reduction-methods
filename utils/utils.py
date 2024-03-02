@@ -1,5 +1,5 @@
 import numpy as np
-
+import torch
 __all__ = ['get_data', 'calc_energy', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk', 'strip_cross', 'reconstruct_cross']
 
 def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data', cross_center = False):
@@ -60,8 +60,13 @@ def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= Fa
     Byy = fields["Byy"]
     q = np.stack((u,v,Bxx, Bxy, Byy), axis=-1)
 
-    if case == 'cross' and cross_center: # Consider only the center of the channel
-        q = q[65:-65,65:-65]
+    if case == 'cross': # Consider only the center of the channel
+        q[:65,:65] = 0
+        q[:65,-65:] = 0
+        q[-65:,:65] = 0
+        q[-65:,-65:] = 0
+        if cross_center:
+            q = q[65:-65,65:-65]
 
     # reshape for the expected code format
     TU = q[:,:,:,0].reshape((q.shape[0]**2, q.shape[2]))
@@ -225,25 +230,57 @@ def get_mesh_vtk(nome_arq):
 
     return x,y
 
-def strip_cross(q):
+def strip_cross(q, cut = 0):
     """
     Take the values of the channel on the cross slot geometry (desconsider corners)
     """
     _, _, Nc, Nt = q.shape
-    first_strip = q[:65,65:-65].reshape((-1, Nc, Nt))
-    second_strip = q[65:-65].reshape((-1, Nc, Nt))
-    third_strip = q[-65:,65:-65].reshape((-1, Nc, Nt))
+    if cut > 0:
+        first_strip = q[cut:65,65:-65].reshape((-1, Nc, Nt))
+        second_strip = q[65:-65, cut:-cut].reshape((-1, Nc, Nt))
+        third_strip = q[-65:-cut,65:-65].reshape((-1, Nc, Nt))
+    else:
+        first_strip = q[:65,65:-65].reshape((-1, Nc, Nt))
+        second_strip = q[65:-65].reshape((-1, Nc, Nt))
+        third_strip = q[-65:,65:-65].reshape((-1, Nc, Nt))
+
     return np.vstack([first_strip, second_strip, third_strip])
 
-def reconstruct_cross(strips):
+def reconstruct_cross(strips, cut = 0):
     """
     Inverse of strip_cross() method
     """
     _,Nc,Nt = strips.shape
-    q = np.zeros((181,181,Nc,Nt))
-
-    q[:65,65:-65] = strips[:3315].reshape((65,51, Nc, Nt))
-    q[65:-65] = strips[3315:12546].reshape((51,181, Nc, Nt))
-    q[-65:,65:-65] = strips[12546:].reshape((65,51, Nc, Nt))
+    if cut > 0:
+        c0 = 2*cut
+        c1 = 51 * cut
+        c2 = 153 * cut
+        q = np.zeros((181-c0,181-c0,Nc,Nt))
+        q[:65-cut,65-cut:-65+cut] = strips[:3315 - c1].reshape((65-cut,51, Nc, Nt))
+        q[65-cut:-65+cut] = strips[3315 - c1:12546 - c2].reshape((51,181-c0, Nc, Nt))
+        q[-65+cut:,65-cut:-65+cut] = strips[12546 - c2:].reshape((65-cut,51, Nc, Nt))
+    else:
+        q = np.zeros((181,181,Nc,Nt))
+        q[:65,65:-65] = strips[:3315].reshape((65,51, Nc, Nt))
+        q[65:-65] = strips[3315:12546].reshape((51,181, Nc, Nt))
+        q[-65:,65:-65] = strips[12546:].reshape((65,51, Nc, Nt))
 
     return q
+
+
+# Prepare the shape of the input for running in the Autoencoder
+def np2torch(X):
+    Nt = X.shape[1] # number of snapshots
+    X_data = X.reshape((-1,5,Nt))
+    X_data = np.moveaxis(X_data,[0,2],[2,0]) # (Nx, Nc, Nt) -> (Nt, Nc, Nx)
+
+    # convert data
+    X_torch = torch.from_numpy(X_data)
+    return X_torch
+
+def torch2np(X_torch):
+    X_data = X_torch.detach().numpy()
+    X_data = np.moveaxis(X_data,[0,2],[2,0]) # (Nt, Nc, Nx) -> (Nx, Nc, Nt)
+    Nt = X_data.shape[-1]
+    X = X_data.reshape((-1, Nt))
+    return X

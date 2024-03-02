@@ -23,8 +23,7 @@ if __name__ == '__main__':
     device_type = "cuda" if torch.cuda.is_available() else "cpu"
     device = torch.device(device_type)
     
-    area_norm = 'DIV'
-    latent_dim = 2
+    latent_dim = 3
     ## Data reading
 
     # Parameters:
@@ -51,11 +50,6 @@ if __name__ == '__main__':
     Nt = X.shape[1] # number of snapshots
     q = X.reshape((181,181,5,-1))
 
-    #Norm data by dx
-    if area_norm == 'MULT':
-        q = (q * AREA.reshape((181,181,1,1)))
-    elif area_norm == 'DIV':
-        q = (q / AREA.reshape((181,181,1,1)))
 
 
 
@@ -86,7 +80,7 @@ if __name__ == '__main__':
     num_batches = len(loader)
 
     # Results directory
-    pasta = f'ModelsTorch/Dense_Cross_Latent_{latent_dim}_{area_norm}'
+    pasta = f'ModelsTorch/Dense_Cross_Latent_{latent_dim}'
     os.makedirs(pasta, exist_ok=True)
 
     # Early stop
