@@ -116,5 +116,10 @@ if __name__ == '__main__':
                 cumm_loss += loss.item()
             t = time.time() - t
             last_loss = cumm_loss
-            print(f'Epoch {e}: running loss: {cumm_loss:.4f}')
-            print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)\n')
+            with torch.no_grad():
+                reconst = autoencoder(X_test)
+                loss_test = loss_fn(X_test, reconst)
+            print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}', end='\t')
+            print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)')
+
+        print('\n\n')
