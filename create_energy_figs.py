@@ -35,7 +35,7 @@ if __name__ == '__main__':
         alpha = (1-beta)/(Re*Wi)
 
         X, Xmean = get_data(Re,Wi,beta, 'cross', n_data= -2, dir_path=dirpath)
-        _, _, total = calc_energy(X,Wi,beta,Re, dx =DX.reshpe((-1,1)), dy = DY.reshape((-1,1)))
+        _, _, total = calc_energy(X,Wi,beta,Re, dx =DX.reshape((-1,1)), dy = DY.reshape((-1,1)))
 
         plt.plot(total, label = 'SIMULATION')
         plt.savefig(f'{plotdir}energy_cross_Re{Re:g}_Wi{Wi:g}_beta{beta:g}_.png')
