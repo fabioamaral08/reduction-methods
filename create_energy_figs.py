@@ -31,7 +31,7 @@ if __name__ == '__main__':
         Re = float(Re_str)
         Wi = float(Wi_str)
         beta = float(beta_str)
-
+        print(Re, Wi, beta)
         alpha = (1-beta)/(Re*Wi)
 
         X, Xmean = get_data(Re,Wi,beta, 'cross', n_data= -2, dir_path=dirpath)
@@ -40,3 +40,5 @@ if __name__ == '__main__':
         plt.plot(total, label = 'SIMULATION')
         plt.savefig(f'{plotdir}energy_cross_Re{Re:g}_Wi{Wi:g}_beta{beta:g}_.png')
         plt.close()
+
+    print('FINISHED')
