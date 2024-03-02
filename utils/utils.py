@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+import glob
 __all__ = ['get_data', 'calc_energy', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk', 'strip_cross', 'reconstruct_cross']
 
 def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data', cross_center = False):
@@ -31,7 +32,7 @@ def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= Fa
 
     #find the filename
     if case == 'cross': # Cross-SLot Geometry
-        in_filename = f"crossTurb_data_Re{Re:g}_Wi{Wi:g}_beta{beta:g}.npz" # u,v,B
+        in_filename = glob.glob(f"cross*_data_Re{Re:g}_Wi{Wi:g}_beta{beta:g}.npz",root_dir=dir_path)[0] # u,v,B
     elif case == '4roll': # 4-roll geometry
         in_filename = f"4_roll6_Re{Re:g}_Wi{Wi:g}_beta{beta:g}_dataset.npz"
     elif case == 'giesekus': # cavity - Giesekus Fluid
