@@ -45,15 +45,16 @@ if __name__ == '__main__':
     # type of simulation
     case = 'cross'
     #read file
-    X, Xmean = get_data(Re,Wi,beta, case, n_data= -2, dir_path='../EnergyReduction/npz_data')
+    dirpath_data = '/home/hugo/CodeMestrado_Cavity/post_proc'
+    X, Xmean = get_data(Re,Wi,beta, case, n_data= -2, dir_path=dirpath_data)
 
     Nt = X.shape[1] # number of snapshots
     q = X.reshape((181,181,5,-1))
 
+    cut = 13 # remove influence of inflow/outflow
 
 
-
-    X_data = strip_cross(q)
+    X_data = strip_cross(q,cut)
     X_data = np.moveaxis(X_data,[0,2],[2,0]) # (Nx, Nc, Nt) -> (Nt, Nc, Nx)
 
     # convert data
