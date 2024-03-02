@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
     dirpath = '/home/hugo/CodeMestrado_Cavity/post_proc'
     plotdir = 'EnergyPlots/cross/'
-    filelist = glob.glob(dirpath + '/crossTurb_data_*.npz')
+    filelist = glob.glob(dirpath + '/crossOsc_data_*.npz')
     os.makedirs(plotdir, exist_ok=True)
 
     # Mesh information:
