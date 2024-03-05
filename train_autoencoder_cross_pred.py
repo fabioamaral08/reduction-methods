@@ -72,7 +72,7 @@ if __name__ == '__main__':
         X_torch = X_torch.float().to(device)
         X_train = X_torch[:-100]
         X_test = X_torch[-100:]
-        dataset = TensorDataset(X_torch,X_torch)
+        dataset = TensorDataset(X_train,X_train)
         loader = DataLoader(dataset, shuffle= True, batch_size=bs)
         loss_fn = torch.nn.MSELoss()
         optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
