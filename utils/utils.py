@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 import glob
-__all__ = ['get_data', 'calc_energy', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk', 'strip_cross', 'reconstruct_cross']
+__all__ = ['get_data', 'calc_energy', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk', 'strip_cross', 'reconstruct_cross', 'np2torch', 'torch2np']
 
 def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data', cross_center = False):
     """
@@ -118,11 +118,11 @@ def calc_energy(X, Wi, beta, Re, dx = 0.0125, dy = None):
     bxy = X[3::5]
     byy = X[4::5]
 
-    kinetic = ((u**2 + v**2)*area * .5).sum(0)
+    kinetic = 0.5 * ((u**2 + v**2)*area).sum(0)
     txx = (bxx**2 + bxy**2 -1) * (1-beta)/Wi
     tyy = (bxy**2 + byy**2 -1) * (1-beta)/Wi
 
-    elastic = ((txx + tyy)/(Re)*area * .5).sum(0)
+    elastic =  0.5 * ((txx + tyy)/(Re)*area).sum(0)
 
 
     total_energy = (kinetic+elastic) + (1-beta)/(Wi*Re)

@@ -10,18 +10,19 @@ def compute_kernel_matrix(X1, X2, kernel_type, theta, eps=None, dx = 1, dy = Non
         return np.dot(X1, X2.T)
 
     else:
-        #Separate the variables
-        u1 = X1[:,0::5] # first velocity component
-        v1 = X1[:,1::5] # second velocity component
-        bxx1 = X1[:,2::5] # component of the square root of the conformation tensor
-        bxy1 = X1[:,3::5] # component of the square root of the conformation tensor
-        byy1 = X1[:,4::5] # component of the square root of the conformation tensor
 
-        u2 = X2[:,0::5] # first velocity component
-        v2 = X2[:,1::5] # second velocity component
-        bxx2 = X2[:,2::5] # component of the square root of the conformation tensor
-        bxy2 = X2[:,3::5] # component of the square root of the conformation tensor
-        byy2 = X2[:,4::5] # component of the square root of the conformation tensor
+        #Separate the variables
+        u1 = X1[...,0::5] # first velocity component
+        v1 = X1[...,1::5] # second velocity component
+        bxx1 = X1[...,2::5] # component of the square root of the conformation tensor
+        bxy1 = X1[...,3::5] # component of the square root of the conformation tensor
+        byy1 = X1[...,4::5] # component of the square root of the conformation tensor
+
+        u2 = X2[...,0::5] # first velocity component
+        v2 = X2[...,1::5] # second velocity component
+        bxx2 = X2[...,2::5] # component of the square root of the conformation tensor
+        bxy2 = X2[...,3::5] # component of the square root of the conformation tensor
+        byy2 = X2[...,4::5] # component of the square root of the conformation tensor
 
         if dy is None:
             dy = dx
@@ -131,8 +132,11 @@ def kpca(X, n_components=2, kernel='linear', gamma=None, eps = None, norm='DIV',
     #traceK = np.trace(K)
     #print(traceK)
     # Center the kernel matrix
-    K_centered = K - np.mean(K, axis=0)
-    K_centered = K_centered - np.mean(K_centered, axis=1).reshape(-1, 1)
+    
+    K_row = np.mean(K, axis=0)
+    K_col = np.mean(K, axis=1)[:,None]
+    K_all = np.mean(K)
+    K_centered = K - K_row - K_col + K_all
     # K_centered = K - np.mean(K, axis=1).reshape(-1, 1)
     
     # Eigen decomposition

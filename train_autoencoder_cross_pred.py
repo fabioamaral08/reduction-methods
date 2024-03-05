@@ -41,7 +41,7 @@ if __name__ == '__main__':
         # type of simulation
         case = 'cross'
         #read file
-        dirpath_data = '/home/hugo/CodeMestrado_Cavity/post_proc'
+        dirpath_data = '../EnergyReduction/npz_data'
         X, Xmean = get_data(Re,Wi,beta, case, n_data= -2, dir_path=dirpath_data)
 
         Nt = X.shape[1] # number of snapshots
@@ -70,8 +70,8 @@ if __name__ == '__main__':
 
         
         X_torch = X_torch.float().to(device)
-        X_train = X_torch[:-500]
-        X_test = X_torch[-500:]
+        X_train = X_torch[:-100]
+        X_test = X_torch[-100:]
         dataset = TensorDataset(X_torch,X_torch)
         loader = DataLoader(dataset, shuffle= True, batch_size=bs)
         loss_fn = torch.nn.MSELoss()
@@ -89,6 +89,7 @@ if __name__ == '__main__':
         patience = 0
         #training
         autoencoder.train(True)
+        print(f'Starting: ({Re:g}, {Wi:g}, {beta:g})\n Shapes: {X_train.shape}\t{X_test.shape}')
         for e in range(num_epochs):
             if last_loss < best_vloss:
                             best_vloss = last_loss
