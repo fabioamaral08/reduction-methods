@@ -51,7 +51,7 @@ class VariationalAutoencoderModule(nn.Module):
 
         result = self.encoder(x)
         mu = self.gen_mu(result)
-        log_var = self.gen_mu(result)
+        log_var = self.gen_std(result)
         latent = self.reparametrize(mu, log_var)
         return latent, mu, log_var
     
