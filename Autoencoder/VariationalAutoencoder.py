@@ -63,10 +63,10 @@ class VariationalAutoencoderModule(nn.Module):
     
     def forward(self, x):
         # run autoencoder 
-        latent,_,_ = self.encode(x)
+        latent,mu,log_var = self.encode(x)
         output = self.decode(latent)
         
-        return output
+        return output,mu,log_var
     
     def reparametrize(self, mu, log_var):
         std = torch.exp(0.5 * log_var)

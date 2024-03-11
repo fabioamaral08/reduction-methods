@@ -66,8 +66,7 @@ if __name__ == '__main__':
         bs = 100
         num_epochs = 5000
 
-        # autoencoder = Autoencoder.AutoencoderModule(n_input= X_torch.shape[-1], latent_dim = latent_dim, max_in=upper_bound, min_in=lower_bound).to(device)
-        autoencoder = Autoencoder.VariationalAutoencoderModule(n_input= X_torch.shape[-1], latent_dim = latent_dim, max_in=upper_bound, min_in=lower_bound).to(device)
+        autoencoder = Autoencoder.AutoencoderModule(n_input= X_torch.shape[-1], latent_dim = latent_dim, max_in=upper_bound, min_in=lower_bound).to(device)
 
         
         X_torch = X_torch.float().to(device)
@@ -81,8 +80,7 @@ if __name__ == '__main__':
         num_batches = len(loader)
 
         # Results directory
-        # pasta = f'ModelsTorch/Dense_CrossPred_Latent_{latent_dim}/Re{Re:g}_Wi{Wi:g}_beta{beta:g}'
-        pasta = f'ModelsTorch/VAE_CrossPred_Latent_{latent_dim}/Re{Re:g}_Wi{Wi:g}_beta{beta:g}'
+        pasta = f'ModelsTorch/Dense_CrossPred_Latent_{latent_dim}/Re{Re:g}_Wi{Wi:g}_beta{beta:g}'
         os.makedirs(pasta, exist_ok=True)
 
         # Early stop

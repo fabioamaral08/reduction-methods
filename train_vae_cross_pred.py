@@ -75,7 +75,10 @@ if __name__ == '__main__':
         X_test = X_torch[-100:]
         dataset = TensorDataset(X_train,X_train)
         loader = DataLoader(dataset, shuffle= True, batch_size=bs)
-        loss_fn = torch.nn.MSELoss()
+        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor):
+             reconst_loss = torch.nn.MSELoss()(input, target)
+             kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
+             return reconst_loss + kld_loss
         optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
         num_batches = len(loader)
@@ -111,8 +114,8 @@ if __name__ == '__main__':
                 # Use the context manager
                 with ClearCache():
                     data = data.to(device)
-                    reconst = autoencoder(data)
-                    loss = loss_fn(data, reconst)
+                    reconst, mu, log_var = autoencoder(data)
+                    loss = loss_fn(data, reconst, mu, log_var)
                     loss.backward()
                     optimizer.step()
 
