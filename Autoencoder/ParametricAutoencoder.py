@@ -1,14 +1,14 @@
-import torch
 import torch.nn as nn
-__all__ = ['VariationalAutoencoderModule']
+
+__all__ = ['ParametricAutoencoderModule']
 
 """
-Variational Autoencoder for inputs with shape (Ns, Nc, Nx, Ny) -> (-1, 5, Nx)
+Autoencoder for inputs with shape (Ns, Nc, Nx*Ny) -> (-1, 5, Nx)
 
 """
 
-class VariationalAutoencoderModule(nn.Module):
-    def __init__(self, n_input, latent_dim, max_in = 1, min_in = 0) -> None:
+class ParametricAutoencoderModule(nn.Module):
+    def __init__(self, n_input, latent_dim, num_params = 2, max_in = 1, min_in = 0) -> None:
         super().__init__()
         # for normalization 
         self.min = min_in
@@ -26,9 +26,10 @@ class VariationalAutoencoderModule(nn.Module):
             nn.ReLU(),
             nn.Linear(128,32), # 2^5
             nn.ReLU(),
+            nn.Linear(32,latent_dim)
         ) 
         self.decoder = nn.Sequential(
-            nn.Linear(latent_dim,32),
+            nn.Linear(latent_dim + num_params,32),
             nn.ReLU(),
             nn.Linear(32,128),
             nn.ReLU(),
@@ -42,18 +43,11 @@ class VariationalAutoencoderModule(nn.Module):
             nn.Linear(8192,n_input)
         )
 
-        self.gen_mu  = nn.Linear(32,latent_dim)
-        self.gen_std = nn.Linear(32,latent_dim)
-
     def encode(self, x):
         # Normalize input:
         x = (x - self.min)/self.input_range
 
-        result = self.encoder(x)
-        mu = self.gen_mu(result)
-        log_var = self.gen_mu(result)
-        latent = self.reparametrize(mu, log_var)
-        return latent, mu, log_var
+        return self.encoder(x)
     
 
     def decode(self, latent):
@@ -63,12 +57,7 @@ class VariationalAutoencoderModule(nn.Module):
     
     def forward(self, x):
         # run autoencoder 
-        latent,_,_ = self.encode(x)
+        latent = self.encode(x)
         output = self.decode(latent)
         
         return output
-    
-    def reparametrize(self, mu, log_var):
-        std = torch.exp(0.5 * log_var)
-        result = torch.randn_like(std)
-        return result * std + mu
