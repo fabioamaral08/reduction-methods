@@ -54,7 +54,7 @@ class ParametricVAEModule(nn.Module):
         # add parameter information
         p = torch.ones((x.shape[0],5,self.num_params))
         for i in range(self.num_params):
-            p[...,i] = param[i]
+            p[...,i] = param[...,i]
         x = torch.cat((x,p),-1)
 
         #variational generation
