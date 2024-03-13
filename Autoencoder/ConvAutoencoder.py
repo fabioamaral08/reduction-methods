@@ -10,7 +10,7 @@ Autoencoder for inputs with shape (Ns, Nc, Nx, Ny) -> (-1, 5, 64, 64)
 
 class Encoder(nn.Module):
     def __init__(self, latent_dim) -> None:
-        super().__init__()
+        super(Encoder,self).__init__()
 
         self.conv = nn.Sequential(
             nn.Conv2d(5,64,kernel_size=3,stride=2, padding=1),
@@ -36,7 +36,7 @@ class Encoder(nn.Module):
         return x
 class Decoder(nn.Module):
     def __init__(self, latent_dim) -> None:
-        super().__init__()
+        super(Decoder,self).__init__()
 
         self.dense = nn.Sequential(
             nn.Linear(latent_dim,latent_dim*2),
@@ -89,7 +89,7 @@ class Decoder(nn.Module):
 
 class ConvAutoencoderModule(nn.Module):
     def __init__(self, latent_dim, max_in = 1, min_in = 0) -> None:
-        super().__init__()
+        super(ConvAutoencoderModule,self).__init__()
         # for normalization 
         self.min = min_in
         self.input_range = max_in - min_in

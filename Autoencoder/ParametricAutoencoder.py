@@ -1,5 +1,5 @@
+import torch
 import torch.nn as nn
-
 __all__ = ['ParametricAutoencoderModule']
 
 """
@@ -9,13 +9,13 @@ Autoencoder for inputs with shape (Ns, Nc, Nx*Ny) -> (-1, 5, Nx)
 
 class ParametricAutoencoderModule(nn.Module):
     def __init__(self, n_input, latent_dim, num_params = 2, max_in = 1, min_in = 0) -> None:
-        super().__init__()
+        super(ParametricAutoencoderModule,self).__init__()
         # for normalization 
         self.min = min_in
         self.input_range = max_in - min_in
-        
+        self.num_params = num_params
         self.encoder = nn.Sequential(
-            nn.Linear(n_input,8192), # 2^13
+            nn.Linear(n_input + num_params,8192), # 2^13
             nn.ReLU(),
             nn.Linear(8192,2048), # 2^11
             nn.ReLU(),
@@ -43,21 +43,29 @@ class ParametricAutoencoderModule(nn.Module):
             nn.Linear(8192,n_input)
         )
 
-    def encode(self, x):
+    def encode(self, x, param):
         # Normalize input:
         x = (x - self.min)/self.input_range
-
+        p = torch.ones((x.shape[0],5,self.num_params))
+        for i in range(self.num_params):
+            p[...,i] = param[i]
+        x = torch.cat((x,p),-1)
         return self.encoder(x)
     
 
-    def decode(self, latent):
+    def decode(self, latent, param):
+        p = torch.ones((latent.shape[0],self.num_params))
+        for i in range(self.num_params):
+            p[...,i] = param[i]
+        latent = torch.cat((latent,p),-1)
+
         decode = self.decoder(latent)
         # denormalize
         return decode * self.input_range + self.min
     
-    def forward(self, x):
+    def forward(self, x, param):
         # run autoencoder 
-        latent = self.encode(x)
-        output = self.decode(latent)
+        latent = self.encode(x, param)
+        output = self.decode(latent, param)
         
         return output

@@ -9,7 +9,7 @@ Autoencoder for inputs with shape (Ns, Nc, Nx, Ny) -> (-1, 5, Nx)
 
 class AutoencoderModule(nn.Module):
     def __init__(self, n_input, latent_dim, max_in = 1, min_in = 0) -> None:
-        super().__init__()
+        super(AutoencoderModule,self).__init__()
         # for normalization 
         self.min = min_in
         self.input_range = max_in - min_in
