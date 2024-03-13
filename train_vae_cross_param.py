@@ -109,6 +109,7 @@ if __name__ == '__main__':
             # Use the context manager
             with ClearCache():
                 data = data.to(device)
+                param = param.to(device)
                 reconst, mu, log_var = autoencoder(data,param)
                 loss = loss_fn(data, reconst, mu, log_var)
                 loss.backward()
@@ -119,7 +120,7 @@ if __name__ == '__main__':
         last_loss = cumm_loss
         with torch.no_grad():
             for X_test,param in train_loader:
-                reconst, mu, log_var = autoencoder(X_test,param)
+                reconst, mu, log_var = autoencoder(X_test.to(device),param.to(device))
                 loss_test = loss_fn(X_test, reconst,mu, log_var)
         print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}', end='\t')
         print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)')

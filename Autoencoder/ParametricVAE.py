@@ -51,7 +51,7 @@ class ParametricVAEModule(nn.Module):
         x = (x - self.min)/self.input_range
 
         # add parameter information
-        p = torch.ones((x.shape[0],5,self.num_params))
+        p = torch.ones((x.shape[0],5,self.num_params),device=x.device)
         for i in range(self.num_params):
             p[...,i] = param[...,i].view(-1,1)
         x = torch.cat((x,p),-1)
@@ -66,7 +66,7 @@ class ParametricVAEModule(nn.Module):
 
     def decode(self, latent, param):
         # add parameter information
-        p = torch.ones((latent.shape[0],self.num_params))
+        p = torch.ones((latent.shape[0],self.num_params),device=latent.device)
         for i in range(self.num_params):
             p[...,i] = param[...,i]
         latent = torch.cat((latent,p),-1)
