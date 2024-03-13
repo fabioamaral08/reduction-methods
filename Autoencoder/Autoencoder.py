@@ -11,9 +11,9 @@ class AutoencoderModule(nn.Module):
     def __init__(self, n_input, latent_dim, max_in = 1, min_in = 0) -> None:
         super(AutoencoderModule,self).__init__()
         # for normalization 
-        self.min = min_in
-        self.input_range = max_in - min_in
-        
+        self.register_buffer('min', min_in)
+        self.register_buffer('input_range', max_in - min_in)
+
         self.encoder = nn.Sequential(
             nn.Linear(n_input,8192), # 2^13
             nn.ReLU(),

@@ -91,9 +91,9 @@ class ConvAutoencoderModule(nn.Module):
     def __init__(self, latent_dim, max_in = 1, min_in = 0) -> None:
         super(ConvAutoencoderModule,self).__init__()
         # for normalization 
-        self.min = min_in
-        self.input_range = max_in - min_in
-
+        self.register_buffer('min', min_in)
+        self.register_buffer('input_range', max_in - min_in)
+        
         self.encoder = Encoder(latent_dim)
         self.decoder = Decoder(latent_dim)
         

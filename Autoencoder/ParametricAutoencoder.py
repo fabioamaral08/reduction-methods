@@ -11,8 +11,9 @@ class ParametricAutoencoderModule(nn.Module):
     def __init__(self, n_input, latent_dim, num_params = 2, max_in = 1, min_in = 0) -> None:
         super(ParametricAutoencoderModule,self).__init__()
         # for normalization 
-        self.min = min_in
-        self.input_range = max_in - min_in
+        self.register_buffer('min', min_in)
+        self.register_buffer('input_range', max_in - min_in)
+        
         self.num_params = num_params
         self.encoder = nn.Sequential(
             nn.Linear(n_input + num_params,8192), # 2^13
