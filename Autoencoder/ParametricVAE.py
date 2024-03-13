@@ -68,7 +68,7 @@ class ParametricVAEModule(nn.Module):
         # add parameter information
         p = torch.ones((latent.shape[0],self.num_params))
         for i in range(self.num_params):
-            p[...,i] = param[i]
+            p[...,i] = param[...,i]
         latent = torch.cat((latent,p),-1)
 
         decode = self.decoder(latent)
