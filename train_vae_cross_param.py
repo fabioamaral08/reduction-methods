@@ -33,11 +33,11 @@ class FileDataset(Dataset):
     
     
 def get_min_max(dataset):
-    min_v = dataset[0].amin(1)
-    max_v = dataset[0].amax(1)
+    min_v = dataset[0][0].amin(1)
+    max_v = dataset[0][0].amax(1)
     for i in range(1,len(dataset)-1):
-        min_v = torch.minimum(min_v, dataset[i].amin(1))
-        max_v = torch.maximum(max_v, dataset[i].amax(1))
+        min_v = torch.minimum(min_v, dataset[i][0].amin(1))
+        max_v = torch.maximum(max_v, dataset[i][0].amax(1))
     return min_v, max_v
 
 
