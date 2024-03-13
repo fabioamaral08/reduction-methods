@@ -65,11 +65,11 @@ if __name__ == '__main__':
     num_epochs = 5000
 
     # autoencoder = Autoencoder.AutoencoderModule(n_input= X_torch.shape[-1], latent_dim = latent_dim, max_in=upper_bound, min_in=lower_bound).to(device)
-    autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound).to(device)
+    autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound).to(device)
 
 
     train_loader = DataLoader(train_dataset, shuffle= True, batch_size=bs)
-    test_loader =  DataLoader(test_dataset, shuffle= True, batch_size=len(test_dataset))
+    test_loader =  DataLoader(test_dataset, shuffle= False, batch_size=len(test_dataset))
     def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor):
             reconst_loss = torch.nn.MSELoss()(input, target)
 
