@@ -38,7 +38,7 @@ def get_min_max(dataset):
     for i in range(1,len(dataset)-1):
         min_v = torch.minimum(min_v, dataset[i][0].amin(1))
         max_v = torch.maximum(max_v, dataset[i][0].amax(1))
-    return min_v, max_v
+    return min_v.reshape((1,5,1)).clone().float(), max_v.reshape((1,5,1)).clone().float()
 
 
 if __name__ == '__main__':
@@ -56,8 +56,8 @@ if __name__ == '__main__':
 
     #normalize data inside autoencoder
     lower_bound,  upper_bound = get_min_max(train_dataset)
-    lower_bound = lower_bound.reshape((1,5,1)).float().to(device)
-    upper_bound = upper_bound.reshape((1,5,1)).float().to(device)
+    lower_bound = lower_bound.to(device)
+    upper_bound = upper_bound.to(device)
 
     # NN part
     learning_rate = 1e-4
@@ -123,7 +123,7 @@ if __name__ == '__main__':
                 X_test = X_test.to(device)
                 reconst, mu, log_var = autoencoder(X_test,param.to(device))
                 loss_test = loss_fn(X_test, reconst,mu, log_var)
-        print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}', end='\t')
+        print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}', end='\t', flush=True)
         print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)')
 
     print('\n\n')
