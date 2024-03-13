@@ -26,7 +26,6 @@ class ParametricVAEModule(nn.Module):
             nn.ReLU(),
             nn.Linear(128,32), # 2^5
             nn.ReLU(),
-            nn.Linear(32,latent_dim)
         ) 
         self.decoder = nn.Sequential(
             nn.Linear(latent_dim + num_params,32),
