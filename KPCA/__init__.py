@@ -2,10 +2,8 @@ from . import KPCA
 from . import RKHS
 
 
-from .KPCA import compute_kernel_matrix
-from .KPCA import kpca
-from .RKHS import loss_energy
-from .RKHS import loss_energy_iter
+from .KPCA import *
+from .RKHS import *
 
 __all__ = []
 

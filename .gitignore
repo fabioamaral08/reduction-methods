@@ -167,3 +167,8 @@ ModelsTorch/*
 Logs/
 
 save_dataset_ae.py
+
+
+# render images for videos
+
+frame_*.png

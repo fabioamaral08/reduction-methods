@@ -2,7 +2,8 @@ import numpy as np
 
 __all__ = [
     'compute_kernel_matrix',
-    'kpca'
+    'kpca',
+    'apply_kpca'
     ]
 
 def compute_kernel_matrix(X1, X2, kernel_type, theta, eps=None, dx = 1, dy = None):
@@ -165,3 +166,13 @@ def kpca(X, n_components=2, kernel='linear', gamma=None, eps = None, norm='DIV',
     X_kpca = np.dot(K_centered, eigenvectors_normalized)
 
     return X_kpca, eigenvectors_normalized, eigenvalues, K_centered
+
+def apply_kpca(X, X_train, Q, kernel='linear', gamma=None, eps = None, dx = 1, dy = None):
+    K = compute_kernel_matrix(X, X_train, kernel, gamma, eps,dx,dy)
+    K_row = np.mean(K, axis=0)
+    K_col = np.mean(K, axis=1)[:,None]
+    K_all = np.mean(K)
+    K_centered = K - K_row - K_col + K_all
+    X_kpca = np.dot(K_centered, Q)
+
+    return X_kpca
