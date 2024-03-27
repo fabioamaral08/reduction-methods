@@ -3,7 +3,8 @@ import numpy as np
 __all__ = [
     'compute_kernel_matrix',
     'kpca',
-    'apply_kpca'
+    'apply_kpca',
+    'KernelPCA'
     ]
 
 def compute_kernel_matrix(X1, X2, kernel_type, theta, eps=None, dx = 1, dy = None):
@@ -165,14 +166,124 @@ def kpca(X, n_components=2, kernel='linear', gamma=None, eps = None, norm='DIV',
     # Project input data onto the eigenvectors
     X_kpca = np.dot(K_centered, eigenvectors_normalized)
 
-    return X_kpca, eigenvectors_normalized, eigenvalues, K_centered
+    return X_kpca, eigenvectors_normalized, eigenvalues, K_centered, K
 
-def apply_kpca(X, X_train, Q, kernel='linear', gamma=None, eps = None, dx = 1, dy = None):
+def apply_kpca(X, X_train, Q, K_fit,kernel='linear', gamma=None, eps = None, dx = 1, dy = None):
+    m = K_fit.shape[0]
+    ones = np.full((1,m), 1/m)
+    M = np.eye(m) - np.full((m,m), 1/m)
     K = compute_kernel_matrix(X, X_train, kernel, gamma, eps,dx,dy)
-    K_row = np.mean(K, axis=0)
-    K_col = np.mean(K, axis=1)[:,None]
-    K_all = np.mean(K)
-    K_centered = K - K_row - K_col + K_all
-    X_kpca = np.dot(K_centered, Q)
+    # K_row = np.mean(K, axis=0)
+    # K_col = np.mean(K, axis=1)[:,None]
+    # K_all = np.mean(K)
+    # K_centered = K - K_row - K_col + K_all
+    X_kpca = (K - ones@K_fit) @ M@Q
 
     return X_kpca
+
+class KernelPCA():
+    def __init__(self) -> None:
+        self._is_fitted = False
+
+    def fit(self,X, n_components=2, kernel='linear', gamma=None, eps = None, norm='DIV', dx = 1, dy = None, degree = 1):
+        """
+        Perform Kernel Principal Component Analysis (PCA) on input data X.
+
+        Parameters
+        ----------
+        X : Data matrix
+            Input data.
+        n_components : int, optional (default=2)
+            Number of components to keep.
+        kernel : str, optional (default='linear')
+            Kernel function to use. Options are 'linear', 'oldroyd', 'ptt', 'giesekus' or 'fene-p'.
+        gamma : float, optional (default=None)
+            Gamma parameter for 'oldroyd', 'ptt', 'giesekus' or 'fene-p'." kernels. Not needed for other kernels.
+        eps : float, optional (default=None)
+            non-linear parameter for 'ptt', 'giesekus' or 'fene-p'." kernels. Not needed for other kernels.
+        eps : str, optional (default='DIV')
+            Normalize the eigenvectors by the eigenvalues
+        dx, dy : float, optinal 
+            for energy based kernels integration
+
+        Returns
+        -------
+        X_kpca : array, shape (n_samples, n_components)
+            Transformed data in reduced-dimensional space.
+        eigenvectors_normalized : array, shape (n_samples, n_components)
+            Reduced eigenvector normalized.
+        eigenvalues : array, shape (n_samples, n_components)
+            Reduced eigenvector.
+        K_centered : array, shape (n_samples, n_components)
+            Kernel matrix
+        """
+
+
+        # Compute the kernel matrix
+        K = compute_kernel_matrix(X, X, kernel, gamma, eps,dx,dy)
+        #traceK = np.trace(K)
+        #print(traceK)
+        # Center the kernel matrix
+        
+        K_row = np.mean(K, axis=0)
+        K_col = np.mean(K, axis=1)[:,None]
+        K_all = np.mean(K)
+        K_centered = K - K_row - K_col + K_all
+        # K_centered = K - np.mean(K, axis=1).reshape(-1, 1)
+        
+        # Eigen decomposition
+        eigenvalues, eigenvectors = np.linalg.eigh(K_centered)
+
+        # Sort eigenvalues and eigenvectors in descending order
+        indices = np.argsort(eigenvalues)[::-1]
+        eigenvalues = eigenvalues[indices]
+        eigenvectors = eigenvectors[:, indices]
+
+        # Select top n_components eigenvectors
+        eigenvectors = eigenvectors[:, :n_components]
+
+        # Normalize eigenvectors
+        norm = norm.upper()
+        if norm == 'MULT':
+            eigenvectors_normalized = eigenvectors * np.sqrt(eigenvalues[:n_components])
+        elif norm == 'DIV':
+            eigenvectors_normalized = eigenvectors / np.sqrt(eigenvalues[:n_components])
+        elif norm == 'NONE':
+            eigenvectors_normalized = eigenvectors
+        else:
+            raise ValueError(f"Invalid norm type. Options are 'MULT', 'DIV' or 'None' (given: '{norm}')")
+        
+        # Project input data onto the eigenvectors
+        X_kpca = np.dot(K_centered, eigenvectors_normalized)
+
+        # store information
+        self.normalized_eigenvector = eigenvectors_normalized
+        self.eigenvalues = eigenvalues
+        self.K_fit = K
+        self.X_fit = X
+        self._is_fitted = True
+        self.kernel = kernel
+
+        # for transform:
+        m = self.K_fit.shape[0]
+        M = np.eye(m) - np.full((m,m), 1/m)
+        self.U_fit = M@self.normalized_eigenvector
+
+        # for inverse transform:
+        #Get reconst matrix
+        self.degree = degree
+        Q2 = np.concatenate([np.ones((X.shape[0],1))] + [X_kpca**(k+1) for k in range(degree)], axis=1)
+        R, _, _, _ = np.linalg.lstsq(Q2, X, rcond=None)
+        self.R = R
+
+    def transform(self,X, gamma=None, eps = None, dx = 1, dy = None):
+        K = compute_kernel_matrix(X, self.X_fit, self.kernel, gamma, eps,dx,dy)
+        ones  = np.full(K.shape, 1/self.K_fit.shape[0])
+        X_kpca = (K - ones@self.K_fit) @ self.U_fit
+        return X_kpca
+    
+    def invert_transform(self, Phi):
+        Phi_ext = np.concatenate([np.ones((Phi.shape[0],1))] + [Phi**(k+1) for k in range(self.degree)], axis=1)
+        #reconstruction
+        X = self.R.T@Phi_ext.T
+        return X
