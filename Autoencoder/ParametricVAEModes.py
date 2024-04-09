@@ -29,7 +29,7 @@ class ParametricVAEModesModule(nn.Module):
             nn.Linear(32,8), # 2^3
             nn.ReLU(),
         ) 
-        self.decoders = [self.create_decoder(num_params, n_input) for _ in range(latent_dim)]
+        self.decoders = nn.ModuleList( [self.create_decoder(num_params, n_input) for _ in range(latent_dim)])
 
         self.gen_mu  = nn.Linear(8,latent_dim)
         self.gen_std = nn.Linear(8,latent_dim)
