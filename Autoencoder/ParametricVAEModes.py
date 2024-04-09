@@ -76,7 +76,7 @@ class ParametricVAEModesModule(nn.Module):
         for i in range(self.num_params):
             p[...,i] = param[...,i]
         # latent = torch.cat((latent,p),-1)
-        decode = [self.decoders[i](torch.cat((latent[...,i],p),-1)) for i in range(self.latent_dim)]
+        decode = [self.decoders[i](torch.cat((latent[...,i:i+1],p),-1)) for i in range(self.latent_dim)]
         return decode
     
     def decode(self, latent, param):
