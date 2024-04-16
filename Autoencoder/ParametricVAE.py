@@ -118,5 +118,5 @@ class ParametricVAEModule(nn.Module):
     
     def reparametrize(self, mu, log_var):
         std = torch.exp(0.5 * log_var)
-        result = torch.randn_like(std)
-        return result * std + mu
+        e = torch.randn_like(std)
+        return e * std + mu
