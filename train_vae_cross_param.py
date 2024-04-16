@@ -74,7 +74,8 @@ if __name__ == '__main__':
             reconst_loss = torch.nn.MSELoss()(input, target)
 
             kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
-            kld_weight = 0.0025
+            # kld_weight = 0.0025
+            kld_weight = 0.1
             return reconst_loss + kld_loss*kld_weight
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
