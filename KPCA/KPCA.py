@@ -266,7 +266,9 @@ class KernelPCA():
 
 
             X_kpca = np.dot(K_centered, self.normalized_eigenvector)
-            Q2 = np.concatenate([np.ones((self.X_fit.shape[0],1))] + [(X_kpca)**(k+1) for k in range(self.degree)], axis=1)
+            sqrt_theta = np.sqrt(self.thetas_fit).T 
+            ones_fit = np.ones((self.X_fit.shape[0],1))
+            Q2 = np.concatenate([ones_fit]+ [ones_fit / sqrt_theta ]  + [(X_kpca)**(k+1) for k in range(self.degree)] + [(X_kpca / sqrt_theta)**(k+1) for k in range(self.degree)], axis=1)
             R, _, _, _ = np.linalg.lstsq(Q2, self.X_fit, rcond=None)
             self.R = R.T
 
@@ -283,8 +285,10 @@ class KernelPCA():
             X_kpca = K @ self.normalized_eigenvector
         return X_kpca
     
-    def invert_transform(self, Phi):
-        Phi_ext = np.concatenate([np.ones((Phi.shape[0],1))] + [Phi**(k+1) for k in range(self.degree)], axis=1)
+    def invert_transform(self, Phi, theta):
+        sqrt_theta = np.sqrt(theta).T
+        ones_phi = np.ones((Phi.shape[0],1))
+        Phi_ext = np.concatenate([ones_phi] + [ones_phi / sqrt_theta] + [Phi**(k+1) for k in range(self.degree)]+ [(Phi / sqrt_theta)**(k+1) for k in range(self.degree)], axis=1)
         #reconstruction
         X = self.R@Phi_ext.T
         return X
