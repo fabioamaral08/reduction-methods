@@ -79,7 +79,7 @@ if __name__ == '__main__':
     num_batches = len(train_loader)
 
     # Results directory
-    pasta = f'ModelsTorch/VAETrans_4Roll_Latent_{latent_dim}'
+    pasta = f'/container/fabio/reduction-methods/ModelsTorch/VAETrans_4Roll_Latent_{latent_dim}'
     # os.makedirs(pasta, exist_ok=True)
 
     # Early stop
