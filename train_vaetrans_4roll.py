@@ -51,8 +51,8 @@ if __name__ == '__main__':
 
 
     ## Data reading
-    train_dataset = FileDataset('../four_roll_train')
-    test_dataset = FileDataset('../four_roll_test')
+    train_dataset = FileDataset('../npz_data/four_roll_train')
+    test_dataset = FileDataset('../npz_data/four_roll_test')
 
     #normalize data inside autoencoder
     lower_bound,  upper_bound = get_min_max(train_dataset)
