@@ -127,8 +127,8 @@ class VAE_Transformer(nn.Module):
     def positional_embedding(self, x, param,n=10000):
         d = x.shape[-1]
         p = torch.ones((x.shape[0],self.num_params,x.shape[2]),device=x.device)
-        pos = torch.arange(d//2) * 2
-        denom = torch.pow(n, pos/d)
+        pos = torch.arange(d//2,device=x.device) * 2
+        denom = torch.pow(n, pos/d, device=x.device)
         for i in range(self.num_params):
             p[...,i,1::2] = torch.cos(param[...,i].view(-1,1)/denom)
             if d%2 == 0:
