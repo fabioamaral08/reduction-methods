@@ -4,6 +4,7 @@ a@a
 from utils import *
 import Autoencoder
 import torch
+import torch.nn as nn
 from torch.utils.data import DataLoader, Dataset
 import time
 import os
@@ -66,7 +67,7 @@ if __name__ == '__main__':
 
     # autoencoder = Autoencoder.AutoencoderModule(n_input= X_torch.shape[-1], latent_dim = latent_dim, max_in=upper_bound, min_in=lower_bound).to(device)
     autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound).to(device)
-
+    transformer = nn.Transformer(latent_dim, nhead=32)
 
     train_loader = DataLoader(train_dataset, shuffle= True, batch_size=bs)
     test_loader =  DataLoader(test_dataset, shuffle= False, batch_size=len(test_dataset))
