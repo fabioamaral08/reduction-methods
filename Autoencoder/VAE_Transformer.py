@@ -24,7 +24,7 @@ class VAE_Transformer(nn.Module):
                 nn.Linear(2048,512), # 2^9
                 nn.ReLU(),
                 nn.Flatten(), # Merge the channels
-                nn.Linear(512*7,512), # 2^9
+                nn.Linear(512*(5 + num_params),512), # 2^9
                 nn.ReLU(),
                 transformer_encoder,
                 nn.Linear(512,128), # 2^7
@@ -61,7 +61,7 @@ class VAE_Transformer(nn.Module):
                 nn.Linear(2048,512), # 2^9
                 nn.ReLU(),
                 nn.Flatten(), # Merge the channels
-                nn.Linear(512*7,128), # 2^7
+                nn.Linear(512*(5 + num_params),128), # 2^7
                 nn.ReLU(),
                 nn.Linear(128,32), # 2^5
                 nn.ReLU(),
