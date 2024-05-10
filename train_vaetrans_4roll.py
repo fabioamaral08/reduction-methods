@@ -80,7 +80,7 @@ if __name__ == '__main__':
 
     # Results directory
     pasta = f'ModelsTorch/VAETrans_4Roll_Latent_{latent_dim}'
-    os.makedirs(pasta, exist_ok=True)
+    # os.makedirs(pasta, exist_ok=True)
 
     # Early stop
     best_vloss = 1_000_000
