@@ -152,11 +152,12 @@ if __name__ == '__main__':
 
     autoencoder = Autoencoder.VAE_Transformer(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=3, max_in=upper_bound, min_in=lower_bound).to(device)
 
-    sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
-    batch_sampler = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
+    # sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
+    batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
+    batch_sampler_test = CaseBatchSampler(test_dataset.filenames, test_dataset.cases, test_dataset.root_dir, 4000)
 
-    train_loader = DataLoader(train_dataset, shuffle= False, batch_size=bs, sampler=sampler, batch_sampler=batch_sampler)
-    test_loader =  DataLoader(test_dataset, shuffle= False, batch_size=len(test_dataset))
+    train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train)
+    test_loader =  DataLoader(test_dataset, batch_sampler=batch_sampler_test)
     loss_energy = True
 
     if loss_energy:
