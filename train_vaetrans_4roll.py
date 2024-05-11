@@ -81,8 +81,7 @@ class FileDataset(Dataset):
          return len(self.filenames)
     
 
-    def __getitem__(self, index):
-         print(index)
+    def __getitem__(self, index:int):
          data = torch.load(f'{self.root_dir}/{self.filenames[index]}')
          return data['tensor'].float(), torch.tensor(data['param']).float()
          
@@ -124,6 +123,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
             indexes = torch.argwhere(files)
             nchunks = (len(indexes) + self.batch_size - 1) // self.batch_size
             for batch in torch.chunk(indexes, nchunks):
+                print(batch)
                 yield batch.tolist()
     
     
@@ -148,7 +148,7 @@ if __name__ == '__main__':
     ## Data reading
     train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train')
     test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test')
-
+    print(len(train_dataset))
     #normalize data inside autoencoder
     lower_bound,  upper_bound = get_min_max(train_dataset)
     lower_bound = lower_bound.to(device)
