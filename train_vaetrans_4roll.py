@@ -48,7 +48,7 @@ def calc_energy(X, Wi, beta, Re, dx = 0.0125, dy = None):
 
 
     total_energy = (kinetic+elastic) + (1-beta)/(Wi*Re)
-    return elastic, kinetic, total_energy
+    return total_energy
 
 def energy_loss(x,y,param, dx = 1/2**6):
     Wi = param[:,0].view((-1,1))
