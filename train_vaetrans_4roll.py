@@ -9,7 +9,7 @@ import time
 import os
 import glob
 
-def calc_energy(X, Wi, beta, Re, dx = 0.0125, dy = None):
+def kernel(X, Y, theta, dx = 0.0125, dy = None):
     """
     Compute the total energy of a visco-elastic flow
 
@@ -33,30 +33,22 @@ def calc_energy(X, Wi, beta, Re, dx = 0.0125, dy = None):
     """
     if dy is None:
         dy = dx
-    area = dx * dy
-    u = X[:,0::5]
-    v = X[:,1::5]
-    bxx = X[:,2::5]
-    bxy = X[:,3::5]
-    byy = X[:,4::5]
-
-    kinetic = 0.5 * ((u**2 + v**2)*area).sum(1)
-    txx = (bxx**2 + bxy**2 -1) * (1-beta)/Wi
-    tyy = (bxy**2 + byy**2 -1) * (1-beta)/Wi
-
-    elastic =  0.5 * ((txx + tyy)/(Re)*area).sum(1)
-
-
-    total_energy = (kinetic+elastic) + (1-beta)/(Wi*Re)
-    return total_energy
+    area = dx*dy * 0.5
+    c = torch.ones((X.shape[0],5))
+    c[:,2:] *= theta
+    c[:,3] *= 2
+    total_energy = torch.einsum('ijk, njk, ij -> in',X,Y,c)
+    return torch.diag(total_energy) * area
 
 def energy_loss(x,y,param, dx = 1/2**6):
     Wi = param[:,0].view((-1,1))
     beta= param[:,1].view((-1,1))
-    ex = calc_energy(x, Wi, beta, 1, dx)
-    ey = calc_energy(y, Wi, beta, 1, dx)
+    theta = (1- beta) / Wi
+    Kxx = kernel(x,x, theta, 1, dx)
+    Kxy = kernel(x,y, theta, 1, dx)
+    Kyy = kernel(y,y, theta, 1, dx)
 
-    loss = torch.nn.L1Loss()(ex, ey)
+    loss = torch.sqrt(Kxx - 2* Kxy + Kyy)
 
     return loss
 
