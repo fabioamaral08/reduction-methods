@@ -113,7 +113,7 @@ if __name__ == '__main__':
 
     # NN part
     learning_rate = 1e-4
-    bs = 4000
+    bs = 2000
     num_epochs = 5000
 
     autoencoder = Autoencoder.VAE_Transformer(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=3, max_in=upper_bound, min_in=lower_bound).to(device)
