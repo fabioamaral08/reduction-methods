@@ -9,7 +9,7 @@ import time
 import os
 import glob
 
-def kernel(X, Y, theta, dx = 0.0125, dy = None):
+def kernel(X:torch.Tensor, Y, theta, dx = 0.0125, dy = None):
     """
     Compute the total energy of a visco-elastic flow
 
@@ -34,7 +34,7 @@ def kernel(X, Y, theta, dx = 0.0125, dy = None):
     if dy is None:
         dy = dx
     area = dx*dy * 0.5
-    c = torch.ones((X.shape[0],5))
+    c = torch.ones((X.shape[0],5),device = X.device)
     c[:,2:] *= theta
     c[:,3] *= 2
     total_energy = torch.einsum('ijk, njk, ij -> in',X,Y,c)
