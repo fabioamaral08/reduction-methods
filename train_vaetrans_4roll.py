@@ -8,6 +8,58 @@ from torch.utils.data import DataLoader, Dataset
 import time
 import os
 import glob
+
+def calc_energy(X, Wi, beta, Re, dx = 0.0125, dy = None):
+    """
+    Compute the total energy of a visco-elastic flow
+
+    Parameters
+    ----------
+    X : array_like
+        Simulation data
+    Wi, beta, Re : float
+                    Simulation paramters
+    dx : float
+        uniform mesh spacing
+
+    Returns
+    -------
+    elastic : array
+            The elastic energy on each snapshot of the input
+    kinetic : array
+            The kinect energy on each snapshot of the input
+    total_energy: array
+            The total energy on each snapshot of the input
+    """
+    if dy is None:
+        dy = dx
+    area = dx * dy
+    u = X[:,0::5]
+    v = X[:,1::5]
+    bxx = X[:,2::5]
+    bxy = X[:,3::5]
+    byy = X[:,4::5]
+
+    kinetic = 0.5 * ((u**2 + v**2)*area).sum(0)
+    txx = (bxx**2 + bxy**2 -1) * (1-beta)/Wi
+    tyy = (bxy**2 + byy**2 -1) * (1-beta)/Wi
+
+    elastic =  0.5 * ((txx + tyy)/(Re)*area).sum(0)
+
+
+    total_energy = (kinetic+elastic) + (1-beta)/(Wi*Re)
+    return elastic, kinetic, total_energy
+
+def energy_loss(x,y,param, dx = 1/2**6):
+    Wi = param[:,0]
+    beta= param[:,1]
+    ex = calc_energy(x, Wi, beta, 1, dx)
+    ey = calc_energy(y, Wi, beta, 1, dx)
+
+    loss = torch.nn.L1Loss(ex, ey)
+
+    return loss
+
 class ClearCache:
     def __enter__(self):
         torch.cuda.empty_cache()
@@ -69,18 +121,29 @@ if __name__ == '__main__':
 
     train_loader = DataLoader(train_dataset, shuffle= True, batch_size=bs)
     test_loader =  DataLoader(test_dataset, shuffle= False, batch_size=len(test_dataset))
-    def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor):
-            reconst_loss = torch.nn.MSELoss()(input, target)
-            kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
-            kld_weight = 0.025
-            return reconst_loss + kld_loss*kld_weight
+    loss_energy = True
+
+    if loss_energy:
+        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor):
+                # reconst_loss = torch.nn.MSELoss()(input, target)
+                reconst_loss = energy_loss(input, target, param)
+                kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
+                kld_weight = 0.025
+                return reconst_loss + kld_loss*kld_weight
+    else:
+        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor = None):
+                reconst_loss = torch.nn.MSELoss()(input, target)
+                # reconst_loss = energy_loss(input, target, param)
+                kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
+                kld_weight = 0.025
+                return reconst_loss + kld_loss*kld_weight
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
     num_batches = len(train_loader)
 
     # Results directory
-    pasta = f'/container/fabio/reduction-methods/ModelsTorch/VAETrans_4Roll_Latent_{latent_dim}'
-    # os.makedirs(pasta, exist_ok=True)
+    pasta = f'/container/fabio/reduction-methods/ModelsTorch/VAETrans_4Roll_Latent_{latent_dim}_energy_{loss_energy}'
+    os.makedirs(pasta, exist_ok=True)
 
     # Early stop
     best_vloss = 1_000_000
@@ -109,7 +172,7 @@ if __name__ == '__main__':
                 data = data.to(device)
                 param = param.to(device)
                 reconst, mu, log_var = autoencoder(data,param)
-                loss = loss_fn(data, reconst, mu, log_var)
+                loss = loss_fn(data, reconst, mu, log_var, param)
                 loss.backward()
                 optimizer.step()
 
