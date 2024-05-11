@@ -51,8 +51,8 @@ def calc_energy(X, Wi, beta, Re, dx = 0.0125, dy = None):
     return elastic, kinetic, total_energy
 
 def energy_loss(x,y,param, dx = 1/2**6):
-    Wi = param[:,0]
-    beta= param[:,1]
+    Wi = param[:,0].view((-1,1))
+    beta= param[:,1].view((-1,1))
     ex = calc_energy(x, Wi, beta, 1, dx)
     ey = calc_energy(y, Wi, beta, 1, dx)
 
@@ -113,7 +113,7 @@ if __name__ == '__main__':
 
     # NN part
     learning_rate = 1e-4
-    bs = 2000
+    bs = 4000
     num_epochs = 5000
 
     autoencoder = Autoencoder.VAE_Transformer(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=3, max_in=upper_bound, min_in=lower_bound).to(device)
