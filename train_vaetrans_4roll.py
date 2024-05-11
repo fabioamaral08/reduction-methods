@@ -56,7 +56,7 @@ def energy_loss(x,y,param, dx = 1/2**6):
     ex = calc_energy(x, Wi, beta, 1, dx)
     ey = calc_energy(y, Wi, beta, 1, dx)
 
-    loss = torch.nn.L1Loss(ex, ey)
+    loss = torch.nn.L1Loss()(ex, ey)
 
     return loss
 
