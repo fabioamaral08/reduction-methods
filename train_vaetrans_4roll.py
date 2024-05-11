@@ -40,11 +40,11 @@ def calc_energy(X, Wi, beta, Re, dx = 0.0125, dy = None):
     bxy = X[:,3::5]
     byy = X[:,4::5]
 
-    kinetic = 0.5 * ((u**2 + v**2)*area).sum(0)
+    kinetic = 0.5 * ((u**2 + v**2)*area).sum(1)
     txx = (bxx**2 + bxy**2 -1) * (1-beta)/Wi
     tyy = (bxy**2 + byy**2 -1) * (1-beta)/Wi
 
-    elastic =  0.5 * ((txx + tyy)/(Re)*area).sum(0)
+    elastic =  0.5 * ((txx + tyy)/(Re)*area).sum(1)
 
 
     total_energy = (kinetic+elastic) + (1-beta)/(Wi*Re)
