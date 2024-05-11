@@ -164,7 +164,7 @@ if __name__ == '__main__':
     batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
     batch_sampler_test = CaseBatchSampler(test_dataset.filenames, test_dataset.cases, test_dataset.root_dir, 4000)
 
-    train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train)
+    train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train, num_workers=1)
     test_loader =  DataLoader(test_dataset, batch_sampler=batch_sampler_test)
     loss_energy = True
 
