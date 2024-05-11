@@ -67,7 +67,7 @@ class FileDataset(Dataset):
 
         self.root_dir = root_dir
         self.filenames = glob.glob('*.pt', root_dir=root_dir)
-        self.filenames = self.filenames.sort()
+        self.filenames.sort()
         self.cases = []
         for file in self.filenames:
             sfile = file.split('_')
@@ -154,7 +154,7 @@ if __name__ == '__main__':
 
     sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
     batch_sampler = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
-    
+
     train_loader = DataLoader(train_dataset, shuffle= False, batch_size=bs, sampler=sampler, batch_sampler=batch_sampler)
     test_loader =  DataLoader(test_dataset, shuffle= False, batch_size=len(test_dataset))
     loss_energy = True
