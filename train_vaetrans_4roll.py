@@ -121,9 +121,8 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
             case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=self.root_dir)
             nchunks = (len(case) + self.batch_size - 1) // self.batch_size
             files = torch.tensor([x in case for x in self.data])
-            indexes = torch.argwhere(files)
+            indexes = torch.argwhere(files).flatten()
             for batch in torch.chunk(indexes, nchunks):
-                print(batch)
                 yield batch.tolist()
     
     
@@ -148,7 +147,7 @@ if __name__ == '__main__':
     ## Data reading
     train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train')
     test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test')
-    print(len(train_dataset))
+
     #normalize data inside autoencoder
     lower_bound,  upper_bound = get_min_max(train_dataset)
     lower_bound = lower_bound.to(device)
@@ -232,6 +231,6 @@ if __name__ == '__main__':
                 reconst, mu, log_var = autoencoder(X_test,param.to(device))
                 loss_test = loss_fn(X_test, reconst,mu, log_var, param)
         print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}', end='\t', flush=True)
-        print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)')
+        print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
 
     print('\n\n')
