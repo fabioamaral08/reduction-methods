@@ -8,6 +8,8 @@ from torch.utils.data import DataLoader, Dataset
 import time
 import os
 import glob
+from typing import Iterator, List
+
 
 def kernel(X:torch.Tensor, Y, theta, dx = 0.0125, dy = None):
     """
@@ -65,6 +67,15 @@ class FileDataset(Dataset):
 
         self.root_dir = root_dir
         self.filenames = glob.glob('*.pt', root_dir=root_dir)
+        self.filenames = self.filenames.sort()
+        self.cases = []
+        for file in self.filenames:
+            sfile = file.split('_')
+            Wi = float(sfile[1].replace('Wi',''))
+            beta = float(sfile[2].replace('beta',''))
+
+            if (Wi, beta) not in self.cases:
+                self.cases.append((Wi, beta))
 
     def __len__(self):
          return len(self.filenames)
@@ -74,6 +85,37 @@ class FileDataset(Dataset):
          data = torch.load(f'{self.root_dir}/{self.filenames[index]}')
          return data['tensor'].float(), torch.tensor(data['param']).float()
          
+class CaseSampler(torch.utils.data.Sampler[int]):
+    def __init__(self, data, cases, root_dir) -> None:
+        self.data = data
+        self.cases = cases
+        self.root_dir = root_dir
+
+    def __len__(self) -> int:
+        return len(self.data)
+
+    def __iter__(self):
+        for Wi, beta in self.cases:
+            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=self.root_dir)
+            files = torch.tensor([x in case for x in self.data])
+            yield from torch.argwhere(files).tolist()
+
+class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
+    def __init__(self, data, cases, root_dir, batch_size: int) -> None:
+        self.data = data
+        self.cases = cases
+        self.root_dir = root_dir
+        self.batch_size = batch_size
+
+    def __len__(self) -> int:
+        return (len(self.data) + self.batch_size - 1) // self.batch_size
+
+    def __iter__(self):
+        for Wi, beta in self.cases:
+            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=self.root_dir)
+            files = torch.tensor([x in case for x in self.data])
+            for batch in torch.chunk(torch.argwhere(files), len(self)):
+                yield batch.tolist()
     
     
 def get_min_max(dataset):
@@ -110,8 +152,10 @@ if __name__ == '__main__':
 
     autoencoder = Autoencoder.VAE_Transformer(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=3, max_in=upper_bound, min_in=lower_bound).to(device)
 
-
-    train_loader = DataLoader(train_dataset, shuffle= True, batch_size=bs)
+    sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
+    batch_sampler = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
+    
+    train_loader = DataLoader(train_dataset, shuffle= False, batch_size=bs, sampler=sampler, batch_sampler=batch_sampler)
     test_loader =  DataLoader(test_dataset, shuffle= False, batch_size=len(test_dataset))
     loss_energy = True
 
