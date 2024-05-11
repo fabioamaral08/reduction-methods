@@ -81,7 +81,9 @@ class FileDataset(Dataset):
          return len(self.filenames)
     
 
-    def __getitem__(self, index:int):
+    def __getitem__(self, index):
+         while isinstance(index, list):
+              index = index[0]
          data = torch.load(f'{self.root_dir}/{self.filenames[index]}')
          return data['tensor'].float(), torch.tensor(data['param']).float()
          
