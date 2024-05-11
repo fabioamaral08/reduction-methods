@@ -182,6 +182,7 @@ if __name__ == '__main__':
         with torch.no_grad():
             for X_test,param in train_loader:
                 X_test = X_test.to(device)
+                param = param.to(device)
                 reconst, mu, log_var = autoencoder(X_test,param.to(device))
                 loss_test = loss_fn(X_test, reconst,mu, log_var, param)
         print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}', end='\t', flush=True)
