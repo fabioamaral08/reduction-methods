@@ -109,13 +109,21 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
         self.batch_size = batch_size
 
     def __len__(self) -> int:
-        return (len(self.data) + self.batch_size - 1) // self.batch_size
+        nchunks = 0
+        for Wi, beta in self.cases:
+            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=self.root_dir)
+            files = torch.tensor([x in case for x in self.data])
+            indexes = torch.argwhere(files)
+            nchunks += (len(indexes) + self.batch_size - 1) // self.batch_size
+        return nchunks
 
     def __iter__(self):
         for Wi, beta in self.cases:
             case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=self.root_dir)
             files = torch.tensor([x in case for x in self.data])
-            for batch in torch.chunk(torch.argwhere(files), len(self)):
+            indexes = torch.argwhere(files)
+            nchunks = (len(indexes) + self.batch_size - 1) // self.batch_size
+            for batch in torch.chunk(indexes, nchunks):
                 yield batch.tolist()
     
     
