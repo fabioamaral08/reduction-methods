@@ -166,7 +166,7 @@ if __name__ == '__main__':
 
     train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train, num_workers=0)
     test_loader =  DataLoader(test_dataset, batch_sampler=batch_sampler_test)
-    loss_energy = False
+    loss_energy = True
 
     if loss_energy:
         def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor):
