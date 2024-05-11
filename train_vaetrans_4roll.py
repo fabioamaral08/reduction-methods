@@ -116,7 +116,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
             files = torch.tensor([x in case for x in self.data])
             indexes = torch.argwhere(files).flatten()
             for batch in torch.chunk(indexes, nchunks):
-                self.iter_list(batch.tolist())
+                self.iter_list.append(batch.tolist())
 
     def __len__(self) -> int:
         return len(self.iter_list)
