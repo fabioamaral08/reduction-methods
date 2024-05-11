@@ -49,7 +49,7 @@ def energy_loss(x,y,param, dx = 1/2**6):
     Kyy = kernel(y,y, theta, 1, dx)
 
     loss = torch.sqrt(Kxx - 2* Kxy + Kyy)
-
+    print(loss.shape)
     return loss
 
 class ClearCache:
