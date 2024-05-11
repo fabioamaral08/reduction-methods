@@ -123,7 +123,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
 
     def __iter__(self):
         for batch in self.iter_list:
-            yield batch.tolist()
+            yield batch
     
     
 def get_min_max(dataset):
