@@ -104,18 +104,22 @@ class CaseSampler(torch.utils.data.Sampler[int]):
 
 class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
     def __init__(self, data, cases, root_dir, batch_size: int) -> None:
-        self.data = data
-        self.cases = cases
-        self.root_dir = root_dir
         self.batch_size = batch_size
-
         self.iter_list = []
-        for Wi, beta in self.cases:
-            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=self.root_dir)
+        
+        for Wi, beta in cases:
+            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=root_dir)
             nchunks = (len(case) + self.batch_size - 1) // self.batch_size
-            files = torch.tensor([x in case for x in self.data])
-            indexes = torch.argwhere(files).flatten()
-            for batch in torch.chunk(indexes, nchunks):
+            files = torch.tensor([x in case for x in data])
+            files_indexes = torch.argwhere(files).flatten()
+            
+            #sort files
+            adata = np.array(data)
+            case_data = adata[files_indexes]
+            times = [self.get_t(fname) for fname in case_data]
+            idx = np.argsort(times)
+            files_indexes = files_indexes[idx]
+            for batch in torch.chunk(files_indexes, nchunks):
                 self.iter_list.append(batch.tolist())
 
     def __len__(self) -> int:
@@ -124,7 +128,11 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
     def __iter__(self):
         for batch in self.iter_list:
             yield batch
-    
+
+    def get_t(self, filename):
+        str_s = filename.split('_')[3].replace('t','')
+        t = float(str_s)
+        return t
     
 def get_min_max(dataset):
     min_v = dataset[0][0].amin(1)
