@@ -155,8 +155,6 @@ if __name__ == '__main__':
     device = torch.device(device_type)
     
     latent_dim = 3
-    print( args.Loss.upper())
-    exit()
 
     ## Data reading
     train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train')
