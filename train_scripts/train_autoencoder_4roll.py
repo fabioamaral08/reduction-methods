@@ -1,3 +1,5 @@
+import sys 
+sys.path.append('../src') 
 import numpy as np
 a = np.ones((2,2))
 a@a
@@ -54,9 +56,7 @@ if __name__ == '__main__':
         autoencoder = Autoencoder.AutoencoderModule(n_input= X_torch.shape[-1], latent_dim = latent_dim, max_in=upper_bound, min_in=lower_bound).to(device)
 
         X_torch = X_torch.float().to(device)
-        X_train = X_torch[:-500]
-        X_test = X_torch[-500:]
-        dataset = TensorDataset(X_train,X_train)
+        dataset = TensorDataset(X_torch,X_torch)
         loader = DataLoader(dataset, shuffle= True, batch_size=bs)
         loss_fn = torch.nn.MSELoss()
         optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
@@ -64,7 +64,7 @@ if __name__ == '__main__':
         num_batches = len(loader)
 
         # Results directory
-        pasta = f'ModelsTorch/Dense_Pred_Latent_{latent_dim}/Re{Re:g}_Wi{Wi:g}_beta{beta:g}'
+        pasta = f'ModelsTorch/Dense_Latent_{latent_dim}/Re{Re}_Wi{Wi}_beta{beta}'
         os.makedirs(pasta, exist_ok=True)
 
         # Early stop
@@ -99,11 +99,7 @@ if __name__ == '__main__':
                 cumm_loss += loss.item()
             t = time.time() - t
             last_loss = cumm_loss
-            # test data
-            with torch.no_grad():
-                reconst = autoencoder(X_test)
-                loss_test = loss_fn(X_test, reconst)
-            print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}', end='\t')
+            print(f'Epoch {e}: running loss: {cumm_loss:.4f}', end='\t')
             print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)')
 
         print('\n\n')

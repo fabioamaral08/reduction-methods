@@ -1,14 +1,16 @@
+import sys 
+sys.path.append('../src') 
 import numpy as np
 a = np.ones((2,2))
 a@a
-from utils import *
-import Autoencoder
 import torch
 from torch.utils.data import DataLoader, Dataset
 import time
 import os
 import glob
 from typing import Iterator, List
+from utils import *
+import Autoencoder
 
 
 def kernel(X:torch.Tensor, Y, theta, dx = 0.0125, dy = None):

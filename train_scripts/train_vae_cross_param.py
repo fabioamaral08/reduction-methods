@@ -1,3 +1,5 @@
+import sys 
+sys.path.append('../src') 
 import numpy as np
 a = np.ones((2,2))
 a@a
