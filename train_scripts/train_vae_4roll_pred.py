@@ -232,7 +232,7 @@ if __name__ == '__main__':
                 inpt_pred = code[:-1]
                 out_pred = code[1:]
                 reconst = autoencoder.decode(code,param)
-                forecast = autoencoder.pred(code[:-1])
+                forecast = autoencoder.predictor(code[:-1])
                 loss = loss_fn(data, reconst, mu, log_var, param) + mse_loss(out_pred, forecast)
                 loss.backward()
                 optimizer.step()
