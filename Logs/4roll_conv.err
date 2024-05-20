@@ -1,3 +1,0 @@
-nohup: ignoring input
-/home/fabio/miniconda3/envs/torch/lib/python3.11/site-packages/torch/nn/modules/conv.py:456: UserWarning: Applied workaround for CuDNN issue, install nvrtc.so (Triggered internally at /opt/conda/conda-bld/pytorch_1695392026823/work/aten/src/ATen/native/cudnn/Conv_v8.cpp:80.)
-  return F.conv2d(input, weight, bias, self.stride,
