@@ -82,7 +82,7 @@ class ParametricVAEModule(nn.Module):
 
         if pred:
             self.predictor = nn.Sequential(
-                nn.Linear(n_input, 20),
+                nn.Linear(latent_dim, 20),
                 nn.ReLU(),
                 nn.Linear(20, 20),
                 nn.ReLU(),
