@@ -90,7 +90,7 @@ class ParametricVAEModule(nn.Module):
                 nn.ReLU(),
                 nn.Linear(20, 20),
                 nn.ReLU(),
-                nn.Linear(20, n_input),
+                nn.Linear(20, latent_dim),
             )
 
     def encode(self, x, param):

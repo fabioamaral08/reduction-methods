@@ -232,7 +232,7 @@ if __name__ == '__main__':
                 inpt_pred = code[:-1]
                 out_pred = code[1:]
                 reconst = autoencoder.decode(code,param)
-                forecast = autoencoder.predictor(code[:-1])
+                forecast = autoencoder.predictor(inpt_pred)
                 loss = loss_fn(data, reconst, mu, log_var, param) + mse_loss(out_pred, forecast)
                 loss.backward()
                 optimizer.step()
@@ -244,9 +244,15 @@ if __name__ == '__main__':
             for X_test,param in train_loader:
                 X_test = X_test.to(device)
                 param = param.to(device)
-                reconst, mu, log_var = autoencoder(X_test,param.to(device))
+
+                code, mu, log_var = autoencoder.encode(X_test,param)
+                inpt_pred = code[:-1]
+                out_pred = code[1:]
+                reconst = autoencoder.decode(code,param)
+                forecast = autoencoder.predictor(inpt_pred)
+                loss_pred_test = mse_loss(out_pred, forecast)
                 loss_test = loss_fn(X_test, reconst,mu, log_var, param)
-        print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}', end='\t', flush=True)
+        print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}\tpred loss test: {loss_pred_test.item():.4f}', end='\t', flush=True)
         print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
 
     print('\n\n')
