@@ -8,7 +8,7 @@ Autoencoder for inputs with shape (Ns, Nc, Nx*Ny) -> (-1, 5, Nx)
 """
 
 class ParametricVAEModule(nn.Module):
-    def __init__(self, n_input, latent_dim, num_params = 2, max_in = 1, min_in = 0, small = True) -> None:
+    def __init__(self, n_input, latent_dim, num_params = 2, max_in = 1, min_in = 0, small = True, pred = False) -> None:
         super(ParametricVAEModule,self).__init__()
         # for normalization 
         self.register_buffer('min', min_in)
@@ -79,6 +79,19 @@ class ParametricVAEModule(nn.Module):
             
             self.gen_mu  = nn.Linear(32,latent_dim)
             self.gen_std = nn.Linear(32,latent_dim)
+
+            if pred:
+                self.predictor = nn.Sequential(
+                    nn.Linear(n_input, 20),
+                    nn.ReLU(),
+                    nn.Linear(20, 20),
+                    nn.ReLU(),
+                    nn.Linear(20, 20),
+                    nn.ReLU(),
+                    nn.Linear(20, 20),
+                    nn.ReLU(),
+                    nn.Linear(20, n_input),
+                )
 
     def encode(self, x, param):
         # Normalize input:
