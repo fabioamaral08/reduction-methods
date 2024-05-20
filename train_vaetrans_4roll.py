@@ -106,7 +106,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
     def __init__(self, data, cases, root_dir, batch_size: int) -> None:
         self.batch_size = batch_size
         self.iter_list = []
-        
+
         for Wi, beta in cases:
             case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=root_dir)
             nchunks = (len(case) + self.batch_size - 1) // self.batch_size
@@ -174,7 +174,7 @@ if __name__ == '__main__':
 
     train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train, num_workers=0)
     test_loader =  DataLoader(test_dataset, batch_sampler=batch_sampler_test)
-    loss_energy = True
+    loss_energy = False
 
     if loss_energy:
         def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor):
