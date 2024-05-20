@@ -170,7 +170,7 @@ if __name__ == '__main__':
     bs = 2000
     num_epochs = 5000
 
-    autoencoder = Autoencoder.ParametricVAE(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=3, max_in=upper_bound, min_in=lower_bound, small = True, pred=True).to(device)
+    autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=3, max_in=upper_bound, min_in=lower_bound, small = True, pred=True).to(device)
 
     # sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
     batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
