@@ -1,5 +1,7 @@
-import sys 
-sys.path.append('../src') 
+import sys
+import os
+sys.path.append(os.path.join(os.path.split(sys.path[0])[0], 'src'))
+
 import numpy as np
 a = np.ones((2,2))
 a@a
@@ -9,7 +11,6 @@ import torch
 from torch.utils.data.dataset import TensorDataset
 from torch.utils.data import DataLoader
 import time
-import os
 
 if __name__ == '__main__':
 

@@ -1,5 +1,7 @@
-import sys 
-sys.path.append('../src') 
+import sys
+import os
+sys.path.append(os.path.join(os.path.split(sys.path[0])[0], 'src'))
+
 import numpy as np
 a = np.ones((2,2))
 a@a
@@ -8,8 +10,8 @@ import Autoencoder
 import torch
 from torch.utils.data import DataLoader, Dataset
 import time
-import os
 import glob
+
 class ClearCache:
     def __enter__(self):
         torch.cuda.empty_cache()
