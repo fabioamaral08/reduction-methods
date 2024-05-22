@@ -160,8 +160,8 @@ if __name__ == '__main__':
     latent_dim = 3
 
     ## Data reading
-    train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train')
-    test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test')
+    train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train', take_time = False)
+    test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test', take_time = False)
 
     #normalize data inside autoencoder
     lower_bound,  upper_bound = get_min_max(train_dataset)
