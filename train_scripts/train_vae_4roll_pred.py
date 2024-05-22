@@ -65,10 +65,11 @@ class ClearCache:
         torch.cuda.empty_cache()
 
 class FileDataset(Dataset):
-    def __init__(self, root_dir):
+    def __init__(self, root_dir, take_time = True):
         super().__init__()
 
         self.root_dir = root_dir
+        self.take_time = take_time
         self.filenames = glob.glob('*.pt', root_dir=root_dir)
         self.filenames.sort()
         self.cases = []
@@ -85,10 +86,12 @@ class FileDataset(Dataset):
     
 
     def __getitem__(self, index):
-         while isinstance(index, list):
-              index = index[0]
-         data = torch.load(f'{self.root_dir}/{self.filenames[index]}')
-         return data['tensor'].float(), torch.tensor(data['param']).float()
+        while isinstance(index, list):
+            index = index[0]
+        data = torch.load(f'{self.root_dir}/{self.filenames[index]}')
+        if self.take_time:
+            return data['tensor'].float(), torch.tensor(data['param']).float()
+        return data['tensor'].float(), torch.tensor(data['param'][:-1]).float()
          
 class CaseSampler(torch.utils.data.Sampler[int]):
     def __init__(self, data, cases, root_dir) -> None:
@@ -170,7 +173,7 @@ if __name__ == '__main__':
     bs = 2000
     num_epochs = 5000
 
-    autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=3, max_in=upper_bound, min_in=lower_bound, small = True, pred=True).to(device)
+    autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound, small = True, pred=True).to(device)
 
     # sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
     batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
@@ -199,7 +202,7 @@ if __name__ == '__main__':
     num_batches = len(train_loader)
 
     # Results directory
-    pasta = f'/container/fabio/reduction-methods/ModelsTorch/VAETrans_4Roll_Latent_{latent_dim}_energy_{loss_energy}'
+    pasta = f'/container/fabio/reduction-methods/ModelsTorch/VAE_4Roll_Latent_{latent_dim}_energy_{loss_energy}'
     os.makedirs(pasta, exist_ok=True)
 
     # Early stop
