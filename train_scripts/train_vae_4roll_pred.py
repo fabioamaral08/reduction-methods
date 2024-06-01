@@ -75,8 +75,8 @@ class FileDataset(Dataset):
         self.cases = []
         for file in self.filenames:
             sfile = file.split('_')
-            Wi = float(sfile[1].replace('Wi',''))
-            beta = float(sfile[2].replace('beta',''))
+            Wi = float(sfile[2].replace('Wi',''))
+            beta = float(sfile[3].replace('beta',''))
 
             if (Wi, beta) not in self.cases:
                 self.cases.append((Wi, beta))
@@ -104,7 +104,7 @@ class CaseSampler(torch.utils.data.Sampler[int]):
 
     def __iter__(self):
         for Wi, beta in self.cases:
-            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=self.root_dir)
+            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}_*.pt', root_dir=self.root_dir)
             files = torch.tensor([x in case for x in self.data])
             yield from torch.argwhere(files).tolist()
 
@@ -114,7 +114,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
         self.iter_list = []
 
         for Wi, beta in cases:
-            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=root_dir)
+            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}_*.pt', root_dir=root_dir)
             nchunks = (len(case) + self.batch_size - 1) // self.batch_size
             files = torch.tensor([x in case for x in data])
             files_indexes = torch.argwhere(files).flatten()
@@ -136,7 +136,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
             yield batch
 
     def get_t(self, filename):
-        str_s = filename.split('_')[3].replace('t','')
+        str_s = filename.split('_')[4].replace('t','')
         t = float(str_s)
         return t
     
@@ -160,8 +160,8 @@ if __name__ == '__main__':
     latent_dim = 3
 
     ## Data reading
-    train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train', take_time = False)
-    test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test', take_time = False)
+    train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train_osc', take_time = False)
+    test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test_osc', take_time = False)
 
     #normalize data inside autoencoder
     lower_bound,  upper_bound = get_min_max(train_dataset)
@@ -170,14 +170,14 @@ if __name__ == '__main__':
 
     # NN part
     learning_rate = 1e-4
-    bs = 2000
+    bs = 3000
     num_epochs = 5000
 
     autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound, small = True, pred=True).to(device)
 
     # sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
     batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
-    batch_sampler_test = CaseBatchSampler(test_dataset.filenames, test_dataset.cases, test_dataset.root_dir, 4000)
+    batch_sampler_test = CaseBatchSampler(test_dataset.filenames, test_dataset.cases, test_dataset.root_dir, bs)
 
     train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train, num_workers=0)
     test_loader =  DataLoader(test_dataset, batch_sampler=batch_sampler_test)
@@ -188,21 +188,21 @@ if __name__ == '__main__':
                 # reconst_loss = torch.nn.MSELoss()(input, target)
                 reconst_loss = energy_loss(input, target, param)
                 kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
-                kld_weight = 0.025
+                kld_weight = 0.0025
                 return reconst_loss + kld_loss*kld_weight
     else:
         def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor = None):
                 reconst_loss = mse_loss(input, target)
                 # reconst_loss = energy_loss(input, target, param)
                 kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
-                kld_weight = 0.025
+                kld_weight = 0.0025
                 return reconst_loss + kld_loss*kld_weight
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
     num_batches = len(train_loader)
 
     # Results directory
-    pasta = f'/container/fabio/reduction-methods/ModelsTorch/VAE_4Roll_Latent_{latent_dim}_energy_{loss_energy}'
+    pasta = f'/container/fabio/reduction-methods/ModelsTorch/VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}'
     os.makedirs(pasta, exist_ok=True)
 
     # Early stop
