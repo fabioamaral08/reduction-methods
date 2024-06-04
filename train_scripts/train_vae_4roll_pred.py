@@ -152,7 +152,7 @@ def get_min_max(dataset):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
-    parser.add_argument('--warmup', '-w', default=100, type=int, help="Number of iteration on warm up kld weight")
+    parser.add_argument('--warmup', '-w', default=10, type=int, help="Number of iteration on warm up kld weight")
     args = parser.parse_args()
     torch.manual_seed(42) # reprodutibility
     device_type = "cuda" if torch.cuda.is_available() else "cpu"
@@ -211,7 +211,6 @@ if __name__ == '__main__':
     last_loss = best_vloss
     patience = 0
     #training
-    autoencoder.train(True)
     kl_weight = 0.0025
     for e in range(num_epochs):
         if last_loss < best_vloss:
@@ -219,7 +218,7 @@ if __name__ == '__main__':
                         torch.save({'optimizer_state_dict':optimizer.state_dict(), 'loss':loss, 'epoch':e}, f'{pasta}/optimizer_checkpoint.pt')
                         torch.save(autoencoder.state_dict(), f'{pasta}/best_autoencoder')
                         patience = 0
-        else:
+        elif e > args.warmup:
             patience += 1
         if patience > 50:
             autoencoder.load_state_dict(torch.load( f'{pasta}/best_autoencoder'))
@@ -227,27 +226,29 @@ if __name__ == '__main__':
 
         cumm_loss = 0
         t = time.time()
+        autoencoder.train(True)
         for data,param in train_loader:
             if args.warmup > 0:
                 kl_weight = min(1, kl_weight + 1./(args.warmup*len(train_loader)))
             optimizer.zero_grad()
             # Use the context manager
-            with ClearCache():
-                data = data.to(device)
-                param = param.to(device)
-                code, mu, log_var = autoencoder.encode(data,param)
-                inpt_pred = code[:-1]
-                out_pred = code[1:]
-                reconst = autoencoder.decode(code,param)
-                forecast = autoencoder.predictor(inpt_pred)
-                loss = loss_fn(data, reconst, mu, log_var, param, kl_weight) + mse_loss(out_pred, forecast)
-                loss.backward()
-                optimizer.step()
+            # with ClearCache():
+            data = data.to(device)
+            param = param.to(device)
+            code, mu, log_var = autoencoder.encode(data,param)
+            inpt_pred = code[:-1]
+            out_pred = code[1:]
+            reconst = autoencoder.decode(code,param)
+            forecast = autoencoder.predictor(inpt_pred)
+            loss = loss_fn(data, reconst, mu, log_var, param, kl_weight) + mse_loss(out_pred, forecast)
+            loss.backward()
+            optimizer.step()
 
             cumm_loss += loss.item()
         t = time.time() - t
         last_loss = cumm_loss
         with torch.no_grad():
+            autoencoder.eval()
             for X_test,param in train_loader:
                 X_test = X_test.to(device)
                 param = param.to(device)
