@@ -1,0 +1,192 @@
+Wi: 2, beta: 0.11111, theta: 0.444445
+Rel. energy error MSE: 0.083945
+Rel. energy error Energy: 0.0988839
+
+Wi: 2, beta: 0.3, theta: 0.35
+Rel. energy error MSE: 0.00648603
+Rel. energy error Energy: 0.0120647
+
+Wi: 2, beta: 0.4, theta: 0.3
+Rel. energy error MSE: 0.0263701
+Rel. energy error Energy: 0.0138771
+
+Wi: 2, beta: 0.5, theta: 0.25
+Rel. energy error MSE: 0.00501411
+Rel. energy error Energy: 0.0205259
+
+Wi: 2, beta: 0.75, theta: 0.125
+Rel. energy error MSE: 0.0362451
+Rel. energy error Energy: 0.0351116
+
+Wi: 2, beta: 0.9, theta: 0.05
+Rel. energy error MSE: 0.00705524
+Rel. energy error Energy: 0.0372516
+
+Wi: 2.8, beta: 0.11111, theta: 0.317461
+Rel. energy error MSE: 0.101385
+Rel. energy error Energy: 0.122697
+
+Wi: 2.8, beta: 0.3, theta: 0.25
+Rel. energy error MSE: 0.0230574
+Rel. energy error Energy: 0.0203046
+
+Wi: 2.8, beta: 0.4, theta: 0.214286
+Rel. energy error MSE: 0.0211746
+Rel. energy error Energy: 0.0166895
+
+Wi: 2.8, beta: 0.5, theta: 0.178571
+Rel. energy error MSE: 0.0163388
+Rel. energy error Energy: 0.0059937
+
+Wi: 2.8, beta: 0.75, theta: 0.0892857
+Rel. energy error MSE: 0.0468089
+Rel. energy error Energy: 0.0231624
+
+Wi: 2.8, beta: 0.9, theta: 0.0357143
+Rel. energy error MSE: 0.0123825
+Rel. energy error Energy: 0.0683291
+
+Wi: 3, beta: 0.11111, theta: 0.296297
+Rel. energy error MSE: 0.095313
+Rel. energy error Energy: 0.0873483
+
+Wi: 3, beta: 0.3, theta: 0.233333
+Rel. energy error MSE: 0.0361412
+Rel. energy error Energy: 0.0244099
+
+Wi: 3, beta: 0.4, theta: 0.2
+Rel. energy error MSE: 0.0225541
+Rel. energy error Energy: 0.0162986
+
+Wi: 3, beta: 0.5, theta: 0.166667
+Rel. energy error MSE: 0.0161463
+Rel. energy error Energy: 0.0114898
+
+Wi: 3, beta: 0.75, theta: 0.0833333
+Rel. energy error MSE: 0.0456497
+Rel. energy error Energy: 0.012504
+
+Wi: 3, beta: 0.9, theta: 0.0333333
+Rel. energy error MSE: 0.0159771
+Rel. energy error Energy: 0.0707135
+
+Wi: 3.2, beta: 0.11111, theta: 0.277778
+Rel. energy error MSE: 0.106492
+Rel. energy error Energy: 0.102566
+
+Wi: 3.2, beta: 0.3, theta: 0.21875
+Rel. energy error MSE: 0.0416438
+Rel. energy error Energy: 0.0402851
+
+Wi: 3.2, beta: 0.4, theta: 0.1875
+Rel. energy error MSE: 0.0299304
+Rel. energy error Energy: 0.0196159
+
+Wi: 3.2, beta: 0.5, theta: 0.15625
+Rel. energy error MSE: 0.0170741
+Rel. energy error Energy: 0.00837447
+
+Wi: 3.2, beta: 0.75, theta: 0.078125
+Rel. energy error MSE: 0.0273295
+Rel. energy error Energy: 0.013665
+
+Wi: 3.2, beta: 0.9, theta: 0.03125
+Rel. energy error MSE: 0.0201299
+Rel. energy error Energy: 0.0743949
+
+Wi: 3.5, beta: 0.11111, theta: 0.253969
+Rel. energy error MSE: 0.0850901
+Rel. energy error Energy: 0.0779298
+
+Wi: 3.5, beta: 0.3, theta: 0.2
+Rel. energy error MSE: 0.0423193
+Rel. energy error Energy: 0.045557
+
+Wi: 3.5, beta: 0.4, theta: 0.171429
+Rel. energy error MSE: 0.0328765
+Rel. energy error Energy: 0.0267434
+
+Wi: 3.5, beta: 0.5, theta: 0.142857
+Rel. energy error MSE: 0.0289587
+Rel. energy error Energy: 0.0255092
+
+Wi: 3.5, beta: 0.75, theta: 0.0714286
+Rel. energy error MSE: 0.0162963
+Rel. energy error Energy: 0.0127877
+
+Wi: 3.5, beta: 0.9, theta: 0.0285714
+Rel. energy error MSE: 0.0318205
+Rel. energy error Energy: 0.0816586
+
+Wi: 3.6, beta: 0.11111, theta: 0.246914
+Rel. energy error MSE: 0.0772023
+Rel. energy error Energy: 0.0787111
+
+Wi: 3.6, beta: 0.3, theta: 0.194444
+Rel. energy error MSE: 0.0441019
+Rel. energy error Energy: 0.0428847
+
+Wi: 3.6, beta: 0.4, theta: 0.166667
+Rel. energy error MSE: 0.041603
+Rel. energy error Energy: 0.0305453
+
+Wi: 3.6, beta: 0.5, theta: 0.138889
+Rel. energy error MSE: 0.03636
+Rel. energy error Energy: 0.0263086
+
+Wi: 3.6, beta: 0.75, theta: 0.0694444
+Rel. energy error MSE: 0.00963231
+Rel. energy error Energy: 0.0147804
+
+Wi: 3.6, beta: 0.9, theta: 0.0277778
+Rel. energy error MSE: 0.042702
+Rel. energy error Energy: 0.0903615
+
+Wi: 3.8, beta: 0.11111, theta: 0.233918
+Rel. energy error MSE: 0.0626215
+Rel. energy error Energy: 0.104024
+
+Wi: 3.8, beta: 0.3, theta: 0.184211
+Rel. energy error MSE: 0.0294635
+Rel. energy error Energy: 0.0497531
+
+Wi: 3.8, beta: 0.4, theta: 0.157895
+Rel. energy error MSE: 0.044253
+Rel. energy error Energy: 0.043227
+
+Wi: 3.8, beta: 0.5, theta: 0.131579
+Rel. energy error MSE: 0.0616896
+Rel. energy error Energy: 0.0481289
+
+Wi: 3.8, beta: 0.75, theta: 0.0657895
+Rel. energy error MSE: 0.0125376
+Rel. energy error Energy: 0.0237976
+
+Wi: 3.8, beta: 0.9, theta: 0.0263158
+Rel. energy error MSE: 0.0419131
+Rel. energy error Energy: 0.0941018
+
+Wi: 4, beta: 0.11111, theta: 0.222223
+Rel. energy error MSE: 0.0997246
+Rel. energy error Energy: 0.134105
+
+Wi: 4, beta: 0.3, theta: 0.175
+Rel. energy error MSE: 0.0508156
+Rel. energy error Energy: 0.0588413
+
+Wi: 4, beta: 0.4, theta: 0.15
+Rel. energy error MSE: 0.0355964
+Rel. energy error Energy: 0.0394788
+
+Wi: 4, beta: 0.5, theta: 0.125
+Rel. energy error MSE: 0.0553068
+Rel. energy error Energy: 0.0339233
+
+Wi: 4, beta: 0.75, theta: 0.0625
+Rel. energy error MSE: 0.022485
+Rel. energy error Energy: 0.0174855
+
+Wi: 4, beta: 0.9, theta: 0.025
+Rel. energy error MSE: 0.0348304
+Rel. energy error Energy: 0.0898548
+

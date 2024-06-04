@@ -49,9 +49,9 @@ def energy_loss(x,y,param, dx = 1/2**6):
     Wi = param[:,0].view((-1,1))
     beta= param[:,1].view((-1,1))
     theta = (1- beta) / Wi
-    Kxx = kernel(x,x, theta, 1, dx)
-    Kxy = kernel(x,y, theta, 1, dx)
-    Kyy = kernel(y,y, theta, 1, dx)
+    Kxx = kernel(x,x, theta, dx, dx)
+    Kxy = kernel(x,y, theta, dx, dx)
+    Kyy = kernel(y,y, theta, dx, dx)
 
     loss = torch.sqrt(Kxx - 2* Kxy + Kyy)
     
@@ -152,6 +152,7 @@ def get_min_max(dataset):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
+    parser.add_argument('--warmup', '-w', default=100, type=int, help="Number of iteration on warm up kld weight")
     args = parser.parse_args()
     torch.manual_seed(42) # reprodutibility
     device_type = "cuda" if torch.cuda.is_available() else "cpu"
@@ -184,18 +185,18 @@ if __name__ == '__main__':
     loss_energy = args.Loss.upper() == 'ENERGY'
     mse_loss = torch.nn.MSELoss()
     if loss_energy:
-        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor):
+        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor, kld_weight = 0.0025):
                 # reconst_loss = torch.nn.MSELoss()(input, target)
                 reconst_loss = energy_loss(input, target, param)
                 kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
-                kld_weight = 0.0025
+                # kld_weight = 0.0025
                 return reconst_loss + kld_loss*kld_weight
     else:
-        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor = None):
+        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor = None, kld_weight = 0.0025):
                 reconst_loss = mse_loss(input, target)
                 # reconst_loss = energy_loss(input, target, param)
                 kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
-                kld_weight = 0.0025
+                # kld_weight = 0.0025
                 return reconst_loss + kld_loss*kld_weight
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
@@ -211,6 +212,7 @@ if __name__ == '__main__':
     patience = 0
     #training
     autoencoder.train(True)
+    kl_weight = 0.0025
     for e in range(num_epochs):
         if last_loss < best_vloss:
                         best_vloss = last_loss
@@ -226,6 +228,8 @@ if __name__ == '__main__':
         cumm_loss = 0
         t = time.time()
         for data,param in train_loader:
+            if args.warmup > 0:
+                kl_weight = min(1, kl_weight + 1./(args.warmup*len(train_loader)))
             optimizer.zero_grad()
             # Use the context manager
             with ClearCache():
@@ -236,7 +240,7 @@ if __name__ == '__main__':
                 out_pred = code[1:]
                 reconst = autoencoder.decode(code,param)
                 forecast = autoencoder.predictor(inpt_pred)
-                loss = loss_fn(data, reconst, mu, log_var, param) + mse_loss(out_pred, forecast)
+                loss = loss_fn(data, reconst, mu, log_var, param, kl_weight) + mse_loss(out_pred, forecast)
                 loss.backward()
                 optimizer.step()
 
