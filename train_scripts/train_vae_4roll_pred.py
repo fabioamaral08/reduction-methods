@@ -152,13 +152,14 @@ def get_min_max(dataset):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
-    parser.add_argument('--warmup', '-w', default=10, type=int, help="Number of iteration on warm up kld weight")
+    parser.add_argument('--warmup', '-w', default=0, type=int, help="Number of iteration on warm up kld weight") 
+    parser.add_argument('--Latent', '-d', default=3, type=int, help="Latent dimension") 
     args = parser.parse_args()
     torch.manual_seed(42) # reprodutibility
     device_type = "cuda" if torch.cuda.is_available() else "cpu"
     device = torch.device(device_type)
     
-    latent_dim = 3
+    latent_dim = args.Latent
 
     ## Data reading
     train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train_osc', take_time = False)
@@ -190,14 +191,14 @@ if __name__ == '__main__':
                 reconst_loss = energy_loss(input, target, param)
                 kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
                 # kld_weight = 0.0025
-                return reconst_loss + kld_loss*kld_weight
+                return reconst_loss, kld_loss*kld_weight
     else:
         def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor = None, kld_weight = 0.0025):
                 reconst_loss = mse_loss(input, target)
                 # reconst_loss = energy_loss(input, target, param)
                 kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
                 # kld_weight = 0.0025
-                return reconst_loss + kld_loss*kld_weight
+                return reconst_loss, kld_loss*kld_weight
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
     num_batches = len(train_loader)
@@ -218,13 +219,16 @@ if __name__ == '__main__':
                         torch.save({'optimizer_state_dict':optimizer.state_dict(), 'loss':loss, 'epoch':e}, f'{pasta}/optimizer_checkpoint.pt')
                         torch.save(autoencoder.state_dict(), f'{pasta}/best_autoencoder')
                         patience = 0
-        elif e > args.warmup:
+        elif e >= args.warmup:
             patience += 1
         if patience > 50:
             autoencoder.load_state_dict(torch.load( f'{pasta}/best_autoencoder'))
             break
 
         cumm_loss = 0
+        cumm_loss_rec = 0
+        cumm_loss_kld = 0
+        cumm_loss_pred = 0
         t = time.time()
         autoencoder.train(True)
         for data,param in train_loader:
@@ -240,11 +244,16 @@ if __name__ == '__main__':
             out_pred = code[1:]
             reconst = autoencoder.decode(code,param)
             forecast = autoencoder.predictor(inpt_pred)
-            loss = loss_fn(data, reconst, mu, log_var, param, kl_weight) + mse_loss(out_pred, forecast)
+            reconst_loss, kdl_loss = loss_fn(data, reconst, mu, log_var, param, kl_weight)
+            pred_loss = mse_loss(out_pred, forecast)
+            loss = reconst_loss + kdl_loss + pred_loss
             loss.backward()
             optimizer.step()
 
             cumm_loss += loss.item()
+            cumm_loss_rec = reconst_loss.item()
+            cumm_loss_kld = kdl_loss.item()
+            cumm_loss_pred = pred_loss.item()
         t = time.time() - t
         last_loss = cumm_loss
         with torch.no_grad():
@@ -259,8 +268,10 @@ if __name__ == '__main__':
                 reconst = autoencoder.decode(code,param)
                 forecast = autoencoder.predictor(inpt_pred)
                 loss_pred_test = mse_loss(out_pred, forecast)
-                loss_test = loss_fn(X_test, reconst,mu, log_var, param)
-        print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}\tpred loss test: {loss_pred_test.item():.4f}', end='\t', flush=True)
-        print(f'Exec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
+                loss_rec_test, loss_kld_test = loss_fn(X_test, reconst,mu, log_var, param)
+                loss_test = loss_pred_test + loss_rec_test + loss_kld_test
+        print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
+        print(f'Reconst loss test: {loss_pred_test.item():.4f}, KLD loss test: {loss_pred_test.item():.4f}, pred loss test: {loss_pred_test.item():.4f}', flush=True)
+        print(f'Reconst loss train: {cumm_loss_rec.item():.4f}, KLD loss train: {cumm_loss_kld.item():.4f}, pred loss train: {cumm_loss_pred.item():.4f}\n', flush=True)
 
     print('\n\n')

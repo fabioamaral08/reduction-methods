@@ -21,10 +21,10 @@ class ParametricVAEModule(nn.Module):
                 nn.ReLU(),
                 nn.Linear(2048,512), # 2^9
                 nn.ReLU(),
-                nn.Linear(512,128), # 2^7
-                nn.ReLU(),
                 nn.Flatten(), # Merge the channels
-                nn.Linear(128*5,32), # 2^5
+                nn.Linear(512*5,128), # 2^7
+                nn.ReLU(),
+                nn.Linear(128,32), # 2^5
                 nn.ReLU(),
                 nn.Linear(32,8), # 2^3
                 nn.ReLU(),
@@ -34,16 +34,15 @@ class ParametricVAEModule(nn.Module):
                 nn.ReLU(),
                 nn.Linear(8,32),
                 nn.ReLU(),
-                nn.Linear(32,128*5),
+                nn.Linear(32,128),
                 nn.ReLU(),
-                nn.Unflatten(1,(5,128)), 
-                nn.Linear(128,512),
+                nn.Linear(128,512*5),
                 nn.ReLU(),
+                nn.Unflatten(1,(5,512)), 
                 nn.Linear(512, 2048),
                 nn.ReLU(),
                 nn.Linear(2048,n_input)
             )
-
             
             self.gen_mu  = nn.Linear(8,latent_dim)
             self.gen_std = nn.Linear(8,latent_dim)
