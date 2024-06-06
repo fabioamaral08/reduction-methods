@@ -251,9 +251,9 @@ if __name__ == '__main__':
             optimizer.step()
 
             cumm_loss += loss.item()
-            cumm_loss_rec = reconst_loss.item()
-            cumm_loss_kld = kdl_loss.item()
-            cumm_loss_pred = pred_loss.item()
+            cumm_loss_rec += reconst_loss.item()
+            cumm_loss_kld += kdl_loss.item()
+            cumm_loss_pred += pred_loss.item()
         t = time.time() - t
         last_loss = cumm_loss
         with torch.no_grad():
@@ -271,7 +271,7 @@ if __name__ == '__main__':
                 loss_rec_test, loss_kld_test = loss_fn(X_test, reconst,mu, log_var, param)
                 loss_test = loss_pred_test + loss_rec_test + loss_kld_test
         print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
-        print(f'Reconst loss test: {loss_pred_test.item():.4f}, KLD loss test: {loss_pred_test.item():.4f}, pred loss test: {loss_pred_test.item():.4f}', flush=True)
-        print(f'Reconst loss train: {cumm_loss_rec.item():.4f}, KLD loss train: {cumm_loss_kld.item():.4f}, pred loss train: {cumm_loss_pred.item():.4f}\n', flush=True)
+        print(f'Reconst loss test: {loss_rec_test.item():.4f}, KLD loss test: {loss_kld_test.item():.4f}, pred loss test: {loss_pred_test.item():.4f}', flush=True)
+        print(f'Reconst loss train: {cumm_loss_rec:.4f}, KLD loss train: {cumm_loss_kld:.4f}, pred loss train: {cumm_loss_pred:.4f}\n', flush=True)
 
     print('\n\n')
