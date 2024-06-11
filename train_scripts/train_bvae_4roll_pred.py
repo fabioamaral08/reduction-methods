@@ -15,7 +15,7 @@ import Autoencoder
 import argparse
 
 
-TWO_PI = torch.pi * 2
+TWO_PI = torch.pi * 2.0
 
 
 def kernel(X:torch.Tensor, Y, theta, dx = 0.0125, dy = None):
@@ -198,7 +198,7 @@ if __name__ == '__main__':
                 # kld_weight = 0.0025
                 return reconst_loss, kld_loss, const, reconst_weight
     else:
-        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor = None, gamma = 0.0025):
+        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor = None, gamma = torch.tensor(1.0)):
                 reconst_loss = mse_loss(input, target)
                 # reconst_loss = energy_loss(input, target, param)
                 kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
@@ -272,7 +272,7 @@ if __name__ == '__main__':
                 reconst = autoencoder.decode(code,param)
                 forecast = autoencoder.predictor(inpt_pred)
                 loss_pred_test = mse_loss(out_pred, forecast)
-                loss_rec_test, loss_kld_test = loss_fn(X_test, reconst,mu, log_var, param)
+                loss_rec_test, loss_kld_test = loss_fn(X_test, reconst,mu, log_var, param, autoencoder.gamma)
                 loss_test = loss_pred_test + loss_rec_test + loss_kld_test
         print(f'({args.Loss.upper()})\nEpoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
         print(f'Reconst loss test: {loss_rec_test.item():.4f}, KLD loss test: {loss_kld_test.item():.4f}, pred loss test: {loss_pred_test.item():.4f}', flush=True)
