@@ -65,17 +65,18 @@ class ClearCache:
         torch.cuda.empty_cache()
 
 class FileDataset(Dataset):
-    def __init__(self, root_dir):
+    def __init__(self, root_dir, take_time = True):
         super().__init__()
 
         self.root_dir = root_dir
+        self.take_time = take_time
         self.filenames = glob.glob('*.pt', root_dir=root_dir)
         self.filenames.sort()
         self.cases = []
         for file in self.filenames:
             sfile = file.split('_')
-            Wi = float(sfile[1].replace('Wi',''))
-            beta = float(sfile[2].replace('beta',''))
+            Wi = float(sfile[2].replace('Wi',''))
+            beta = float(sfile[3].replace('beta',''))
 
             if (Wi, beta) not in self.cases:
                 self.cases.append((Wi, beta))
@@ -85,10 +86,12 @@ class FileDataset(Dataset):
     
 
     def __getitem__(self, index):
-         while isinstance(index, list):
-              index = index[0]
-         data = torch.load(f'{self.root_dir}/{self.filenames[index]}')
-         return data['tensor'].float(), torch.tensor(data['param']).float()
+        while isinstance(index, list):
+            index = index[0]
+        data = torch.load(f'{self.root_dir}/{self.filenames[index]}')
+        if self.take_time:
+            return data['tensor'].float(), torch.tensor(data['param']).float()
+        return data['tensor'].float(), torch.tensor(data['param'][:-1]).float()
          
 class CaseSampler(torch.utils.data.Sampler[int]):
     def __init__(self, data, cases, root_dir) -> None:
@@ -101,7 +104,7 @@ class CaseSampler(torch.utils.data.Sampler[int]):
 
     def __iter__(self):
         for Wi, beta in self.cases:
-            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=self.root_dir)
+            case = glob.glob(f'*Wi{Wi:g}_beta{beta:g}_*.pt', root_dir=self.root_dir)
             files = torch.tensor([x in case for x in self.data])
             yield from torch.argwhere(files).tolist()
 
@@ -111,7 +114,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
         self.iter_list = []
 
         for Wi, beta in cases:
-            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}*.pt', root_dir=root_dir)
+            case = glob.glob(f'*Wi{Wi:g}_beta{beta:g}_*.pt', root_dir=root_dir)
             nchunks = (len(case) + self.batch_size - 1) // self.batch_size
             files = torch.tensor([x in case for x in data])
             files_indexes = torch.argwhere(files).flatten()
@@ -133,7 +136,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
             yield batch
 
     def get_t(self, filename):
-        str_s = filename.split('_')[3].replace('t','')
+        str_s = filename.split('_')[4].replace('t','')
         t = float(str_s)
         return t
     

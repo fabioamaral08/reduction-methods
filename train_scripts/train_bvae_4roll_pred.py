@@ -108,7 +108,7 @@ class CaseSampler(torch.utils.data.Sampler[int]):
 
     def __iter__(self):
         for Wi, beta in self.cases:
-            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}_*.pt', root_dir=self.root_dir)
+            case = glob.glob(f'*Wi{Wi:g}_beta{beta:g}_*.pt', root_dir=self.root_dir)
             files = torch.tensor([x in case for x in self.data])
             yield from torch.argwhere(files).tolist()
 
@@ -118,7 +118,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
         self.iter_list = []
 
         for Wi, beta in cases:
-            case = glob.glob(f'*Wi{Wi:g}*beta{beta:g}_*.pt', root_dir=root_dir)
+            case = glob.glob(f'*Wi{Wi:g}_beta{beta:g}_*.pt', root_dir=root_dir)
             nchunks = (len(case) + self.batch_size - 1) // self.batch_size
             files = torch.tensor([x in case for x in data])
             files_indexes = torch.argwhere(files).flatten()
