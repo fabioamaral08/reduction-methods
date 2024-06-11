@@ -15,7 +15,7 @@ class ParametricBVAEModule(nn.Module):
         self.register_buffer('input_range', max_in - min_in)
 
         self.num_params = num_params
-        self.gamma = nn.Parameter(torch.Tensor(1.0))
+        self.gamma = nn.Parameter(torch.tensor(1.))
         if small:
             self.encoder = nn.Sequential(
                 nn.Linear(n_input + num_params,2048), # 2^11
