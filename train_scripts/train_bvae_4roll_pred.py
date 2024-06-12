@@ -248,8 +248,9 @@ if __name__ == '__main__':
                 out_pred = code[1:]
                 forecast = autoencoder.predictor(inpt_pred)
                 pred_loss = mse_loss(out_pred, forecast)
+                cumm_loss_pred += pred_loss.item()
             else:
-                 pred_loss = 0
+                 cumm_loss_pred = 0
             loss = const + reconst_weight * reconst_loss + kld_loss + pred_loss
             loss.backward()
             optimizer.step()
@@ -257,7 +258,6 @@ if __name__ == '__main__':
             cumm_loss += loss.item()
             cumm_loss_rec += reconst_loss.item()
             cumm_loss_kld += kld_loss.item()
-            cumm_loss_pred += pred_loss.item()
         t = time.time() - t
         last_loss = cumm_loss
         with torch.no_grad():
@@ -271,14 +271,14 @@ if __name__ == '__main__':
                     inpt_pred = code[:-1]
                     out_pred = code[1:]
                     forecast = autoencoder.predictor(inpt_pred)
-                    loss_pred_test = mse_loss(out_pred, forecast)
+                    loss_pred_test = mse_loss(out_pred, forecast).item()
                 else:
                      loss_pred_test=0
                 reconst = autoencoder.decode(code,param)
                 loss_rec_test, loss_kld_test, const, reconst_weight = loss_fn(X_test, reconst,mu, log_var, param, autoencoder.gamma)
                 loss_test = const + loss_pred_test + reconst_weight * loss_rec_test + loss_kld_test
         print(f'({args.Loss.upper()} - gamma: {autoencoder.gamma.item()})\nEpoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
-        print(f'Reconst loss test: {loss_rec_test.item():.4f}, KLD loss test: {loss_kld_test.item():.4f}, pred loss test: {loss_pred_test.item():.4f}', flush=True)
+        print(f'Reconst loss test: {loss_rec_test.item():.4f}, KLD loss test: {loss_kld_test.item():.4f}, pred loss test: {loss_pred_test:.4f}', flush=True)
         print(f'Reconst loss train: {cumm_loss_rec:.4f}, KLD loss train: {cumm_loss_kld:.4f}, pred loss train: {cumm_loss_pred:.4f}\n', flush=True)
 
     print('\n\n')
