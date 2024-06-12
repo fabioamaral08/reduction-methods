@@ -250,7 +250,7 @@ if __name__ == '__main__':
                 pred_loss = mse_loss(out_pred, forecast)
                 cumm_loss_pred += pred_loss.item()
             else:
-                 cumm_loss_pred = 0.0
+                 pred_loss = 0.0
             loss = const + reconst_weight * reconst_loss + kld_loss + pred_loss
             loss.backward()
             optimizer.step()
