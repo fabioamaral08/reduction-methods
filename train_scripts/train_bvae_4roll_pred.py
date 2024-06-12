@@ -250,7 +250,7 @@ if __name__ == '__main__':
                 pred_loss = mse_loss(out_pred, forecast)
                 cumm_loss_pred += pred_loss.item()
             else:
-                 cumm_loss_pred = 0
+                 cumm_loss_pred = 0.0
             loss = const + reconst_weight * reconst_loss + kld_loss + pred_loss
             loss.backward()
             optimizer.step()
@@ -273,7 +273,7 @@ if __name__ == '__main__':
                     forecast = autoencoder.predictor(inpt_pred)
                     loss_pred_test = mse_loss(out_pred, forecast).item()
                 else:
-                     loss_pred_test=0
+                     loss_pred_test=0.0
                 reconst = autoencoder.decode(code,param)
                 loss_rec_test, loss_kld_test, const, reconst_weight = loss_fn(X_test, reconst,mu, log_var, param, autoencoder.gamma)
                 loss_test = const + loss_pred_test + reconst_weight * loss_rec_test + loss_kld_test
