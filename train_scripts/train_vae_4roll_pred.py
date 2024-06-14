@@ -273,6 +273,6 @@ if __name__ == '__main__':
                 loss_test = loss_pred_test + loss_rec_test + loss_kld_test
         print(f'({args.Loss.upper()})Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
         print(f'Reconst loss train: {cumm_loss_rec:.4f}, KLD loss train: {cumm_loss_kld:.4f}, pred loss train: {cumm_loss_pred:.4f}\n', flush=True)
-        print(f'Reconst loss test: {loss_rec_test.item():.4f}, KLD loss test: {loss_kld_test.item():.4f}, pred loss test: {loss_pred_test.item():.4f}', flush=True)
+        print(f'Reconst loss test: {loss_rec_test.item():.4f}, KLD loss test: {loss_kld_test.item():.4f}, pred loss test: {loss_pred_test:.4f}', flush=True)
 
     print('\n\n')
