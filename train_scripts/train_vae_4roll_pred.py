@@ -252,7 +252,6 @@ if __name__ == '__main__':
             cumm_loss += loss.item()
             cumm_loss_rec += reconst_loss.item()
             cumm_loss_kld += kdl_loss.item()
-            cumm_loss_pred += pred_loss.item()
         t = time.time() - t
         last_loss = cumm_loss
         with torch.no_grad():
