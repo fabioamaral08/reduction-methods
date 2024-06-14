@@ -147,14 +147,16 @@ def get_min_max(dataset):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
-    parser.add_argument('--warmup', '-w', default=0, type=int, help="Number of iteration on warm up kld weight") 
+    parser.add_argument('--Beta', '-b', default=1.0, type=float, help="KL divergence weight") 
     parser.add_argument('--Latent', '-d', default=3, type=int, help="Latent dimension") 
+    parser.add_argument('--Pred', '-p', default=0, type=int, help="Use the predictor") 
     args = parser.parse_args()
     torch.manual_seed(42) # reprodutibility
     device_type = "cuda" if torch.cuda.is_available() else "cpu"
     device = torch.device(device_type)
     
     latent_dim = args.Latent
+    use_pred = args.Pred != 0
 
     ## Data reading
     train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train_osc', take_time = False)
@@ -170,7 +172,7 @@ if __name__ == '__main__':
     bs = 3000
     num_epochs = 5000
 
-    autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound, small = True, pred=True).to(device)
+    autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound, pred=use_pred).to(device)
 
     # sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
     batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
@@ -199,7 +201,7 @@ if __name__ == '__main__':
     num_batches = len(train_loader)
 
     # Results directory
-    pasta = f'/container/fabio/reduction-methods/ModelsTorch/VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}'
+    pasta = f'/container/fabio/reduction-methods/ModelsTorch/VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{args.Beta:g}'
     os.makedirs(pasta, exist_ok=True)
 
     # Early stop
@@ -207,15 +209,14 @@ if __name__ == '__main__':
     last_loss = best_vloss
     patience = 0
     #training
-    kl_weight = 0.0025
+    kl_weight = args.Beta
     for e in range(num_epochs):
         if last_loss < best_vloss:
                         best_vloss = last_loss
                         torch.save({'optimizer_state_dict':optimizer.state_dict(), 'loss':loss, 'epoch':e}, f'{pasta}/optimizer_checkpoint.pt')
                         torch.save(autoencoder.state_dict(), f'{pasta}/best_autoencoder')
                         patience = 0
-        elif e >= args.warmup:
-            patience += 1
+
         if patience > 50:
             autoencoder.load_state_dict(torch.load( f'{pasta}/best_autoencoder'))
             break
@@ -227,20 +228,23 @@ if __name__ == '__main__':
         t = time.time()
         autoencoder.train(True)
         for data,param in train_loader:
-            if args.warmup > 0:
-                kl_weight = min(1, kl_weight + 1./(args.warmup*len(train_loader)))
+
             optimizer.zero_grad()
             # Use the context manager
             # with ClearCache():
             data = data.to(device)
             param = param.to(device)
             code, mu, log_var = autoencoder.encode(data,param)
-            inpt_pred = code[:-1]
-            out_pred = code[1:]
             reconst = autoencoder.decode(code,param)
-            forecast = autoencoder.predictor(inpt_pred)
             reconst_loss, kdl_loss = loss_fn(data, reconst, mu, log_var, param, kl_weight)
-            pred_loss = mse_loss(out_pred, forecast)
+            if use_pred:
+                inpt_pred = code[:-1]
+                out_pred = code[1:]
+                forecast = autoencoder.predictor(inpt_pred)
+                pred_loss = mse_loss(out_pred, forecast)
+                cumm_loss_pred += pred_loss.item()
+            else:
+                 pred_loss = 0.0
             loss = reconst_loss + kdl_loss + pred_loss
             loss.backward()
             optimizer.step()
@@ -258,15 +262,18 @@ if __name__ == '__main__':
                 param = param.to(device)
 
                 code, mu, log_var = autoencoder.encode(X_test,param)
-                inpt_pred = code[:-1]
-                out_pred = code[1:]
                 reconst = autoencoder.decode(code,param)
-                forecast = autoencoder.predictor(inpt_pred)
-                loss_pred_test = mse_loss(out_pred, forecast)
-                loss_rec_test, loss_kld_test = loss_fn(X_test, reconst,mu, log_var, param)
+                loss_rec_test, loss_kld_test = loss_fn(X_test, reconst,mu, log_var, param, kl_weight)
+                if use_pred:
+                    inpt_pred = code[:-1]
+                    out_pred = code[1:]
+                    forecast = autoencoder.predictor(inpt_pred)
+                    loss_pred_test = mse_loss(out_pred, forecast).item()
+                else:
+                     loss_pred_test=0.0
                 loss_test = loss_pred_test + loss_rec_test + loss_kld_test
-        print(f'Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
-        print(f'Reconst loss test: {loss_rec_test.item():.4f}, KLD loss test: {loss_kld_test.item():.4f}, pred loss test: {loss_pred_test.item():.4f}', flush=True)
+        print(f'({args.Loss.upper()})Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
         print(f'Reconst loss train: {cumm_loss_rec:.4f}, KLD loss train: {cumm_loss_kld:.4f}, pred loss train: {cumm_loss_pred:.4f}\n', flush=True)
+        print(f'Reconst loss test: {loss_rec_test.item():.4f}, KLD loss test: {loss_kld_test.item():.4f}, pred loss test: {loss_pred_test.item():.4f}', flush=True)
 
     print('\n\n')
