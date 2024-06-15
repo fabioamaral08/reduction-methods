@@ -216,8 +216,10 @@ if __name__ == '__main__':
                         torch.save({'optimizer_state_dict':optimizer.state_dict(), 'loss':loss, 'epoch':e}, f'{pasta}/optimizer_checkpoint.pt')
                         torch.save(autoencoder.state_dict(), f'{pasta}/best_autoencoder')
                         patience = 0
+        else:
+             patience +=1
 
-        if patience > 50:
+        if patience > 100:
             autoencoder.load_state_dict(torch.load( f'{pasta}/best_autoencoder'))
             break
 
