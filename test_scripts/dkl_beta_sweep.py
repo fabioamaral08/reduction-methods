@@ -213,4 +213,4 @@ if __name__ == '__main__':
             with open('results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_test.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error MSE: {energy_err:g}\n')
-                f.write(f'KL Divergence: {[f'{x:g}' for x in dkl]}\n\n')
+                f.write(f'KL Divergence: {[f"{x:g}" for x in dkl]}\n\n')
