@@ -153,8 +153,12 @@ if __name__ == '__main__':
                 X = torch2np(data)
                 Wi = param[0,0].item()
                 b = param[0,1].item()
-                Wi_data = param[:,0].numpy()
-                beta_data = param[:,1].numpy()
+                if device_type == "cuda":
+                    Wi_data = param[:,0].cpu().numpy()
+                    beta_data = param[:,1].cpu().numpy()
+                else:
+                    Wi_data = param[:,0].numpy()
+                    beta_data = param[:,1].numpy()
 
                 theta_data = ((1-beta_data)/(Re * Wi_data))[:,None]
 
@@ -187,8 +191,13 @@ if __name__ == '__main__':
                 X = torch2np(data)
                 Wi = param[0,0].item()
                 b = param[0,1].item()
-                Wi_data = param[:,0].numpy()
-                beta_data = param[:,1].numpy()
+                
+                if device_type == "cuda":
+                    Wi_data = param[:,0].cpu().numpy()
+                    beta_data = param[:,1].cpu().numpy()
+                else:
+                    Wi_data = param[:,0].numpy()
+                    beta_data = param[:,1].numpy()
 
                 theta_data = ((1-beta_data)/(Re * Wi_data))[:,None]
 
