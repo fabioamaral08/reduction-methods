@@ -179,7 +179,7 @@ if __name__ == '__main__':
             with open('Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_train.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error MSE: {energy_err:g}\n')
-                f.write(f'KL Divergence: {dkl:g}\n\n')
+                f.write(f'KL Divergence: {[f"{x:g}" for x in dkl]}\n\n')
         for data,param in test_loader:
             data = data.to(device)
             param = param.to(device)
@@ -210,7 +210,7 @@ if __name__ == '__main__':
 
             #DKL:
             dkl = -0.5 * torch.mean(1 + log_var - mu ** 2 - log_var.exp(), dim = 0)
-            with open('results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_test.txt', 'a+') as f:
+            with open('Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_test.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error MSE: {energy_err:g}\n')
                 f.write(f'KL Divergence: {[f"{x:g}" for x in dkl]}\n\n')
