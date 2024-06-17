@@ -180,7 +180,7 @@ if __name__ == '__main__':
 
             #DKL:
             dkl = -0.5 * torch.mean(1 + log_var - mu ** 2 - log_var.exp(), dim = 0)
-            with open('Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_train.txt', 'a+') as f:
+            with open('/container/fabio/reduction-methods/test_scripts/Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_train.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error MSE: {energy_err:g}\n')
                 f.write(f'KL Divergence: {[f"{x:g}" for x in dkl]}\n\n')
@@ -191,7 +191,7 @@ if __name__ == '__main__':
                 X = torch2np(data)
                 Wi = param[0,0].item()
                 b = param[0,1].item()
-                
+
                 if device_type == "cuda":
                     Wi_data = param[:,0].cpu().numpy()
                     beta_data = param[:,1].cpu().numpy()
@@ -219,7 +219,7 @@ if __name__ == '__main__':
 
             #DKL:
             dkl = -0.5 * torch.mean(1 + log_var - mu ** 2 - log_var.exp(), dim = 0)
-            with open('Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_test.txt', 'a+') as f:
+            with open('/container/fabio/reduction-methods/test_scripts/Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_test.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error MSE: {energy_err:g}\n')
                 f.write(f'KL Divergence: {[f"{x:g}" for x in dkl]}\n\n')
