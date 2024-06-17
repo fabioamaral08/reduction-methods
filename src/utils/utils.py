@@ -280,7 +280,10 @@ def np2torch(X):
     return X_torch
 
 def torch2np(X_torch):
-    X_data = X_torch.detach().numpy()
+    if X_torch.device.type != 'cpu':
+        X_data = X_torch.detach().cpu().numpy()
+    else:
+        X_data = X_torch.detach().numpy()
     X_data = np.moveaxis(X_data,[0,2],[2,0]) # (Nt, Nc, Nx) -> (Nx, Nc, Nt)
     Nt = X_data.shape[-1]
     X = X_data.reshape((-1, Nt))
