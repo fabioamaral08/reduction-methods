@@ -133,8 +133,8 @@ WI_IND_TEST = {
     3.35:5,
     3.40:6,
     3.45:7,
-    4.20:7,
-    4.35:7,
+    4.20:8,
+    4.35:9,
 }
 if __name__ == '__main__':
 
@@ -165,7 +165,7 @@ if __name__ == '__main__':
         ax_train[i,0].set_ylabel(f'Wi = {list(WI_IND.keys())[i]}')
         for j in range(6):
             if i == 0:
-                ax_train[-1,j].set_xlabel(f'$\\beta$ = {list(BETA_IND.keys())[i]}')
+                ax_train[-1,j].set_xlabel(f'$\\beta$ = {list(BETA_IND.keys())[j]}')
             ax_train[i,j].set_xticks([])
             ax_train[i,j].set_yticks([])
     for data,param in train_loader:
@@ -183,7 +183,7 @@ if __name__ == '__main__':
         i = WI_IND[Wi]
         j = BETA_IND[b]
         ax_train[i,j].plot(total, label = 'SIMULATION',color='k', lw = 1)
-
+    f_train.tight_layout()
     f_train.savefig('/node/fabio/reduction-methods/test_scripts/Results/Energy_Train.png')
 
     f_test, ax_test = plt.subplots(10,6, figsize = (50,30))
@@ -191,7 +191,7 @@ if __name__ == '__main__':
         ax_test[i,0].set_ylabel(f'Wi = {list(WI_IND_TEST.keys())[i]}')
         for j in range(6):
             if i == 0:
-                ax_test[-1,j].set_xlabel(f'$\\beta$ = {list(BETA_IND.keys())[i]}')
+                ax_test[-1,j].set_xlabel(f'$\\beta$ = {list(BETA_IND.keys())[j]}')
             ax_test[i,j].set_xticks([])
             ax_test[i,j].set_yticks([])
     for data,param in test_loader:
@@ -210,4 +210,5 @@ if __name__ == '__main__':
         j = BETA_IND[b]
         ax_test[i,j].plot(total, label = 'SIMULATION',color='k', lw = 1)
 
+    f_test.tight_layout()
     f_test.savefig('/node/fabio/reduction-methods/test_scripts/Results/Energy_Test.png')
