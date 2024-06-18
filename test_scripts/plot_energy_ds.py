@@ -139,8 +139,8 @@ WI_IND_TEST = {
 if __name__ == '__main__':
 
     ## Data reading
-    train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train_osc', take_time = False)
-    test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test_osc', take_time = False)
+    train_dataset = FileDataset('/node/fabio/npz_data/four_roll_train_osc', take_time = False)
+    test_dataset = FileDataset('/node/fabio/npz_data/four_roll_test_osc', take_time = False)
 
     # #normalize data inside autoencoder
     # lower_bound,  upper_bound = get_min_max(train_dataset)
@@ -182,7 +182,7 @@ if __name__ == '__main__':
         j = BETA_IND[b]
         ax_train[i,j].plot(total, label = 'SIMULATION',color='k', lw = 1)
 
-    f_train.savefig('/container/fabio/reduction-methods/test_scripts/Results/Energy_Train.png')
+    f_train.savefig('/node/fabio/reduction-methods/test_scripts/Results/Energy_Train.png')
 
     f_test, ax_test = plt.subplots(10,6, figsize = (50,30))
     for i in range(10):
@@ -206,4 +206,4 @@ if __name__ == '__main__':
         j = BETA_IND[b]
         ax_test[i,j].plot(total, label = 'SIMULATION',color='k', lw = 1)
 
-    f_test.savefig('/container/fabio/reduction-methods/test_scripts/Results/Energy_Test.png')
+    f_test.savefig('/node/fabio/reduction-methods/test_scripts/Results/Energy_Test.png')
