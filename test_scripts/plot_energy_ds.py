@@ -162,10 +162,10 @@ if __name__ == '__main__':
 
     f_train, ax_train = plt.subplots(8,6, figsize = (50,30))
     for i in range(8):
-        ax_train[i,0].set_ylabel(f'Wi = {WI_IND.keys()[i]}')
+        ax_train[i,0].set_ylabel(f'Wi = {list(WI_IND.keys())[i]}')
         for j in range(6):
             if i == 0:
-                ax_train[-1,j].set_xlabel(f'$\\beta$ = {BETA_IND.keys()[i]}')
+                ax_train[-1,j].set_xlabel(f'$\\beta$ = {list(BETA_IND.keys())[i]}')
             ax_train[i,j].set_xticks([])
             ax_train[i,j].set_yticks([])
     for data,param in train_loader:
@@ -186,10 +186,10 @@ if __name__ == '__main__':
 
     f_test, ax_test = plt.subplots(10,6, figsize = (50,30))
     for i in range(10):
-        ax_test[i,0].set_ylabel(f'Wi = {WI_IND_TEST.keys()[i]}')
+        ax_test[i,0].set_ylabel(f'Wi = {list(WI_IND_TEST.keys())[i]}')
         for j in range(6):
             if i == 0:
-                ax_test[-1,j].set_xlabel(f'$\\beta$ = {BETA_IND.keys()[i]}')
+                ax_test[-1,j].set_xlabel(f'$\\beta$ = {list(BETA_IND.keys())[i]}')
             ax_test[i,j].set_xticks([])
             ax_test[i,j].set_yticks([])
     for data,param in test_loader:
