@@ -175,6 +175,7 @@ if __name__ == '__main__':
             X = torch2np(data)
             Wi = param[0,0].item()
             b = param[0,1].item()
+            b = float(f'{b:g}')
 
         # Energy From data
         _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
