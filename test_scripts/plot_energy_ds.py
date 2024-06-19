@@ -133,14 +133,14 @@ WI_IND_TEST = {
     3.35:5,
     3.40:6,
     3.45:7,
-    4.20:7,
-    4.35:7,
+    4.20:8,
+    4.35:9,
 }
 if __name__ == '__main__':
 
     ## Data reading
-    train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train_osc', take_time = False)
-    test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test_osc', take_time = False)
+    train_dataset = FileDataset('/node/fabio/npz_data/four_roll_train_osc', take_time = False)
+    test_dataset = FileDataset('/node/fabio/npz_data/four_roll_test_osc', take_time = False)
 
     # #normalize data inside autoencoder
     # lower_bound,  upper_bound = get_min_max(train_dataset)
@@ -162,10 +162,10 @@ if __name__ == '__main__':
 
     f_train, ax_train = plt.subplots(8,6, figsize = (50,30))
     for i in range(8):
-        ax_train[i,0].set_ylabel(f'Wi = {WI_IND.keys()[i]}')
+        ax_train[i,0].set_ylabel(f'Wi = {list(WI_IND.keys())[i]}')
         for j in range(6):
             if i == 0:
-                ax_train[-1,j].set_xlabel(f'$\\beta$ = {BETA_IND.keys()[i]}')
+                ax_train[-1,j].set_xlabel(f'$\\beta$ = {list(BETA_IND.keys())[j]}')
             ax_train[i,j].set_xticks([])
             ax_train[i,j].set_yticks([])
     for data,param in train_loader:
@@ -175,21 +175,23 @@ if __name__ == '__main__':
             X = torch2np(data)
             Wi = param[0,0].item()
             b = param[0,1].item()
+            Wi = float(f'{Wi:g}')
+            b = float(f'{b:g}')
 
         # Energy From data
         _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
         i = WI_IND[Wi]
         j = BETA_IND[b]
         ax_train[i,j].plot(total, label = 'SIMULATION',color='k', lw = 1)
-
-    f_train.savefig('/container/fabio/reduction-methods/test_scripts/Results/Energy_Train.png')
+    f_train.tight_layout()
+    f_train.savefig('/node/fabio/reduction-methods/test_scripts/Results/Energy_Train.png')
 
     f_test, ax_test = plt.subplots(10,6, figsize = (50,30))
     for i in range(10):
-        ax_test[i,0].set_ylabel(f'Wi = {WI_IND_TEST.keys()[i]}')
+        ax_test[i,0].set_ylabel(f'Wi = {list(WI_IND_TEST.keys())[i]}')
         for j in range(6):
             if i == 0:
-                ax_test[-1,j].set_xlabel(f'$\\beta$ = {BETA_IND.keys()[i]}')
+                ax_test[-1,j].set_xlabel(f'$\\beta$ = {list(BETA_IND.keys())[j]}')
             ax_test[i,j].set_xticks([])
             ax_test[i,j].set_yticks([])
     for data,param in test_loader:
@@ -199,6 +201,8 @@ if __name__ == '__main__':
             X = torch2np(data)
             Wi = param[0,0].item()
             b = param[0,1].item()
+            Wi = float(f'{Wi:g}')
+            b = float(f'{b:g}')
 
         # Energy From data
         _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
@@ -206,4 +210,5 @@ if __name__ == '__main__':
         j = BETA_IND[b]
         ax_test[i,j].plot(total, label = 'SIMULATION',color='k', lw = 1)
 
-    f_test.savefig('/container/fabio/reduction-methods/test_scripts/Results/Energy_Test.png')
+    f_test.tight_layout()
+    f_test.savefig('/node/fabio/reduction-methods/test_scripts/Results/Energy_Test.png')
