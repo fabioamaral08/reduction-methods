@@ -55,7 +55,7 @@ if __name__ == '__main__':
     # filetemplate = '4_roll6_Re1_*.npz' # crossTurb_data_Re*_Wi*_beta*.npz
     filetemplate = 'cross*.npz' # crossTurb_data_Re*_Wi*_beta*.npz
     filelist = glob.glob(filetemplate, root_dir=root)
-    # filelist = np.unique([x.replace('_dataset', '') for x in filelist])
+    filelist = np.unique([x for x in filelist if x.count('a002') == 0])
 
     dataset_train = 'four_roll_train_osc_3k'
     # dataset_test = 'four_roll_test'
