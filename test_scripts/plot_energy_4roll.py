@@ -109,11 +109,12 @@ if __name__ == '__main__':
         # print(Re, Wi, beta)
         # X_data = X.reshape((64*64,5,-1))
         Nt = X.shape[-1]
+        print(Nt)
         # convert data
-        if Nt < 3000:
-            print(f'{Re}, {Wi}, {beta} - Not enough data')
-            continue
-        X = X[...,:3000]
+        # if Nt < 3000:
+        #     print(f'{Re}, {Wi}, {beta} - Not enough data')
+        #     continue
+        # X = X[...,:3000]
         # Energy From data
         _, _, total = calc_energy(X,Wi,beta,Re, dx = dx)
 
@@ -126,4 +127,4 @@ if __name__ == '__main__':
 
 
     f_train.tight_layout()
-    f_train.savefig('/home/fabio/4roll_Wigt4.5.png')
+    f_train.savefig('/home/fabio/Cross_slot.png')
