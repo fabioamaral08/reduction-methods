@@ -72,8 +72,8 @@ if __name__ == '__main__':
     betas = []
     for filecount, file in enumerate(filelist):
         Re, Wi, beta = split_param(file)
-        if Wi < 4.5: 
-            continue
+        # if Wi < 4.5: 
+        #     continue
         if (Wi, beta) in cases:
             continue
         cases.append((Wi, beta))
@@ -102,8 +102,8 @@ if __name__ == '__main__':
         Re, Wi, beta = split_param(file)
         print(Re, Wi, beta, '\n')
 
-        if Wi < 4.5: 
-            continue
+        # if Wi < 4.5: 
+        #     continue
 
         X = get_data(file, root)
         # print(Re, Wi, beta)
