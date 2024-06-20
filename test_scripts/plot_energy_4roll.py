@@ -118,6 +118,7 @@ if __name__ == '__main__':
 
         i = np.argwhere(Wi == Wis).item()
         j = np.argwhere(beta == betas).item()
+        print(i,j)
         ax_train[i,j].plot(total, color='k', lw = 1)
 
 
