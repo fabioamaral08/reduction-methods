@@ -99,7 +99,7 @@ if __name__ == '__main__':
         Re, Wi, beta = split_param(file)
         print(Re, Wi, beta, '\n')
 
-        if (Wi, beta) not in cases:
+        if Wi < 4.5: 
             continue
 
         X = get_data(file, root)
