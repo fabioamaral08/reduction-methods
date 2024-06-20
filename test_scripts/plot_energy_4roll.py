@@ -52,7 +52,7 @@ if __name__ == '__main__':
     # filetemplate = '4_roll6_Re1_*_dataset.npz' # crossTurb_data_Re*_Wi*_beta*.npz
     filetemplate = '4_roll6_Re1_*.npz' # crossTurb_data_Re*_Wi*_beta*.npz
     filelist = glob.glob(filetemplate, root_dir=root)
-    filelist = np.unique([x.replace('_dataset', '') for x in filelist])
+    # filelist = np.unique([x.replace('_dataset', '') for x in filelist])
 
     dataset_train = 'four_roll_train_osc_3k'
     # dataset_test = 'four_roll_test'
@@ -120,7 +120,7 @@ if __name__ == '__main__':
         i = np.argwhere(Wi == Wis).flatten().item()
         j = np.argwhere(beta == betas).flatten().item()
         print(i,j)
-        ax_train[i,j].plot(total, color='k', lw = 1)
+        ax_train[i,j].plot(total, lw = 1)
 
 
     f_train.tight_layout()
