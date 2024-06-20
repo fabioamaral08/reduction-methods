@@ -98,9 +98,8 @@ if __name__ == '__main__':
         print("Converting step: %g out of %g" % (filecount, len(filelist)))
         Re, Wi, beta = split_param(file)
         print(Re, Wi, beta, '\n')
-        if Wi < 4.5: 
-            continue
-        if (Wi, beta) in cases:
+
+        if (Wi, beta) not in cases:
             continue
 
         X = get_data(file, root)
