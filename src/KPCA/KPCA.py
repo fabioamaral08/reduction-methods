@@ -317,9 +317,12 @@ class KernelPCA():
         X = self.R@Phi_ext.T
         return X
     
-    def save_model(self, filename):
+    def save_model(self, filename, compressed = True):
         if self._is_fitted:
-            np.savez_compressed(filename, eigvec = self.normalized_eigenvector, eigvalue = self.eigenvalues, K = self.K_fit, X = self.X_fit, kernel = self.kernel, U = self.U_fit, R = self.R)
+            if compressed:
+                np.savez_compressed(filename, eigvec = self.normalized_eigenvector, eigvalue = self.eigenvalues, K = self.K_fit, X = self.X_fit, kernel = self.kernel, U = self.U_fit, R = self.R)
+            else:
+                np.savez(filename, eigvec = self.normalized_eigenvector, eigvalue = self.eigenvalues, K = self.K_fit, X = self.X_fit, kernel = self.kernel, U = self.U_fit, R = self.R)
         else:
             print('Nothing to save!')
 
