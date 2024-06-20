@@ -76,6 +76,15 @@ if __name__ == '__main__':
         #     continue
         if (Wi, beta) in cases:
             continue
+
+        
+        X = get_data(file, root)
+        # print(Re, Wi, beta)
+        # X_data = X.reshape((64*64,5,-1))
+        Nt = X.shape[-1]
+        if Nt < 999:
+            print(f'{file} - Not enough data')
+            continue
         cases.append((Wi, beta))
 
     cases = np.array(cases)
