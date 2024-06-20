@@ -68,7 +68,6 @@ if __name__ == '__main__':
     Wis = []
     betas = []
     for filecount, file in enumerate(filelist):
-        print("Converting step: %g out of %g\n" % (filecount, len(filelist)))
         Re, Wi, beta = split_param(file)
         if Wi < 4.5: 
             continue
