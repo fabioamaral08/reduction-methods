@@ -83,7 +83,7 @@ if __name__ == '__main__':
 
     nrow = len(Wis)
     ncol = len(betas)
-    f_train, ax_train = plt.subplots(nrow,ncol, figsize = (ncol*6,ncol**6))
+    f_train, ax_train = plt.subplots(nrow,ncol, figsize = (ncol*6,ncol*6))
     print(nrow, ncol)
     print(Wis)
     print(betas)
