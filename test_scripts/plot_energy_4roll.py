@@ -9,6 +9,7 @@ sys.path.append(os.path.join(os.path.split(sys.path[0])[0], 'src'))
 from utils import *
 
 def split_param(str):
+
     s = str.split('_')
     Re = s[2].replace('Re','')
     Wi = s[3].replace('Wi','')
@@ -48,9 +49,11 @@ def get_data(filename, root_dir):
 
 if __name__ == '__main__':
 
-    root = '/home/hugo/codes_basilisk/four_roll/post_proc'
+    # root = '/home/hugo/codes_basilisk/four_roll/post_proc'
+    root = '/home/hugo/CodeMestrado_Cavity/post_proc'
     # filetemplate = '4_roll6_Re1_*_dataset.npz' # crossTurb_data_Re*_Wi*_beta*.npz
-    filetemplate = '4_roll6_Re1_*.npz' # crossTurb_data_Re*_Wi*_beta*.npz
+    # filetemplate = '4_roll6_Re1_*.npz' # crossTurb_data_Re*_Wi*_beta*.npz
+    filetemplate = 'cross*.npz' # crossTurb_data_Re*_Wi*_beta*.npz
     filelist = glob.glob(filetemplate, root_dir=root)
     # filelist = np.unique([x.replace('_dataset', '') for x in filelist])
 
