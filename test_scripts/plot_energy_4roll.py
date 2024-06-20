@@ -107,9 +107,8 @@ if __name__ == '__main__':
 
         X = get_data(file, root)
         # print(Re, Wi, beta)
-        X_data = X.reshape((64*64,5,-1))
-        Nt = X_data.shape[-1]
-        X = X_data.reshape((-1, Nt))
+        # X_data = X.reshape((64*64,5,-1))
+        Nt = X.shape[-1]
         # convert data
         if Nt < 3000:
             print(f'{Re}, {Wi}, {beta} - Not enough data')
