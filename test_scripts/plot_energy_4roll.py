@@ -115,8 +115,10 @@ if __name__ == '__main__':
         # Energy From data
         _, _, total = calc_energy(X,Wi,beta,Re, dx = dx)
 
-        i = np.argwhere(Wi == Wis).item()
-        j = np.argwhere(beta == betas).item()
+        print(np.argwhere(Wi == Wis))
+        print(np.argwhere(beta == betas))
+        i = np.argwhere(Wi == Wis)
+        j = np.argwhere(beta == betas)
         print(i,j)
         ax_train[i,j].plot(total, color='k', lw = 1)
 
