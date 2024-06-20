@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
     nrow = len(Wis)
     ncol = len(betas)
-    f_train, ax_train = plt.subplots(nrow,ncol, figsize = (ncol*6,ncol*6))
+    f_train, ax_train = plt.subplots(nrow,ncol, figsize = (ncol*6,nrow*6))
     print(nrow, ncol)
     print(Wis)
     print(betas)
@@ -111,10 +111,10 @@ if __name__ == '__main__':
         Nt = X.shape[-1]
         print(Nt)
         # convert data
-        # if Nt < 3000:
-        #     print(f'{Re}, {Wi}, {beta} - Not enough data')
-        #     continue
-        # X = X[...,:3000]
+        if Nt < 999:
+            print(f'{file} - Not enough data')
+            continue
+        X = X[...,:999]
         # Energy From data
         _, _, total = calc_energy(X,Wi,beta,Re, dx = dx)
 
