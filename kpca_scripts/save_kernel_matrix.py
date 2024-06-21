@@ -70,13 +70,11 @@ if __name__ == '__main__':
             X2, t2 = get_matrix(files[j])
 
             for k_opt,M in zip(k_args, matrixes):
-                print(i,j,k['kernel_type'])
+                print(i,j,k_opt['kernel_type'])
                 if k_opt['kernel_type'] == 'oldroyd':
                     k_opt['theta'] = t1 @ t2.T
-
-                    print(k_opt['theta'].shape)
                 K = compute_kernel_matrix(X1, X2,**k_opt)
-                M[i*3000:(i+1)*3000, j*3000:(j+1):3000] = K
-                M[j*3000:(j+1)*3000, i*3000:(i+1):3000] = K.T
+                M[i*3000:(i+1)*3000, j*3000:(j+1)*3000] = K
+                M[j*3000:(j+1)*3000, i*3000:(i+1)*3000] = K.T
 
                 M.flush()
