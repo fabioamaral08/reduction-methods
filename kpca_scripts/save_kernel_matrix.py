@@ -1,5 +1,6 @@
 import sys 
-sys.path.append('../src') 
+import os
+sys.path.append(os.path.join(os.path.split(sys.path[0])[0], 'src'))
 import numpy as np
 from KPCA import *
 import glob
