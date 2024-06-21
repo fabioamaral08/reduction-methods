@@ -75,6 +75,7 @@ if __name__ == '__main__':
                     k_opt['theta'] = t1 @ t2.T
                 K = compute_kernel_matrix(X1, X2,**k_opt)
                 M[i*3000:(i+1)*3000, j*3000:(j+1)*3000] = K
-                M[j*3000:(j+1)*3000, i*3000:(i+1)*3000] = K.T
+                if i != j:
+                    M[j*3000:(j+1)*3000, i*3000:(i+1)*3000] = K.T
 
                 M.flush()
