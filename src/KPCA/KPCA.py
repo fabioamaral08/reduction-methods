@@ -25,9 +25,22 @@ def chol(A,k):
         s.append(si)
     return F,s
 
-def compute_kernel_matrix(X1, X2, kernel_type, theta, eps=None, dx = 1, dy = None):
+def compute_kernel_matrix(X1, X2, kernel_type, theta=None, eps=None, dx = 1, dy = None):
     if kernel_type == 'linear':
         return np.dot(X1, X2.T)
+    elif kernel_type == 'poly':
+        return (np.dot(X1, X2.T) + 1) ** eps
+    elif kernel_type == 'rbf':
+        eps = 1.0 / (2 * eps**2)
+        X1_norm = np.sum(X1**2, axis=1)
+        X2_norm = np.sum(X2**2, axis=1)
+        dist = np.outer(X1_norm, np.ones(X2.shape[0])) + np.outer(np.ones(X1.shape[0]), X2_norm) - 2 * np.dot(X1, X2.T)
+        print(dist.shape)
+        return np.exp(-eps * dist)
+    elif kernel_type == 'sigmoid':
+        return np.tanh(eps * np.dot(X1, X2.T) + 1)
+    elif kernel_type == 'cosine':
+        return np.dot(X1, X2.T) / (np.linalg.norm(X1, axis=1, keepdims=True) * np.linalg.norm(X2, axis=1, keepdims=True).T)
 
     else:
 
