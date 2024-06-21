@@ -10,7 +10,7 @@ if __name__ == '__main__':
     files = glob.glob('*.npz', root_dir=dspath)
     X = []
     P = []
-    print(files)
+    print(sys.path)
     for f in files:
         #reads the file
         f_split = f.split('_')
