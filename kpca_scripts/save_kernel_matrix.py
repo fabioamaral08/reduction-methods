@@ -46,17 +46,18 @@ if __name__ == '__main__':
     # COMPUTE KERNEL MATRIX
     dx = dy = 1/(2**6)
     theta_sqrt = np.sqrt((1-P[:,2])/(P[:,0] * P[:,1])).reshape((-1,1))
-    theta_matrix = theta_sqrt @ theta_sqrt.T
     
+    #Oldroyd
+    theta_matrix = theta_sqrt @ theta_sqrt.T
+    eps = None
+    K = compute_kernel_matrix(X, X,'oldroyd', theta_matrix, eps,dx,dy)
+    np.savez(f'{dspath}/Kernel_oldroyd.npz', kernel = K)
+    del theta_matrix
+
     #PCA
     eps = None
     K = compute_kernel_matrix(X, X,'linear', None, eps,dx,dy)
     np.savez(f'{dspath}/Kernel_linear.npz', kernel = K)
-
-    #Oldroyd
-    eps = None
-    K = compute_kernel_matrix(X, X,'oldroyd', theta_matrix, eps,dx,dy)
-    np.savez(f'{dspath}/Kernel_oldroyd.npz', kernel = K)
 
     #Poly
     eps = 3
