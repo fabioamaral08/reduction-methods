@@ -12,6 +12,7 @@ if __name__ == '__main__':
     P = []
     print(sys.path)
     print(os.listdir(f'{dspath}'))
+    print('--')
     for f in files:
         #reads the file
         f_split = f.split('_')
