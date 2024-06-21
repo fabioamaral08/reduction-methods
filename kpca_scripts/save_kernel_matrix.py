@@ -51,24 +51,24 @@ if __name__ == '__main__':
     #PCA
     eps = None
     K = compute_kernel_matrix(X, X,'linear', None, eps,dx,dy)
-    np.savez(f'{dspath}/Kernel_linear.npz')
+    np.savez(f'{dspath}/Kernel_linear.npz', kernel = K)
 
     #Oldroyd
     eps = None
     K = compute_kernel_matrix(X, X,'oldroyd', theta_matrix, eps,dx,dy)
-    np.savez(f'{dspath}/Kernel_oldroyd.npz')
+    np.savez(f'{dspath}/Kernel_oldroyd.npz', kernel = K)
 
     #Poly
     eps = 3
     K = compute_kernel_matrix(X, X,'poly', None, eps,dx,dy)
-    np.savez(f'{dspath}/Kernel_poly.npz')
+    np.savez(f'{dspath}/Kernel_poly.npz', kernel = K)
 
     #RBF
     eps = 2
     K = compute_kernel_matrix(X, X,'rbf', None, eps,dx,dy)
-    np.savez(f'{dspath}/Kernel_rbf.npz')
+    np.savez(f'{dspath}/Kernel_rbf.npz', kernel = K)
 
     #Cosine
     eps = None
     K = compute_kernel_matrix(X, X,'cosine', None, eps,dx,dy)
-    np.savez(f'{dspath}/Kernel_cosine.npz')
+    np.savez(f'{dspath}/Kernel_cosine.npz', kernel = K)
