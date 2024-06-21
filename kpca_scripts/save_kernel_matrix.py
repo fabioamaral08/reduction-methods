@@ -6,13 +6,11 @@ from KPCA import *
 import glob
 
 if __name__ == '__main__':
-    dspath = '../../npz_data/KPCA_4roll'
+    dspath = '/home/fabio/npz_data/KPCA_4roll'
     files = glob.glob('*.npz', root_dir=dspath)
     X = []
     P = []
-    print(sys.path)
-    print(os.listdir(f'{dspath}'))
-    print('--')
+
     for f in files:
         #reads the file
         f_split = f.split('_')
