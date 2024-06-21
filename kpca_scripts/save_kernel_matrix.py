@@ -11,6 +11,7 @@ if __name__ == '__main__':
     X = []
     P = []
     print(sys.path)
+    print(os.listdir(f'{dspath}'))
     for f in files:
         #reads the file
         f_split = f.split('_')
