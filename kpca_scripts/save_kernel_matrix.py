@@ -37,7 +37,8 @@ def get_matrix(filename):
     T22 = q[:,:,:,4].reshape((q.shape[0]**2, q.shape[2]))
     T = np.concatenate((TU, TV, T11,T12,T22), axis=1).reshape(-1, q.shape[2]) # by column axis=1(intercal..), by row axis=0
     theta_sqrt = np.sqrt((1-param[:,2])/(param[:,0] * param[:,1])).reshape((-1,1))
-    return T[:,:3000].T, theta_sqrt
+    X =  T[:,:3000]
+    return X.T, theta_sqrt
 
 if __name__ == '__main__':
     dspath = '/home/fabio/npz_data/KPCA_4roll'
@@ -69,6 +70,7 @@ if __name__ == '__main__':
             X2, t2 = get_matrix(files[j])
 
             for k,M in zip(k_args, matrixes):
+                print(i,j,k['kernel_type'])
                 if k['kernel_type'] == 'oldroyd':
                     k['theta'] = t1 @ t2.T
                 K = compute_kernel_matrix(X1, X2,**k)
