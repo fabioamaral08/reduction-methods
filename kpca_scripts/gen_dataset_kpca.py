@@ -71,7 +71,7 @@ if __name__ == '__main__':
     n_components = 20
     matrixes = [np.memmap(f'{dspath}/X_{x}.npz',dtype='float32', mode='w+', shape=(n_data,n_components)) for x in kpca_files]
     for f_m, M, kernel in zip(mat_files, matrixes,kpca_files):
-        K = np.load(f_m)
+        K = np.memmap(f_m,dtype='float32', mode='r')
 
         K_row = np.mean(K, axis=0)
         K_col = np.mean(K, axis=1)[:,None]
