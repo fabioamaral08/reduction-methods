@@ -73,16 +73,9 @@ if __name__ == '__main__':
     matrixes = [np.memmap(f'{dspath}/X_{x}.npz',dtype='float32', mode='w+', shape=(n_data,n_components)) for x in kpca_files]
     
 
-    filename = path.join(dspath, 'newfile.dat')
-    print('Create Center Matrix...')
-    Center = np.memmap(filename, dtype='float32', mode='w+', shape=(n_data,n_data))
-    Center[:] = -1.0/n_data
+    filename = path.join(dspath, 'Center_Mat.dat')
 
-    for i in range(n_data):
-        Center[i,i] +=1
-    
-    Center.flush()
-
+    Center = np.memmap(filename, dtype='float32', mode='r', shape=(n_data,n_data))
     print('Create Center Matrix Completed')
     print()
     for f_m, M, kernel in zip(mat_files, matrixes,kpca_files):
