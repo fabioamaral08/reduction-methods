@@ -159,7 +159,7 @@ if __name__ == '__main__':
     kernel = args.Kernel
 
     ## Data reading
-    train_dataset = FileDataset(f'/container/fabio/npz_data/KPCA_4roll/Kernel_train_{kernel}', take_time = False)
+    train_dataset = FileDataset(f'/container/fabio/npz_data/Kernel_dataset/Kernel_train_{kernel}', take_time = False)
     # test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test_osc', take_time = False)
 
     #normalize data inside autoencoder
