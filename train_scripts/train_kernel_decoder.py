@@ -131,7 +131,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
         yield from self.iter_list
 
     def get_t(self, filename):
-        str_s = filename.split('_')[4].replace('t','')
+        str_s = filename.split('_')[4].replace('t','').replace('.p','')
         t = float(str_s)
         return t
     
@@ -172,7 +172,7 @@ if __name__ == '__main__':
     bs = 3000
     num_epochs = 5000
 
-    autoencoder = Autoencoder.KernelDecoderModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=2).to(device)
+    autoencoder = Autoencoder.KernelDecoderModule(n_input= train_dataset[0][1].shape[-1],latent_dim = latent_dim, num_params=2).to(device)
 
     # sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
     batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
