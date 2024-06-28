@@ -249,6 +249,6 @@ if __name__ == '__main__':
         #         loss_test = loss_fn(X_test, reconst, param)
 
         # print(f'({args.Loss.upper()})Epoch {e}: train loss: {cumm_loss:.4f}\ttest loss: {loss_test.item():.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
-        print(f'({args.Loss.upper()})Epoch {e}: train loss: {cumm_loss:.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
+        print(f'({kernel.upper()})Epoch {e}: train loss: {cumm_loss:.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
 
     print('\n\n')
