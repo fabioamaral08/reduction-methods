@@ -136,11 +136,11 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
         return t
     
 def get_min_max(dataset):
-    min_v = dataset[0][0].amin(1)
-    max_v = dataset[0][0].amax(1)
+    min_v = dataset[0][1].amin(1)
+    max_v = dataset[0][1].amax(1)
     for i in range(1,len(dataset)-1):
-        min_v = torch.minimum(min_v, dataset[i][0].amin(1))
-        max_v = torch.maximum(max_v, dataset[i][0].amax(1))
+        min_v = torch.minimum(min_v, dataset[i][1].amin(1))
+        max_v = torch.maximum(max_v, dataset[i][1].amax(1))
     return min_v.reshape((1,5,1)).clone().float(), max_v.reshape((1,5,1)).clone().float()
 
 
@@ -162,17 +162,17 @@ if __name__ == '__main__':
     train_dataset = FileDataset(f'/container/fabio/npz_data/Kernel_dataset/Kernel_train_{kernel}', take_time = False)
     # test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test_osc', take_time = False)
 
-    #normalize data inside autoencoder
-    # lower_bound,  upper_bound = get_min_max(train_dataset)
-    # lower_bound = lower_bound.to(device)
-    # upper_bound = upper_bound.to(device)
+    # normalize data inside autoencoder
+    lower_bound,  upper_bound = get_min_max(train_dataset)
+    lower_bound = lower_bound.to(device)
+    upper_bound = upper_bound.to(device)
 
     # NN part
     learning_rate = 1e-4
     bs = 3000
     num_epochs = 5000
 
-    autoencoder = Autoencoder.KernelDecoderModule(n_input= train_dataset[0][1].shape[-1],latent_dim = latent_dim, num_params=2).to(device)
+    autoencoder = Autoencoder.KernelDecoderModule(n_input= train_dataset[0][1].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound,).to(device)
 
     # sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
     batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)

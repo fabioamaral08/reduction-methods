@@ -9,11 +9,11 @@ Autoencoder for inputs with shape (Ns, Nc, Nx*Ny) -> (-1, 5, Nx)
 
 class KernelDecoderModule(nn.Module):
     # def __init__(self, n_input, latent_dim, num_params = 2, max_in = 1, min_in = 0) -> None:
-    def __init__(self, n_input, latent_dim, num_params = 2):
+    def __init__(self, n_input, latent_dim, num_params = 2,max_in = 1, min_in = 0):
         super(KernelDecoderModule,self).__init__()
         # for normalization 
-        # self.register_buffer('min', min_in)
-        # self.register_buffer('input_range', max_in - min_in)
+        self.register_buffer('min', min_in)
+        self.register_buffer('input_range', max_in - min_in)
         min_hidden = 8
         while min_hidden < latent_dim:
             min_hidden *=2
@@ -44,7 +44,7 @@ class KernelDecoderModule(nn.Module):
         latent = torch.cat((latent,p),-1)
 
         decode = self.decoder(latent)
-        return decode
+        return decode * self.input_range + self.min
     def forward(self, latent, param):
         output = self.decode(latent,param)
         
