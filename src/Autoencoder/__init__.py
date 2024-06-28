@@ -9,6 +9,7 @@ from .ParametricVAE import *
 from .ParametricVAEModes import *
 from .VAE_Transformer import *
 from .ParametricBVAE import *
+from .KernelDecoder import *
 
 # __all__ = ['AutoencoderModule', 'ConvAutoencoderModule', 'VariationalAutoencoderModule','ParametricVAEModule', 'ParametricAutoencoderModule', 'ParametricVAEModesModule','VAE_Transfomer']
 # __all__.extend(Autoencoder.__all__)
