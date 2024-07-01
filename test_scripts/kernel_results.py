@@ -166,12 +166,16 @@ if __name__ == '__main__':
 
             # Reconstruction Error:
             energy_norm_x = np.abs(total).sum()
-            energy_err = np.abs(total - total_mse).sum()/energy_norm_x
+            energy_err = np.abs(total - total_mse).sum() / energy_norm_x
+
+            #Frobenius Norm
+            mse_error = np.linalg.norm(X - X_ae) / np.linalg.norm(X)
 
 
             with open(f'/container/fabio/reduction-methods/test_scripts/Results/results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_Kernel_{ker}_train.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
-                f.write(f'Rel. energy error MSE: {energy_err:g}\n')
+                f.write(f'Rel. energy error: {energy_err:g}\n')
+                f.write(f'Rel. MSE    error: {mse_error:g}\n')
 
         # for data,param in test_loader:
         #     data = data.to(device)

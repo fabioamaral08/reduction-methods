@@ -29,7 +29,7 @@ def get_matrix(filename):
     T = np.concatenate((TU, TV, T11,T12,T22), axis=1).reshape(-1, q.shape[2]) # by column axis=1(intercal..), by row axis=0
 
     X =  T[:,:3000]
-    return X.T, Wi, beta
+    return X, Wi, beta
 
 if __name__ == '__main__':
     dspath = '/home/fabio/npz_data/KPCA_4roll'
