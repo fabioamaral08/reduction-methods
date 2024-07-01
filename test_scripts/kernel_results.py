@@ -138,6 +138,7 @@ if __name__ == '__main__':
         autoencoder.eval()
         for code, data,param in train_loader:
             data = data.to(device)
+            code = code.to(device)
             param = param.to(device)
             with torch.no_grad():
                 X = torch2np(data)
