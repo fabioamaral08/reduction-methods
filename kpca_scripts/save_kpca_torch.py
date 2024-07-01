@@ -33,17 +33,18 @@ def get_matrix(filename):
 
 if __name__ == '__main__':
     dspath = '/home/fabio/npz_data/KPCA_4roll'
+    ds_new_path = '/home/fabio/npz_data/KPCA_dataset'
     files = glob.glob('4_roll6*.npz', root_dir=dspath)
     X = []
     P = []
     n_data = 3000 * len(files)
 
     dirsave = [   
-        f'{dspath}/Kernel_train_oldroyd',
-        f'{dspath}/Kernel_train_linear',
-        f'{dspath}/Kernel_train_poly',
-        f'{dspath}/Kernel_train_rbf',
-        f'{dspath}/Kernel_train_cosine'
+        f'{ds_new_path}/Kernel_train_oldroyd',
+        f'{ds_new_path}/Kernel_train_linear',
+        f'{ds_new_path}/Kernel_train_poly',
+        f'{ds_new_path}/Kernel_train_rbf',
+        f'{ds_new_path}/Kernel_train_cosine'
         ]
 
     for d in dirsave:
