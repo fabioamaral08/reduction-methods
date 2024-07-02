@@ -57,7 +57,7 @@ if __name__ == '__main__':
         f'rbf',
         f'cosine'
         ]
-    matrixes = [np.memmap(f'{dspath}/X_{x}.npz',dtype='float32', mode='w+', shape=(n_data,n_components)) for x in kpca_files]
+    matrixes = [np.memmap(f'{dspath}/X_{x}.npz',dtype='float32', mode='r', shape=(n_data,n_components)) for x in kpca_files]
     count = 0
     for i in range(len(files)):
         X1, Wi, beta = get_matrix(files[i])
