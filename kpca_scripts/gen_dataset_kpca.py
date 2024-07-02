@@ -78,6 +78,7 @@ if __name__ == '__main__':
     Center = np.memmap(filename, dtype='float32', mode='r', shape=(n_data,n_data))
     print('Create Center Matrix Completed')
     print()
+    K_centered = np.memmap(f'{dspath}/Kernel_Center_temp.dat',dtype='float32', mode='w+',shape=(n_data,n_data))
     for f_m, M, kernel in zip(mat_files, matrixes,kpca_files):
 
         print(f'Starting {kernel}...', flush=True)
@@ -86,14 +87,14 @@ if __name__ == '__main__':
         K_row = np.mean(K, axis=0)
         K_col = np.mean(K, axis=1)[:,None]
         K_all = np.mean(K)
-        K_centered = K - K_row - K_col + K_all
-        K[:] = K_centered
+        K_centered[:] = K - K_row - K_col + K_all
+        K_centered.flush()
         # K_centered = K - np.mean(K, axis=1).reshape(-1, 1)
         
         print(f'Centered Kernel Completed')
         # Eigen decomposition
         print(f'Starting Eigendecomp...', flush=True)
-        eigenvalues, eigenvectors = np.linalg.eigh(K)
+        eigenvalues, eigenvectors = np.linalg.eigh(K_centered)
         print(f'Finish Eigendecomp')
 
 
@@ -106,7 +107,7 @@ if __name__ == '__main__':
         eigenvectors = eigenvectors[:, :n_components]
         eigenvectors_normalized = eigenvectors / np.sqrt(eigenvalues[:n_components])
         print(f'Starting KPCA multiplication...', flush=True)
-        X_kpca = np.dot(K, eigenvectors_normalized)
+        X_kpca = np.dot(K_centered, eigenvectors_normalized)
         print(f'Finish KPCA multiplication')
 
         M[:] = X_kpca
@@ -116,6 +117,6 @@ if __name__ == '__main__':
         U_fit = Center@eigenvectors_normalized
         print(f'Finish U_fit multiplication')
 
-        np.savez(f'{dspath}/U_fit_{kernel}.npz', U =U_fit, eigenvalues = eigenvalues)
+        np.savez(f'{dspath}/U_fit_{kernel}.npz', U =U_fit, eigenvalues = eigenvalues, eigenvectors = eigenvectors)
         print(f'Finish {kernel}', flush=True)
         print()
