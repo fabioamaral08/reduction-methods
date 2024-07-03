@@ -33,7 +33,7 @@ def get_matrix(filename):
 
 if __name__ == '__main__':
     dspath = '/home/fabio/npz_data/KPCA_4roll'
-    ds_new_path = '/home/fabio/npz_data/KPCA_dataset'
+    ds_new_path = '/home/fabio/npz_data/Kernel_dataset'
     files = glob.glob('4_roll6*.npz', root_dir=dspath)
     X = []
     P = []
@@ -72,7 +72,7 @@ if __name__ == '__main__':
             for X, dataset_train in zip(matrixes, dirsave):
                 aux[:] = X[count]
                 xi = torch.from_numpy(aux)
-                if dirsave == f'{ds_new_path}/Kernel_train_oldroyd':
+                if dataset_train == f'{ds_new_path}/Kernel_train_oldroyd':
                     print(aux)
                     print(xi,'\n', flush=True)
                 save_obj = {
