@@ -47,6 +47,7 @@ if __name__ == '__main__':
         f'{ds_new_path}/Kernel_train_cosine'
         ]
     dir_reconst = f'{ds_new_path}/Kernel_train_reconstruction'
+    os.makedirs(dir_reconst, exist_ok=True)
     for d in dirsave:
         os.makedirs(d, exist_ok=True)
     n_components = 20
