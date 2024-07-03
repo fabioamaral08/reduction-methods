@@ -62,7 +62,7 @@ if __name__ == '__main__':
     for i in range(len(files)):
         X1, _ = get_matrix(files[i])
         datset_matrix[:, i*npoints:(i+1)*npoints] = X1[:]
-    datset_matrix.flush()
+        datset_matrix.flush()
     # dspath = '/home/fabio/npz_data/KPCA_4roll'
     # files = glob.glob('4_roll6*', root_dir=dspath)
     # X = []
