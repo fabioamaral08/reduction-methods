@@ -72,9 +72,6 @@ if __name__ == '__main__':
             for X, dataset_train in zip(matrixes, dirsave):
                 aux[:] = X[count]
                 xi = torch.from_numpy(aux)
-                if dataset_train == f'{ds_new_path}/Kernel_train_oldroyd':
-                    print(aux)
-                    print(xi,'\n', flush=True)
                 save_obj = {
                     'x':xi.clone(),
                     'y': Xd.clone(),
@@ -82,6 +79,3 @@ if __name__ == '__main__':
                 }
                 torch.save(save_obj,f'{dataset_train}/data_{count:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
             count +=1
-        if count >= 3000:
-            break
-        
