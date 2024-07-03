@@ -71,7 +71,7 @@ if __name__ == '__main__':
         for j,Xd in enumerate(X_torch):
             t = 0.1 * j
             rec_obj = {
-                'y': Xd,
+                'y': Xd.clone(),
                 'param':[Wi, beta, t]
                 }
             torch.save(rec_obj,f'{dir_reconst}/data_{count:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
