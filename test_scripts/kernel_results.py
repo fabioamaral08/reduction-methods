@@ -126,7 +126,7 @@ if __name__ == '__main__':
     dx = 2 * np.pi / 2**6
     Re = 1
     train_dataset = FileDataset(f'/container/fabio/npz_data/Kernel_dataset/Kernel_train_oldroyd', take_time = False)
-    autoencoder = Autoencoder.KernelDecoderModule(n_input= train_dataset[0][1].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound,).to(device)
+    autoencoder = Autoencoder.KernelDecoderModule(out_size= train_dataset[0][1].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound,).to(device)
     for ker in kernels:
         pasta = f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_kernel_{ker}'
 
