@@ -9,7 +9,7 @@ Autoencoder for inputs with shape (Ns, Nc, Nx*Ny) -> (-1, 5, Nx)
 
 class KernelDecoderModule(nn.Module):
     # def __init__(self, n_input, latent_dim, num_params = 2, max_in = 1, min_in = 0) -> None:
-    def __init__(self, n_input, latent_dim, num_params = 2,max_in = 1, min_in = 0):
+    def __init__(self, out_size, latent_dim, num_params = 2,max_in = 1, min_in = 0):
         super(KernelDecoderModule,self).__init__()
         # for normalization 
         self.register_buffer('min', min_in)
@@ -32,7 +32,7 @@ class KernelDecoderModule(nn.Module):
             nn.Unflatten(1,(5,min_hidden*16)), 
             nn.Linear(min_hidden*16, min_hidden*32),
             nn.ReLU(),
-            nn.Linear(min_hidden*32,n_input)
+            nn.Linear(min_hidden*32,out_size)
         )
         
 

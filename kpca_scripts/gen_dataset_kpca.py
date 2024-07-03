@@ -89,7 +89,7 @@ if __name__ == '__main__':
         K_all = np.mean(K)
         K_centered[:] = K - K_row - K_col + K_all
         K_centered.flush()
-        # K_centered = K - np.mean(K, axis=1).reshape(-1, 1)
+        # K_centered = K - np.mean(K, axis=1).reshape(-1, 1)    
         
         print(f'Centered Kernel Completed')
         # Eigen decomposition
@@ -107,7 +107,7 @@ if __name__ == '__main__':
         eigenvectors = eigenvectors[:, :n_components]
         eigenvectors_normalized = eigenvectors / np.sqrt(eigenvalues[:n_components])
         print(f'Starting KPCA multiplication...', flush=True)
-        X_kpca = np.dot(K_centered, eigenvectors_normalized)
+        X_kpca = eigenvectors * np.sqrt(eigenvalues[:n_components])
         print(f'Finish KPCA multiplication')
 
         M[:] = X_kpca
@@ -117,6 +117,7 @@ if __name__ == '__main__':
         U_fit = Center@eigenvectors_normalized
         print(f'Finish U_fit multiplication')
 
-        np.savez(f'{dspath}/U_fit_{kernel}.npz', U =U_fit, eigenvalues = eigenvalues, eigenvectors = eigenvectors)
+        mean = K_row[None,:]
+        np.savez(f'{dspath}/U_fit_{kernel}.npz', U =U_fit, eigenvalues = eigenvalues, eigenvectors = eigenvectors, mean = mean)
         print(f'Finish {kernel}', flush=True)
         print()

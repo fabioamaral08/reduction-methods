@@ -14,7 +14,7 @@ from utils import *
 import Autoencoder
 import argparse
 
-def kernel(X:torch.Tensor, Y, theta, dx = 0.0125, dy = None):
+def kernel_fn(X:torch.Tensor, Y, theta, dx = 0.0125, dy = None):
     """
     Compute the total energy of a visco-elastic flow
 
@@ -49,9 +49,9 @@ def energy_loss(x,y,param, dx = 1/2**6):
     Wi = param[:,0].view((-1,1))
     beta= param[:,1].view((-1,1))
     theta = (1- beta) / Wi
-    Kxx = kernel(x,x, theta, dx, dx)
-    Kxy = kernel(x,y, theta, dx, dx)
-    Kyy = kernel(y,y, theta, dx, dx)
+    Kxx = kernel_fn(x,x, theta, dx, dx)
+    Kxy = kernel_fn(x,y, theta, dx, dx)
+    Kyy = kernel_fn(y,y, theta, dx, dx)
 
     loss = torch.sqrt(Kxx - 2* Kxy + Kyy)
     
@@ -172,7 +172,7 @@ if __name__ == '__main__':
     bs = 3000
     num_epochs = 5000
 
-    autoencoder = Autoencoder.KernelDecoderModule(n_input= train_dataset[0][1].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound,).to(device)
+    autoencoder = Autoencoder.KernelDecoderModule(out_size= train_dataset[0][1].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound,).to(device)
 
     # sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
     batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
@@ -221,7 +221,7 @@ if __name__ == '__main__':
 
         cumm_loss = 0
         t = time.time()
-        autoencoder.train(True)
+        autoencoder.train()
         for code, data,param in train_loader:
 
             optimizer.zero_grad()

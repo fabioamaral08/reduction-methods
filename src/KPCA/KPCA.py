@@ -194,7 +194,7 @@ def kpca(X, n_components=2, kernel='linear', theta=None, eps = None, norm='DIV',
         raise ValueError(f"Invalid norm type. Options are 'MULT', 'DIV' or 'None' (given: '{norm}')")
     
     # Project input data onto the eigenvectors
-    X_kpca = np.dot(K_centered, eigenvectors_normalized)
+    X_kpca = eigenvectors_normalized * eigenvalues[:n_components]
 
     return X_kpca, eigenvectors_normalized, eigenvalues, K_centered, K
 
@@ -301,7 +301,7 @@ class KernelPCA():
             self.U_fit = M@self.normalized_eigenvector
 
 
-            X_kpca = np.dot(K_centered, self.normalized_eigenvector)
+            X_kpca = self.normalized_eigenvector * self.eigenvalues
             sqrt_theta = np.sqrt(self.thetas_fit).T 
             ones_fit = np.ones((self.X_fit.shape[0],1))
             Q2 = np.concatenate([ones_fit]+ [ones_fit / sqrt_theta ]  + [(X_kpca)**(k+1) for k in range(self.degree)] + [(X_kpca / sqrt_theta)**(k+1) for k in range(self.degree)], axis=1)
