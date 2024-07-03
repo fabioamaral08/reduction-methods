@@ -70,6 +70,11 @@ if __name__ == '__main__':
         X_torch = torch.from_numpy(X_data)
         for j,Xd in enumerate(X_torch):
             t = 0.1 * j
+            rec_obj = {
+                'y': Xd,
+                'param':[Wi, beta, t]
+                }
+            torch.save(rec_obj,f'{dir_reconst}/data_{count:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
             for X, dataset_train in zip(matrixes, dirsave):
                 aux[:] = X[count]
                 xi = torch.from_numpy(aux)
@@ -78,10 +83,5 @@ if __name__ == '__main__':
                     'y_code': count,
                 }
                 torch.save(save_obj,f'{dataset_train}/data_{count:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
-                if i == 0:
-                    rec_obj = {
-                        'y': Xd,
-                        'param':[Wi, beta, t]
-                        }
-                    torch.save(rec_obj,f'{dir_reconst}/data_{count:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
+   
             count +=1
