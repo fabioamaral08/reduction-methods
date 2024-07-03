@@ -65,10 +65,11 @@ class ClearCache:
         torch.cuda.empty_cache()
 
 class FileDataset(Dataset):
-    def __init__(self, root_dir, take_time = True):
+    def __init__(self, root_dir,rec_dir, take_time = True):
         super().__init__()
 
         self.root_dir = root_dir
+        self.rec_dir = rec_dir
         self.take_time = take_time
         self.filenames = glob.glob('*.pt', root_dir=root_dir)
         self.filenames.sort()
@@ -88,10 +89,11 @@ class FileDataset(Dataset):
     def __getitem__(self, index):
         while isinstance(index, list):
             index = index[0]
-        data = torch.load(f'{self.root_dir}/{self.filenames[index]}')
+        data_code = torch.load(f'{self.root_dir}/{self.filenames[index]}')
+        data_rec = torch.load(f'{self.rec_dir}/{self.filenames[index]}')
         if self.take_time:
-            return data['x'].float(), data['y'].float(), torch.tensor(data['param']).float()
-        return data['x'].float(), data['y'].float(), torch.tensor(data['param'][:-1]).float()
+            return data_code['x'].float(), data_rec['y'].float(), torch.tensor(data_rec['param']).float()
+        return data_code['x'].float(), data_rec['y'].float(), torch.tensor(data_rec['param'][:-1]).float()
          
 class CaseSampler(torch.utils.data.Sampler[int]):
     def __init__(self, data, cases, root_dir) -> None:
@@ -158,8 +160,9 @@ if __name__ == '__main__':
     use_pred = False
     kernel = args.Kernel
 
+    dir_prefix = '/container/fabio/npz_data/Kernel_dataset'
     ## Data reading
-    train_dataset = FileDataset(f'/container/fabio/npz_data/Kernel_dataset/Kernel_train_{kernel}', take_time = False)
+    train_dataset = FileDataset(f'{dir_prefix}/Kernel_train_{kernel}', rec_dir = f'{dir_prefix}/Kernel_train_reconstruction', take_time = False)
     # test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test_osc', take_time = False)
 
     # normalize data inside autoencoder
