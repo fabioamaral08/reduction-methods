@@ -71,7 +71,7 @@ if __name__ == '__main__':
             for X, dataset_train in zip(matrixes, dirsave):
                 xi = torch.from_numpy(X[count])
                 if dirsave == f'{ds_new_path}/Kernel_train_oldroyd':
-                    print(xi)
+                    print(xi, flush=True)
                 save_obj = {
                     'x':xi.clone(),
                     'y': Xd.clone(),
