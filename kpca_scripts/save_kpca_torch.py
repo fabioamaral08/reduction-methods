@@ -59,6 +59,7 @@ if __name__ == '__main__':
         ]
     matrixes = [np.memmap(f'{dspath}/X_{x}.npz',dtype='float32', mode='r', shape=(n_data,n_components)) for x in kpca_files]
     count = 0
+    aux = np.zeros(matrixes[0][0].shape)
     for i in range(len(files)):
         X1, Wi, beta = get_matrix(files[i])
         X_data = X1.reshape((64*64,5,-1))
@@ -69,9 +70,11 @@ if __name__ == '__main__':
         for i,Xd in enumerate(X_torch):
             t = 0.1 * i
             for X, dataset_train in zip(matrixes, dirsave):
-                xi = torch.from_numpy(X[count])
+                aux[:] = X[count]
+                xi = torch.from_numpy(aux)
                 if dirsave == f'{ds_new_path}/Kernel_train_oldroyd':
-                    print(xi, flush=True)
+                    print(aux)
+                    print(xi,'\n', flush=True)
                 save_obj = {
                     'x':xi.clone(),
                     'y': Xd.clone(),
