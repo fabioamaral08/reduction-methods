@@ -44,7 +44,8 @@ def get_matrix(filename):
 
 if __name__ == '__main__':
     dspath = '/home/fabio/npz_data/KPCA_4roll'
-    files_test = glob.glob('4_roll6*.npz', root_dir=dspath)
+    srcpath = '/home/fabio/npz_data/KPCA_test'
+    files_test = glob.glob('4_roll6*.npz', root_dir=srcpath)
     dir_reconst = '/home/fabio/npz_data/Kernel_dataset_test/Kernel_reconstruction'
     dataset_test = '/home/fabio/npz_data/Kernel_dataset_test'
     
@@ -80,7 +81,7 @@ if __name__ == '__main__':
                 }
             torch.save(rec_obj,f'{dir_reconst}/data_{3000*i+j:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
         for k_opt in k_args:
-            U_data = np.load(f'/home/fabio/npz_data/KPCA_4roll/U_fit_{k_opt['kernel_type']}.npz', allow_pickle=True)
+            U_data = np.load(f'{dspath}/U_fit_{k_opt['kernel_type']}.npz', allow_pickle=True)
             mean = U_data['mean']
             U_fit = U_data['U']
             print(k_opt['kernel_type'])
@@ -98,83 +99,3 @@ if __name__ == '__main__':
                     'y_code': count,
                 }
                 torch.save(save_obj,f'{dataset_test}/data_{count:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
-    
-    # dspath = '/home/fabio/npz_data/KPCA_4roll'
-    # files = glob.glob('4_roll6*', root_dir=dspath)
-    # X = []
-    # P = []
-    # n_data = 3000 * len(files)
-
-    # mat_files = [   
-    #     f'{dspath}/Kernel_oldroyd.npz',
-    #     f'{dspath}/Kernel_linear.npz',
-    #     f'{dspath}/Kernel_poly.npz',
-    #     f'{dspath}/Kernel_rbf.npz',
-    #     f'{dspath}/Kernel_cosine.npz'
-    #     ]
-    # kpca_files = [   
-    #     f'oldroyd',
-    #     f'linear',
-    #     f'poly',
-    #     f'rbf',
-    #     f'cosine'
-    #     ]
-    # k_args = [
-    #     OLD_KWD,
-    #     PCA_KWD,
-    #     POL_KWD,
-    #     RBF_KWD,
-    #     COS_KWD
-    # ]
-    # n_components = 20
-    # matrixes = [np.memmap(f'{dspath}/X_{x}.npz',dtype='float32', mode='w+', shape=(n_data,n_components)) for x in kpca_files]
-    
-
-    # filename = path.join(dspath, 'Center_Mat.dat')
-
-    # Center = np.memmap(filename, dtype='float32', mode='r', shape=(n_data,n_data))
-    # print('Create Center Matrix Completed')
-    # print()
-    # K_centered = np.memmap(f'{dspath}/Kernel_Center_temp.dat',dtype='float32', mode='w+',shape=(n_data,n_data))
-    # for f_m, M, kernel in zip(mat_files, matrixes,kpca_files):
-
-    #     print(f'Starting {kernel}...', flush=True)
-    #     K = np.memmap(f_m,dtype='float32', mode='r',shape=(n_data,n_data))
-
-    #     K_row = np.mean(K, axis=0)
-    #     K_col = np.mean(K, axis=1)[:,None]
-    #     K_all = np.mean(K)
-    #     K_centered[:] = K - K_row - K_col + K_all
-    #     K_centered.flush()
-    #     # K_centered = K - np.mean(K, axis=1).reshape(-1, 1)    
-        
-    #     print(f'Centered Kernel Completed')
-    #     # Eigen decomposition
-    #     print(f'Starting Eigendecomp...', flush=True)
-    #     eigenvalues, eigenvectors = np.linalg.eigh(K_centered)
-    #     print(f'Finish Eigendecomp')
-
-
-    #     # Sort eigenvalues and eigenvectors in descending order
-    #     indices = np.argsort(eigenvalues)[::-1]
-    #     eigenvalues = eigenvalues[indices]
-    #     eigenvectors = eigenvectors[:, indices]
-
-    #     # Select top n_components eigenvectors
-    #     eigenvectors = eigenvectors[:, :n_components]
-    #     eigenvectors_normalized = eigenvectors / np.sqrt(eigenvalues[:n_components])
-    #     print(f'Starting KPCA multiplication...', flush=True)
-    #     X_kpca = eigenvectors * np.sqrt(eigenvalues[:n_components])
-    #     print(f'Finish KPCA multiplication')
-
-    #     M[:] = X_kpca
-    #     M.flush()
-
-    #     print(f'Starting U_fit multiplication...', flush=True)
-    #     U_fit = Center@eigenvectors_normalized
-    #     print(f'Finish U_fit multiplication')
-
-    #     mean = K_row[None,:]
-    #     np.savez(f'{dspath}/U_fit_{kernel}.npz', U =U_fit, eigenvalues = eigenvalues, eigenvectors = eigenvectors, mean = mean)
-    #     print(f'Finish {kernel}', flush=True)
-    #     print()
