@@ -60,6 +60,9 @@ if __name__ == '__main__':
         RBF_KWD,
         COS_KWD
     ]
+    os.makedirs(dir_reconst)
+    for k in k_args:
+        os.makedirs(f'{dataset_test}/Kernel_{k["kernel_type"]}')
 
     reduction = np.zeros((20,3000))
     for i in range(len(files_test)):
