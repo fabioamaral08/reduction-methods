@@ -70,7 +70,7 @@ if __name__ == '__main__':
         X1, t1, param = get_matrix(files_test[i], srcpath)
         X_data = (X1.T).reshape((64*64,5,-1))
         X_data = np.moveaxis(X_data,[0,2],[2,0]) # (Nx, Nc, Nt) -> (Nt, Nc, Nx)
-        _, Wi, beta = param[:, 0]
+        _, Wi, beta = param[0, :]
         # convert data
         X_torch = torch.from_numpy(X_data)
         for j,Xd in enumerate(X_torch):
