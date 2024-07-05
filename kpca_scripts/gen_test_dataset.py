@@ -14,7 +14,7 @@ POL_KWD = {'kernel_type':'poly', 'theta':None, 'eps':3, 'dx' : DX, 'dy' : DX}
 RBF_KWD = {'kernel_type':'rbf', 'theta':None, 'eps':1, 'dx' : DX, 'dy' : DX}
 COS_KWD = {'kernel_type':'cosine', 'theta':None, 'eps':None, 'dx' : DX, 'dy' : DX}
 
-def get_matrix(filename):
+def get_matrix(filename, dspath = '/home/fabio/npz_data/KPCA_4roll'):
     #reads the file
     f_split = filename.split('_')
     Re = float(f_split[2].replace('Re',''))
@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
     reduction = np.zeros((20,3000))
     for i in range(len(files_test)):
-        X1, t1, param = get_matrix(files_test[i])
+        X1, t1, param = get_matrix(files_test[i], srcpath)
         X_data = (X1.T).reshape((64*64,5,-1))
         X_data = np.moveaxis(X_data,[0,2],[2,0]) # (Nx, Nc, Nt) -> (Nt, Nc, Nx)
         _, Wi, beta = param[:, 0]
