@@ -5,6 +5,7 @@ import numpy as np
 from KPCA import *
 import glob
 import os.path as path
+import torch
 
 DX = 1/(2**6)
 PCA_KWD = {'kernel_type':'linear', 'theta':None, 'eps':None, 'dx' : DX, 'dy' : DX}
@@ -39,33 +40,62 @@ def get_matrix(filename):
     T = np.concatenate((TU, TV, T11,T12,T22), axis=1).reshape(-1, q.shape[2]) # by column axis=1(intercal..), by row axis=0
     theta_sqrt = np.sqrt((1-param[:,2])/(param[:,0] * param[:,1])).reshape((-1,1))
     X =  T[:,:3000]
-    return X.T, theta_sqrt
+    return X.T, theta_sqrt, param
 
 if __name__ == '__main__':
     dspath = '/home/fabio/npz_data/KPCA_4roll'
-    files = glob.glob('4_roll6*.npz', root_dir=dspath)
-    X = []
-    P = []
-    n_data = 3000 * len(files)
-
-    mat_files = [   
-        f'{dspath}/Kernel_oldroyd.npz',
-        f'{dspath}/Kernel_linear.npz',
-        f'{dspath}/Kernel_poly.npz',
-        f'{dspath}/Kernel_rbf.npz',
-        f'{dspath}/Kernel_cosine.npz'
-        ]
+    files_test = glob.glob('4_roll6*.npz', root_dir=dspath)
+    dir_reconst = '/home/fabio/npz_data/Kernel_dataset_test/Kernel_reconstruction'
+    dataset_test = '/home/fabio/npz_data/Kernel_dataset_test'
     
     npoints = 4096*5
-    nfiles = len(files)
-    datset_matrix = np.memmap(f'{dspath}/dataset.dat', mode='w+', shape=(3000, npoints*nfiles))
-    datset_theta = np.memmap(f'{dspath}/dataset_theta.dat', mode='w+', shape=(3000*nfiles,1))
-    for i in range(len(files)):
-        X1, t = get_matrix(files[i])
-        datset_matrix[:, i*npoints:(i+1)*npoints] = X1[:]
-        datset_theta[i*npoints:(i+1)*npoints,:] = t[:]
-        datset_matrix.flush()
-        datset_theta.flush()
+    nfiles = 12
+    datset_matrix = np.memmap(f'{dspath}/dataset.dat', mode='r', shape=(3000, npoints*nfiles))
+    datset_theta = np.memmap(f'{dspath}/dataset_theta.dat', mode='r', shape=(3000*nfiles,1))
+
+    k_args = [
+        OLD_KWD,
+        PCA_KWD,
+        POL_KWD,
+        RBF_KWD,
+        COS_KWD
+    ]
+
+    reduction = np.zeros((20,3000))
+    for i in range(len(files_test)):
+        X1, t1, param = get_matrix(files_test[i])
+        X_data = (X1.T).reshape((64*64,5,-1))
+        X_data = np.moveaxis(X_data,[0,2],[2,0]) # (Nx, Nc, Nt) -> (Nt, Nc, Nx)
+        _, Wi, beta = param[:, 0]
+        # convert data
+        X_torch = torch.from_numpy(X_data)
+        for j,Xd in enumerate(X_torch):
+            t = 0.1 * j
+            rec_obj = {
+                'y': Xd.clone(),
+                'param':[Wi, beta, t]
+                }
+            torch.save(rec_obj,f'{dir_reconst}/data_{3000*i+j:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
+        for k_opt in k_args:
+            U_data = np.load(f'/home/fabio/npz_data/KPCA_4roll/U_fit_{k_opt['kernel_type']}.npz', allow_pickle=True)
+            mean = U_data['mean']
+            U_fit = U_data['U']
+            print(k_opt['kernel_type'])
+            if k_opt['kernel_type'] == 'oldroyd':
+                k_opt['theta'] = t1 @ datset_theta.T
+            K = compute_kernel_matrix(X1, datset_matrix,**k_opt)
+
+            x_kpca = (K - mean)@U_fit
+            for j,xi_np in enumerate(x_kpca):
+                t = 0.1 * j
+                count = 3000*i +j
+                xi = torch.from_numpy(xi_np[:])
+                save_obj = {
+                    'x':xi.clone(),
+                    'y_code': count,
+                }
+                torch.save(save_obj,f'{dataset_test}/data_{count:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
+    
     # dspath = '/home/fabio/npz_data/KPCA_4roll'
     # files = glob.glob('4_roll6*', root_dir=dspath)
     # X = []
