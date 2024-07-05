@@ -81,10 +81,10 @@ if __name__ == '__main__':
                 }
             torch.save(rec_obj,f'{dir_reconst}/data_{3000*i+j:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
         for k_opt in k_args:
-            U_data = np.load(f'{dspath}/U_fit_{k_opt['kernel_type']}.npz', allow_pickle=True)
+            U_data = np.load(f'{dspath}/U_fit_{k_opt["kernel_type"]}.npz', allow_pickle=True)
             mean = U_data['mean']
             U_fit = U_data['U']
-            print(k_opt['kernel_type'])
+            print(i, k_opt['kernel_type'])
             if k_opt['kernel_type'] == 'oldroyd':
                 k_opt['theta'] = t1 @ datset_theta.T
             K = compute_kernel_matrix(X1, datset_matrix,**k_opt)
