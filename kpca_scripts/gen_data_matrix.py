@@ -63,7 +63,7 @@ if __name__ == '__main__':
     for i in range(len(files)):
         X1, t = get_matrix(files[i])
         datset_matrix[:, i*npoints:(i+1)*npoints] = X1[:]
-        datset_theta[i*npoints:(i+1)*npoints,:] = t[:]
+        datset_theta[i*3000:(i+1)*3000,:] = t[:]
         datset_matrix.flush()
         datset_theta.flush()
     # dspath = '/home/fabio/npz_data/KPCA_4roll'
