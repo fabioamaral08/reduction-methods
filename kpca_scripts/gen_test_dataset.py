@@ -68,18 +68,12 @@ if __name__ == '__main__':
     reduction = np.zeros((20,3000))
     for i in range(len(files_test)):
         X1, t1, param = get_matrix(files_test[i], srcpath)
+        print(X1.shape)
         X_data = (X1.T).reshape((64*64,5,-1))
         X_data = np.moveaxis(X_data,[0,2],[2,0]) # (Nx, Nc, Nt) -> (Nt, Nc, Nx)
         _, Wi, beta = param[0, :]
         # convert data
-        X_torch = torch.from_numpy(X_data)
-        for j,Xd in enumerate(X_torch):
-            t = 0.1 * j
-            rec_obj = {
-                'y': Xd.clone(),
-                'param':[Wi, beta, t]
-                }
-            torch.save(rec_obj,f'{dir_reconst}/data_{3000*i+j:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
+        print(X1.shape)
         for k_opt in k_args:
             U_data = np.load(f'{dspath}/U_fit_{k_opt["kernel_type"]}.npz', allow_pickle=True)
             mean = U_data['mean']
@@ -99,3 +93,12 @@ if __name__ == '__main__':
                     'y_code': count,
                 }
                 torch.save(save_obj,f'{dataset_test}/data_{count:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
+
+        X_torch = torch.from_numpy(X_data)
+        for j,Xd in enumerate(X_torch):
+            t = 0.1 * j
+            rec_obj = {
+                'y': Xd.clone(),
+                'param':[Wi, beta, t]
+                }
+            torch.save(rec_obj,f'{dir_reconst}/data_{3000*i+j:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
