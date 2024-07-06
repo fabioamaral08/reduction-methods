@@ -58,11 +58,11 @@ if __name__ == '__main__':
     
     npoints = 4096*5
     nfiles = len(files)
-    datset_matrix = np.memmap(f'{dspath}/dataset.dat', mode='w+', shape=(3000, npoints*nfiles))
+    datset_matrix = np.memmap(f'{dspath}/dataset.dat', mode='w+', shape=(3000*nfiles, npoints))
     datset_theta = np.memmap(f'{dspath}/dataset_theta.dat', mode='w+', shape=(3000*nfiles,1))
     for i in range(len(files)):
         X1, t = get_matrix(files[i])
-        datset_matrix[:, i*npoints:(i+1)*npoints] = X1[:]
+        datset_matrix[i*3000:(i+1)*3000,:] = X1[:]
         datset_theta[i*3000:(i+1)*3000,:] = t[:]
         datset_matrix.flush()
         datset_theta.flush()

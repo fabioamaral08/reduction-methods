@@ -51,7 +51,7 @@ if __name__ == '__main__':
     
     npoints = 4096*5
     nfiles = 12
-    datset_matrix = np.memmap(f'{dspath}/dataset.dat', mode='r', shape=(3000, npoints*nfiles))
+    datset_matrix = np.memmap(f'{dspath}/dataset.dat', mode='r', shape=(3000*nfiles, npoints))
     datset_theta = np.memmap(f'{dspath}/dataset_theta.dat', mode='r', shape=(3000*nfiles,1))
 
     k_args = [
