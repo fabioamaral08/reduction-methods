@@ -138,12 +138,21 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
         return t
     
 def get_min_max(dataset):
-    min_v = dataset[0][1].amin(1)
-    max_v = dataset[0][1].amax(1)
+    min_v_in = dataset[0][0].amin(1)
+    max_v_in = dataset[0][0].amax(1)
+
+    min_v_out = dataset[0][1].amin(1)
+    max_v_out = dataset[0][1].amax(1)
     for i in range(1,len(dataset)-1):
-        min_v = torch.minimum(min_v, dataset[i][1].amin(1))
-        max_v = torch.maximum(max_v, dataset[i][1].amax(1))
-    return min_v.reshape((1,5,1)).clone().float(), max_v.reshape((1,5,1)).clone().float()
+        min_v_in = torch.minimum(min_v_out, dataset[i][0].amin(1))
+        max_v_in = torch.maximum(max_v_out, dataset[i][0].amax(1))
+
+        min_v_out = torch.minimum(min_v_out, dataset[i][1].amin(1))
+        max_v_out = torch.maximum(max_v_out, dataset[i][1].amax(1))
+
+    min_v_out = min_v_out.reshape((1,5,1)).clone().float()
+    max_v_out = max_v_out.reshape((1,5,1)).clone().float()
+    return min_v_in, max_v_in, min_v_out, max_v_out
 
 
 if __name__ == '__main__':
@@ -151,6 +160,7 @@ if __name__ == '__main__':
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
     parser.add_argument('--Latent', '-d', default=3, type=int, help="Latent dimension") 
     parser.add_argument('--Kernel', '-k', default='linear', type=str, help="Kernel used for the reduction") 
+    parser.add_argument('--Norm', '-n', default='False', type=str, help="Normalize the input code") 
     args = parser.parse_args()
     torch.manual_seed(42) # reprodutibility
     device_type = "cuda" if torch.cuda.is_available() else "cpu"
@@ -158,6 +168,7 @@ if __name__ == '__main__':
     
     latent_dim = args.Latent
     use_pred = False
+    norm_in = eval(args.Norm)
     kernel = args.Kernel
 
     dir_prefix = '/container/fabio/npz_data/Kernel_dataset'
@@ -166,9 +177,13 @@ if __name__ == '__main__':
     # test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test_osc', take_time = False)
 
     # normalize data inside autoencoder
-    lower_bound,  upper_bound = get_min_max(train_dataset)
+    min_in, max_in, lower_bound,  upper_bound = get_min_max(train_dataset)
     lower_bound = lower_bound.to(device)
     upper_bound = upper_bound.to(device)
+
+    min_in = min_in.to(device)
+    max_in = max_in.to(device)
+
 
     # NN part
     learning_rate = 1e-4
@@ -199,12 +214,14 @@ if __name__ == '__main__':
     num_batches = len(train_loader)
 
     # Results directory
-    pasta = f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_kernel_{kernel}'
-    os.makedirs(pasta, exist_ok=True)
+    folder = f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_kernel_{kernel}'
+    if norm_in:
+         folder += '_Norm-in'
+    os.makedirs(folder, exist_ok=True)
 
-    if os.path.isfile(f'{pasta}/optimizer_checkpoint.pt'):
-        checkpoint = torch.load(f'{pasta}/optimizer_checkpoint.pt')
-        autoencoder.load_state_dict(torch.load(f'{pasta}/best_autoencoder'))
+    if os.path.isfile(f'{folder}/optimizer_checkpoint.pt'):
+        checkpoint = torch.load(f'{folder}/optimizer_checkpoint.pt')
+        autoencoder.load_state_dict(torch.load(f'{folder}/best_autoencoder'))
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
         epoch = checkpoint['epoch']
         loss = checkpoint['loss']
@@ -218,8 +235,8 @@ if __name__ == '__main__':
     for e in range(epoch,num_epochs):
         if last_loss < best_vloss:
                         best_vloss = last_loss
-                        torch.save({'optimizer_state_dict':optimizer.state_dict(), 'loss':loss, 'epoch':e}, f'{pasta}/optimizer_checkpoint.pt')
-                        torch.save(autoencoder.state_dict(), f'{pasta}/best_autoencoder')
+                        torch.save({'optimizer_state_dict':optimizer.state_dict(), 'loss':loss, 'epoch':e}, f'{folder}/optimizer_checkpoint.pt')
+                        torch.save(autoencoder.state_dict(), f'{folder}/best_autoencoder')
 
 
         cumm_loss = 0
