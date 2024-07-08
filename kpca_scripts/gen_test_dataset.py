@@ -91,7 +91,7 @@ if __name__ == '__main__':
                     'x':xi.clone(),
                     'y_code': count,
                 }
-                torch.save(save_obj,f'{dataset_test}/Kernel_{k["kernel_type"]}/data_{count:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
+                torch.save(save_obj,f'{dataset_test}/Kernel_{k_opt["kernel_type"]}/data_{count:06d}_Wi{Wi:g}_beta{beta:g}_t{t:g}.pt')
 
         X_torch = torch.from_numpy(X_data)
         for j,Xd in enumerate(X_torch):
