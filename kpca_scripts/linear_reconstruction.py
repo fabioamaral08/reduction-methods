@@ -75,8 +75,8 @@ if __name__ == '__main__':
     degree = 1
 
     PCA_MAT = [np.memmap(f'{dspath}/X_{x}.npz',dtype='float32', mode='r', shape=(n_data,n_components)) for x in kpca_files]
-    datset_matrix = np.memmap(f'{dspath}/dataset.dat', mode='r', shape=(n_data, npoints))
-    datset_theta = np.memmap(f'{dspath}/dataset_theta.dat', mode='r', shape=(n_data,1))    
+    datset_matrix = np.memmap(f'{dspath}/dataset.dat',dtype='float32', mode='r', shape=(n_data, npoints))
+    datset_theta = np.memmap(f'{dspath}/dataset_theta.dat',dtype='float32', mode='r', shape=(n_data,1))    
 
 
     ones_fit = np.ones((n_data,1))
