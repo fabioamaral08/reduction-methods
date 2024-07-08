@@ -81,9 +81,10 @@ if __name__ == '__main__':
 
     ones_fit = np.ones((n_data,1))
 
-    print()
-    print('Create Center Matrix Completed')
+
     print(datset_theta.shape, datset_theta.min(), np.count_nonzero(datset_theta))
+    print(datset_matrix[:2])
+    print(datset_theta[:2])
     K_centered = np.memmap(f'{dspath}/Kernel_Center_temp.dat',dtype='float32', mode='w+',shape=(n_data,n_data))
     for M, kernel in zip(PCA_MAT,kpca_files):
 
