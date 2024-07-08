@@ -82,6 +82,7 @@ if __name__ == '__main__':
             K = compute_kernel_matrix(X1, datset_matrix,**k_opt)
 
             x_kpca = (K - mean)@U_fit
+            print(x_kpca.shape, flush=True)
             for j,xi_np in enumerate(x_kpca):
                 t = 0.1 * j
                 count = 3000*i +j
