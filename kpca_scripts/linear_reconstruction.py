@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
         print(f'Ending {kernel}...', flush=True)
         print(f'Saving {kernel}...', flush=True)
-        R_save = np.memmap(f'{dspath}/reconst_{kernel}.dat', mode='w+', shape=(n_data, npoints))
+        R_save = np.memmap(f'{dspath}/reconst_{kernel}.dat', mode='w+', shape=R.shape)
         R_save[:] = R[:]
         R_save.flush()
         print(f'Done Saving {kernel}...', flush=True)
