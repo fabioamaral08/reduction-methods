@@ -79,7 +79,7 @@ if __name__ == '__main__':
     datset_theta = np.memmap(f'{dspath}/dataset_theta.dat',dtype='float32', mode='r', shape=(n_data,1))    
 
 
-    ones_fit = np.ones((n_data,1))
+    ones_fit = np.ones((n_data,1), dtype='float32')
 
 
     print(datset_theta.shape, datset_theta.min(), np.count_nonzero(datset_theta))
