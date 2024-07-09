@@ -123,8 +123,6 @@ if __name__ == '__main__':
     # sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
     # batch_sampler_test = CaseBatchSampler(test_dataset.filenames, test_dataset.cases, test_dataset.root_dir, bs)
 
-
-
     kernels = ['linear', 'oldroyd', 'poly', 'cosine', 'rbf']
 
     dx = 2 * np.pi / 2**6
@@ -132,7 +130,7 @@ if __name__ == '__main__':
     dir_prefix = '/container/fabio/npz_data/Kernel_dataset'
     ## Data reading
     train_dataset = FileDataset(f'{dir_prefix}/Kernel_train_oldroyd', rec_dir = f'{dir_prefix}/Kernel_train_reconstruction', take_time = False)
-    autoencoder = Autoencoder.KernelDecoderModule(out_size= train_dataset[0][1].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound,).to(device)
+    autoencoder = Autoencoder.KernelDecoderModule(n_input= train_dataset[0][1].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound,).to(device)
     for ker in kernels:
         pasta = f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_kernel_{ker}'
         if norm_in:
@@ -175,8 +173,6 @@ if __name__ == '__main__':
             # # Energy From Autoencoder
             _, _, total_mse = calc_energy(X_ae,Wi,b,Re,dx = dx)
 
-
-
             # Reconstruction Error:
             energy_norm_x = np.abs(total).sum()
             energy_err = np.abs(total - total_mse).sum() / energy_norm_x
@@ -192,42 +188,49 @@ if __name__ == '__main__':
                 f.write(f'Rel. energy error: {energy_err:g}\n')
                 f.write(f'Rel. MSE    error: {mse_error:g}\n')
 
-        # for data,param in test_loader:
-        #     data = data.to(device)
-        #     param = param.to(device)
-        #     with torch.no_grad():
-        #         X = torch2np(data)
-        #         Wi = param[0,0].item()
-        #         b = param[0,1].item()
+        test_dataset = FileDataset(f'/container/fabio/npz_data/Kernel_dataset_test/Kernel_{ker}',rec_dir = f'{dir_prefix}_test/Kernel_reconstruction', take_time = False)
+        batch_sampler_test = CaseBatchSampler(test_dataset.filenames, test_dataset.cases, test_dataset.root_dir, bs)
+        test_loader = DataLoader(test_dataset, batch_sampler=batch_sampler_test, num_workers=0)
 
-        #         if device_type == "cuda":
-        #             Wi_data = param[:,0].cpu().numpy()
-        #             beta_data = param[:,1].cpu().numpy()
-        #         else:
-        #             Wi_data = param[:,0].numpy()
-        #             beta_data = param[:,1].numpy()
+        for data,param in test_loader:
+            data = data.to(device)
+            code = code.to(device)
+            param = param.to(device)
+            if norm_in:
+                code = (code - min_in)/(max_in - min_in)
+            with torch.no_grad():
+                X = torch2np(data)
+                Wi = param[0,0].item()
+                b = param[0,1].item()
+                if device_type == "cuda":
+                    Wi_data = param[:,0].cpu().numpy()
+                    beta_data = param[:,1].cpu().numpy()
+                else:
+                    Wi_data = param[:,0].numpy()
+                    beta_data = param[:,1].numpy()
 
-        #         theta_data = ((1-beta_data)/(Re * Wi_data))[:,None]
+                theta_data = ((1-beta_data)/(Re * Wi_data))[:,None]
 
-        #         z,mu, log_var = autoencoder.encode(data, param)
-        #         X_ae_torch = autoencoder.decode(z, param)
-        #         X_ae = torch2np(X_ae_torch)
+                X_ae_torch = autoencoder.decode(code, param)
+                X_ae = torch2np(X_ae_torch)
 
-        #     # Energy From data
-        #     _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
+            # Energy From data
+            _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
 
-        #     # # Energy From Autoencoder
-        #     _, _, total_mse = calc_energy(X_ae,Wi,b,Re,dx = dx)
+            # # Energy From Autoencoder
+            _, _, total_mse = calc_energy(X_ae,Wi,b,Re,dx = dx)
 
+            # Reconstruction Error:
+            energy_norm_x = np.abs(total).sum()
+            energy_err = np.abs(total - total_mse).sum() / energy_norm_x
 
+            #Frobenius Norm
+            mse_error = np.linalg.norm(X - X_ae) / np.linalg.norm(X)
 
-        #     # Reconstruction Error:
-        #     energy_norm_x = np.abs(total).sum()
-        #     energy_err = np.abs(total - total_mse).sum()/energy_norm_x
-
-        #     #DKL:
-        #     dkl = -0.5 * torch.mean(1 + log_var - mu ** 2 - log_var.exp(), dim = 0)
-        #     with open(f'/container/fabio/reduction-methods/test_scripts/Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_test.txt', 'a+') as f:
-        #         f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
-        #         f.write(f'Rel. energy error MSE: {energy_err:g}\n')
-        #         f.write(f'KL Divergence: {[f"{x:g}" for x in dkl]}\n\n')
+            fname = f'/container/fabio/reduction-methods/test_scripts/Results/results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_Kernel_{ker}_test'
+            if norm_in:
+                fname += '_Norm-in'
+            with open(f'{fname}.txt', 'a+') as f:
+                f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
+                f.write(f'Rel. energy error: {energy_err:g}\n')
+                f.write(f'Rel. MSE    error: {mse_error:g}\n')
