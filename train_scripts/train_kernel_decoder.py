@@ -138,8 +138,8 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
         return t
     
 def get_min_max(dataset):
-    min_v_in = dataset[0][0].amin(1)
-    max_v_in = dataset[0][0].amax(1)
+    min_v_in = dataset[0][0].amin()
+    max_v_in = dataset[0][0].amax()
 
     min_v_out = dataset[0][1].amin(1)
     max_v_out = dataset[0][1].amax(1)
