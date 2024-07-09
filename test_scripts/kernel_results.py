@@ -99,6 +99,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
+    parser.add_argument('--Norm', '-n', default='False', type=str, help="Normalize the input code") 
 
     args = parser.parse_args()
     torch.manual_seed(42) # reprodutibility
@@ -107,6 +108,7 @@ if __name__ == '__main__':
     
     latent_dim = 20
     use_pred = False
+    norm_in = eval(args.Norm)
 
     ## Data reading
     
@@ -133,6 +135,11 @@ if __name__ == '__main__':
     autoencoder = Autoencoder.KernelDecoderModule(out_size= train_dataset[0][1].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound,).to(device)
     for ker in kernels:
         pasta = f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_kernel_{ker}'
+        if norm_in:
+            pasta += '_Norm-in'
+            range_in = torch.load(f'{pasta}/input_rang.pt')
+            min_in = range_in['input_min']
+            max_in = range_in['input_max']
 
         train_dataset = FileDataset(f'/container/fabio/npz_data/Kernel_dataset/Kernel_train_{ker}',rec_dir = f'{dir_prefix}/Kernel_train_reconstruction', take_time = False)
         batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
@@ -144,6 +151,8 @@ if __name__ == '__main__':
             data = data.to(device)
             code = code.to(device)
             param = param.to(device)
+            if norm_in:
+                code = (code - min_in)/(max_in - min_in)
             with torch.no_grad():
                 X = torch2np(data)
                 Wi = param[0,0].item()
@@ -175,8 +184,10 @@ if __name__ == '__main__':
             #Frobenius Norm
             mse_error = np.linalg.norm(X - X_ae) / np.linalg.norm(X)
 
-
-            with open(f'/container/fabio/reduction-methods/test_scripts/Results/results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_Kernel_{ker}_train.txt', 'a+') as f:
+            fname = f'/container/fabio/reduction-methods/test_scripts/Results/results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_Kernel_{ker}_train'
+            if norm_in:
+                fname += '_Norm-in'
+            with open(f'{fname}.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error: {energy_err:g}\n')
                 f.write(f'Rel. MSE    error: {mse_error:g}\n')

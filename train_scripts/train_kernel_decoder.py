@@ -217,6 +217,7 @@ if __name__ == '__main__':
     folder = f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_kernel_{kernel}'
     if norm_in:
          folder += '_Norm-in'
+         torch.save({'input_min': min_in, 'input_max': max_in}, f'{folder}/input_rang.pt')
     os.makedirs(folder, exist_ok=True)
 
     if os.path.isfile(f'{folder}/optimizer_checkpoint.pt'):
@@ -250,6 +251,9 @@ if __name__ == '__main__':
             code = code.to(device)
             data = data.to(device)
             param = param.to(device)
+
+            if norm_in:
+                 code = (code - min_in)/(max_in - min_in)
             reconst = autoencoder.decode(code,param)
             loss = loss_fn(data, reconst, param)
 
