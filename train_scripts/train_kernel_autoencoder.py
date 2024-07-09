@@ -206,7 +206,7 @@ if __name__ == '__main__':
     num_batches = len(train_loader)
 
     # Results directory
-    folder = f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_autoencoder'
+    folder = f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_autoencoder_Beta_{args.Beta:g}'
 
     os.makedirs(folder, exist_ok=True)
 
@@ -267,3 +267,8 @@ if __name__ == '__main__':
         annealing_agent.step()
         t = time.time() - t
         last_loss = cumm_loss
+
+        print(f'({args.Loss.upper()})Epoch {e}: train loss: {cumm_loss:.4f}\tExec. Time of epoch: {t:.3f}s({t/num_batches:.3f}s/batch)', flush=True)
+        print(f'Reconst loss train: {cumm_loss_rec:.4f}, KLD loss train: {cumm_loss_kld:.4f}, pred loss train: {cumm_loss_pred:.4f}', flush=True)
+        # print(f'Reconst loss test: {loss_rec_test.item():.4f}, KLD loss test: {loss_kld_test.item():.4f}, pred loss test: {loss_pred_test:.4f}', flush=True)
+        print(flush=True)
