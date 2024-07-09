@@ -150,7 +150,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
     parser.add_argument('--Latent', '-d', default=3, type=int, help="Latent dimension") 
-
     parser.add_argument('--Beta', '-b', default=1.0, type=float, help="KL divergence weight") 
     args = parser.parse_args()
     torch.manual_seed(42) # reprodutibility
