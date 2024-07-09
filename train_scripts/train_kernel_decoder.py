@@ -144,8 +144,8 @@ def get_min_max(dataset):
     min_v_out = dataset[0][1].amin(1)
     max_v_out = dataset[0][1].amax(1)
     for i in range(1,len(dataset)-1):
-        min_v_in = torch.minimum(min_v_in, dataset[i][0].amin(1))
-        max_v_in = torch.maximum(max_v_in, dataset[i][0].amax(1))
+        min_v_in = torch.minimum(min_v_in, dataset[i][0].amin())
+        max_v_in = torch.maximum(max_v_in, dataset[i][0].amax())
 
         min_v_out = torch.minimum(min_v_out, dataset[i][1].amin(1))
         max_v_out = torch.maximum(max_v_out, dataset[i][1].amax(1))
