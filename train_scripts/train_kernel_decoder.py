@@ -217,8 +217,9 @@ if __name__ == '__main__':
     folder = f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_kernel_{kernel}'
     if norm_in:
          folder += '_Norm-in'
-         torch.save({'input_min': min_in, 'input_max': max_in}, f'{folder}/input_rang.pt')
     os.makedirs(folder, exist_ok=True)
+    if norm_in:
+         torch.save({'input_min': min_in, 'input_max': max_in}, f'{folder}/input_rang.pt')
 
     if os.path.isfile(f'{folder}/optimizer_checkpoint.pt'):
         checkpoint = torch.load(f'{folder}/optimizer_checkpoint.pt')
