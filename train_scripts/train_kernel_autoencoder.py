@@ -188,14 +188,19 @@ if __name__ == '__main__':
     loss_energy = args.Loss.upper() == 'ENERGY'
     mse_loss = torch.nn.MSELoss()
     if loss_energy:
-        def loss_fn(input:torch.Tensor, target:torch.Tensor, param:torch.tensor):
+        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor, kld_weight = 0.0025):
                 # reconst_loss = torch.nn.MSELoss()(input, target)
                 reconst_loss = energy_loss(input, target, param)
-                return reconst_loss
+                kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
+                # kld_weight = 0.0025
+                return reconst_loss, kld_loss*kld_weight
     else:
-        def loss_fn(input:torch.Tensor, target:torch.Tensor, param:torch.tensor = None):
+        def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor = None, kld_weight = 0.0025):
                 reconst_loss = mse_loss(input, target)
-                return reconst_loss
+                # reconst_loss = energy_loss(input, target, param)
+                kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
+                # kld_weight = 0.0025
+                return reconst_loss, kld_loss*kld_weight
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
     num_batches = len(train_loader)
