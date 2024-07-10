@@ -184,7 +184,7 @@ if __name__ == '__main__':
 
             # per snapshot
             unique_train_energy[:,i] = np.abs(total - total_ae)/np.abs(total)
-            unique_train_mse[:,i] = np.linalg.norm((X - X_ae).reshape((bs,-1)), axis = 1) / np.linalg.norm(X.reshape((bs,-1)), axis = 1)
+            unique_train_mse[:,i] = np.linalg.norm((X - X_ae), axis = 0) / np.linalg.norm(X, axis = 0)
 
             fname = f'/container/fabio/reduction-methods/test_scripts/Results/results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_Kernel_{ker}_train'
             if norm_in:
@@ -241,7 +241,7 @@ if __name__ == '__main__':
             mse_error = np.linalg.norm(X - X_ae) / np.linalg.norm(X)
 
             unique_test_energy[:,i] = np.abs(total - total_ae)/np.abs(total)
-            unique_test_mse[:,i] = np.linalg.norm((X - X_ae).reshape((bs,-1)), axis = 1) / np.linalg.norm(X.reshape((bs,-1)), axis = 1)
+            unique_test_mse[:,i] = np.linalg.norm((X - X_ae), axis = 0) / np.linalg.norm(X, axis = 0)
             fname = f'/container/fabio/reduction-methods/test_scripts/Results/results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_Kernel_{ker}_test'
             if norm_in:
                 fname += '_Norm-in'
