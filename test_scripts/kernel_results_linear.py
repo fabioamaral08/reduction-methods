@@ -145,7 +145,7 @@ if __name__ == '__main__':
         unique_train_energy = np.zeros((bs, len(train_loader)))
         unique_train_mse = np.zeros((bs, len(train_loader)))
         print(unique_train_mse.shape, len(train_loader))
-        print(train_dataset.filenames[:5])
+        print(train_dataset.filenames[:5], flush=True)
         for i, (code, data,param) in enumerate(train_loader):
             data = data.to(device)
             code = code.to(device)
