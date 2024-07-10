@@ -192,7 +192,7 @@ if __name__ == '__main__':
         batch_sampler_test = CaseBatchSampler(test_dataset.filenames, test_dataset.cases, test_dataset.root_dir, bs)
         test_loader = DataLoader(test_dataset, batch_sampler=batch_sampler_test, num_workers=0)
 
-        for data,param in test_loader:
+        for code, data,param in test_loader:
             data = data.to(device)
             code = code.to(device)
             param = param.to(device)

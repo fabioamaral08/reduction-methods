@@ -89,7 +89,7 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
         yield from self.iter_list
 
     def get_t(self, filename):
-        str_s = filename.split('_')[4].replace('t','')
+        str_s = filename.split('_')[4].replace('t','').replace('.p','')
         t = float(str_s)
         return t
     
