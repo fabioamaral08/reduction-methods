@@ -222,11 +222,12 @@ if __name__ == '__main__':
     best_vloss = 1_000_000
     last_loss = best_vloss
     annealing_limit = 1000
-    annealing_agent = Autoencoder.AnnealerAgent(total_steps=annealing_limit, shape='logistic')
 
 
     #training
     kl_weight = args.Beta
+    annealing_agent = Autoencoder.AnnealerAgent(total_steps=annealing_limit, shape='logistic')
+    annealing_agent.current_step = epoch
     for e in range(epoch,num_epochs):
         if e > annealing_limit and last_loss < best_vloss:
                         best_vloss = last_loss
