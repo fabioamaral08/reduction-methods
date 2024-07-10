@@ -142,10 +142,12 @@ if __name__ == '__main__':
         train_dataset = FileDataset(f'/container/fabio/npz_data/Kernel_dataset/Kernel_train_{ker}',rec_dir = f'{dir_prefix}/Kernel_train_reconstruction', take_time = False)
         batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
         train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train, num_workers=0)
+        unique_train_energy = np.zeros((bs, len(train_loader)))
+        unique_train_mse = np.zeros((bs, len(train_loader)))
 
         autoencoder.load_state_dict(torch.load(f'{pasta}/best_autoencoder',map_location=device))
         autoencoder.eval()
-        for code, data,param in train_loader:
+        for i, (code, data,param) in enumerate(train_loader):
             data = data.to(device)
             code = code.to(device)
             param = param.to(device)
@@ -171,14 +173,18 @@ if __name__ == '__main__':
             _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
 
             # # Energy From Autoencoder
-            _, _, total_mse = calc_energy(X_ae,Wi,b,Re,dx = dx)
+            _, _, total_ae = calc_energy(X_ae,Wi,b,Re,dx = dx)
 
             # Reconstruction Error:
             energy_norm_x = np.abs(total).sum()
-            energy_err = np.abs(total - total_mse).sum() / energy_norm_x
+            energy_err = np.abs(total - total_ae).sum() / energy_norm_x
 
             #Frobenius Norm
             mse_error = np.linalg.norm(X - X_ae) / np.linalg.norm(X)
+
+            # per snapshot
+            unique_train_energy[:,i] = np.abs(total - total_ae)/np.abs(total)
+            unique_train_mse[:,i] = np.linalg.norm((X - X_ae).reshape((bs,-1)), axis = 1) / np.linalg.norm(X.reshape((bs,-1)), axis = 1)
 
             fname = f'/container/fabio/reduction-methods/test_scripts/Results/results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_Kernel_{ker}_train'
             if norm_in:
@@ -187,12 +193,15 @@ if __name__ == '__main__':
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error: {energy_err:g}\n')
                 f.write(f'Rel. MSE    error: {mse_error:g}\n')
+        np.savez(f'/container/fabio/reduction-methods/test_scripts/Results/Results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_{ker}_train.npz', energy = unique_train_energy.flatten(), mse = unique_train_mse.flatten())
 
         test_dataset = FileDataset(f'/container/fabio/npz_data/Kernel_dataset_test/Kernel_{ker}',rec_dir = f'{dir_prefix}_test/Kernel_reconstruction', take_time = False)
         batch_sampler_test = CaseBatchSampler(test_dataset.filenames, test_dataset.cases, test_dataset.root_dir, bs)
         test_loader = DataLoader(test_dataset, batch_sampler=batch_sampler_test, num_workers=0)
+        unique_test_energy = np.zeros((bs, len(test_loader)))
+        unique_test_mse = np.zeros((bs, len(test_loader)))
 
-        for code, data,param in test_loader:
+        for i, (code, data,param) in enumerate(test_loader):
             data = data.to(device)
             code = code.to(device)
             param = param.to(device)
@@ -218,15 +227,17 @@ if __name__ == '__main__':
             _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
 
             # # Energy From Autoencoder
-            _, _, total_mse = calc_energy(X_ae,Wi,b,Re,dx = dx)
+            _, _, total_ae = calc_energy(X_ae,Wi,b,Re,dx = dx)
 
             # Reconstruction Error:
             energy_norm_x = np.abs(total).sum()
-            energy_err = np.abs(total - total_mse).sum() / energy_norm_x
+            energy_err = np.abs(total - total_ae).sum() / energy_norm_x
 
             #Frobenius Norm
             mse_error = np.linalg.norm(X - X_ae) / np.linalg.norm(X)
 
+            unique_test_energy[:,i] = np.abs(total - total_ae)/np.abs(total)
+            unique_test_mse[:,i] = np.linalg.norm((X - X_ae).reshape((bs,-1)), axis = 1) / np.linalg.norm(X.reshape((bs,-1)), axis = 1)
             fname = f'/container/fabio/reduction-methods/test_scripts/Results/results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_Kernel_{ker}_test'
             if norm_in:
                 fname += '_Norm-in'
@@ -234,3 +245,4 @@ if __name__ == '__main__':
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error: {energy_err:g}\n')
                 f.write(f'Rel. MSE    error: {mse_error:g}\n')
+        np.savez(f'/container/fabio/reduction-methods/test_scripts/Results/Results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_{ker}_test.npz', energy = unique_test_energy.flatten(), mse = unique_test_mse.flatten())
