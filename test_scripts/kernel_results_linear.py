@@ -133,7 +133,6 @@ if __name__ == '__main__':
 
     nfiles = 12
     npoints = 4096*5
-    data = np.memmap(f'/home/fabio/npz_data/KPCA_4roll/dataset.dat',dtype='float32', mode='r',  shape=(3000*nfiles, npoints))
     ones_fit = np.ones((bs,1), dtype='float32')
     degree = 1
     for ker in kernels:
@@ -165,7 +164,7 @@ if __name__ == '__main__':
 
 
             Q = np.concatenate([ones_fit]+ [ones_fit / theta_data ]  + [(code)**(k+1) for k in range(degree)] + [(code / theta_data)**(k+1) for k in range(degree)], axis=1)
-            X_ae = Q @ R_mat
+            X_ae = (Q @ R_mat).T
             # Energy From data
             _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
 
@@ -220,7 +219,7 @@ if __name__ == '__main__':
 
 
             Q = np.concatenate([ones_fit]+ [ones_fit / theta_data ]  + [(code)**(k+1) for k in range(degree)] + [(code / theta_data)**(k+1) for k in range(degree)], axis=1)
-            X_ae = Q @ R_mat
+            X_ae = (Q @ R_mat).T
             # Energy From data
             _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
 
