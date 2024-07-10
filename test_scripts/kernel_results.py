@@ -193,7 +193,11 @@ if __name__ == '__main__':
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error: {energy_err:g}\n')
                 f.write(f'Rel. MSE    error: {mse_error:g}\n')
-        np.savez(f'/container/fabio/reduction-methods/test_scripts/Results/Results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_{ker}_train.npz', energy = unique_train_energy.flatten(), mse = unique_train_mse.flatten())
+
+        npz_save_file = f'/container/fabio/reduction-methods/test_scripts/Results/Results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_{ker}_train'
+        if norm_in:
+            npz_save_file += '_Norm-in'
+        np.savez(f'{npz_save_file}.npz', energy = unique_train_energy.flatten(), mse = unique_train_mse.flatten())
 
         test_dataset = FileDataset(f'/container/fabio/npz_data/Kernel_dataset_test/Kernel_{ker}',rec_dir = f'{dir_prefix}_test/Kernel_reconstruction', take_time = False)
         batch_sampler_test = CaseBatchSampler(test_dataset.filenames, test_dataset.cases, test_dataset.root_dir, bs)
@@ -245,4 +249,8 @@ if __name__ == '__main__':
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error: {energy_err:g}\n')
                 f.write(f'Rel. MSE    error: {mse_error:g}\n')
-        np.savez(f'/container/fabio/reduction-methods/test_scripts/Results/Results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_{ker}_test.npz', energy = unique_test_energy.flatten(), mse = unique_test_mse.flatten())
+                
+        npz_save_file = f'/container/fabio/reduction-methods/test_scripts/Results/Results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_{ker}_test'
+        if norm_in:
+            npz_save_file += '_Norm-in'
+        np.savez(f'{npz_save_file}.npz', energy = unique_test_energy.flatten(), mse = unique_test_mse.flatten())
