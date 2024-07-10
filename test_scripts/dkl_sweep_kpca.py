@@ -138,7 +138,8 @@ if __name__ == '__main__':
     test_loader =  DataLoader(test_dataset, batch_sampler=batch_sampler_test)
 
     betas = [10**i for i in range(-3,2,1)]
-
+    unique_train = np.zeros((bs, len(train_loader)))
+    unique_test = np.zeros((bs, len(test_loader)))
     dx = 2 * np.pi / 2**6
     Re = 1
     for beta in betas:
@@ -146,7 +147,7 @@ if __name__ == '__main__':
         autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound, pred=use_pred).to(device)
         autoencoder.load_state_dict(torch.load(f'{pasta}/best_autoencoder',map_location=device))
         autoencoder.eval()
-        for data,param in train_loader:
+        for i,data,param in enumerate(train_loader):
             data = data.to(device)
             param = param.to(device)
             with torch.no_grad():
@@ -170,20 +171,25 @@ if __name__ == '__main__':
             _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
 
             # # Energy From Autoencoder
-            _, _, total_mse = calc_energy(X_ae,Wi,b,Re,dx = dx)
+            _, _, total_ae = calc_energy(X_ae,Wi,b,Re,dx = dx)
 
 
 
             # Reconstruction Error:
             energy_norm_x = np.abs(total).sum()
-            energy_err = np.abs(total - total_mse).sum()/energy_norm_x
-
+            energy_err = np.abs(total - total_ae).sum()/energy_norm_x
+            mse_error = np.linalg.norm(X - X_ae) / np.linalg.norm(X)
+            unique_train[:,i] = np.abs(total - total_ae)/np.abs(total)
             #DKL:
             dkl = -0.5 * torch.mean(1 + log_var - mu ** 2 - log_var.exp(), dim = 0)
             with open(f'/container/fabio/reduction-methods/test_scripts/Results/Results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_train.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
-                f.write(f'Rel. energy error MSE: {energy_err:g}\n')
+                f.write(f'Rel. energy error: {energy_err:g}\n')
+                f.write(f'Rel. mse error: {mse_error:g}\n')
                 f.write(f'KL Divergence: {[f"{x:g}" for x in dkl]}\n\n')
+
+        np.savez(f'/container/fabio/reduction-methods/test_scripts/Results/Results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_train.npz', energy = unique_train.flatten())
+
         for data,param in test_loader:
             data = data.to(device)
             param = param.to(device)
@@ -209,17 +215,20 @@ if __name__ == '__main__':
             _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
 
             # # Energy From Autoencoder
-            _, _, total_mse = calc_energy(X_ae,Wi,b,Re,dx = dx)
+            _, _, total_ae = calc_energy(X_ae,Wi,b,Re,dx = dx)
 
 
 
             # Reconstruction Error:
             energy_norm_x = np.abs(total).sum()
-            energy_err = np.abs(total - total_mse).sum()/energy_norm_x
-
+            energy_err = np.abs(total - total_ae).sum()/energy_norm_x
+            mse_error = np.linalg.norm(X - X_ae) / np.linalg.norm(X)
+            unique_test[:,i] = np.abs(total - total_ae)/np.abs(total)
             #DKL:
             dkl = -0.5 * torch.mean(1 + log_var - mu ** 2 - log_var.exp(), dim = 0)
             with open(f'/container/fabio/reduction-methods/test_scripts/Results/Results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_test.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
-                f.write(f'Rel. energy error MSE: {energy_err:g}\n')
+                f.write(f'Rel. energy error: {energy_err:g}\n')
+                f.write(f'Rel. mse error: {mse_error:g}\n')
                 f.write(f'KL Divergence: {[f"{x:g}" for x in dkl]}\n\n')
+        np.savez(f'/container/fabio/reduction-methods/test_scripts/Results/Results_Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_test.npz', energy = unique_test.flatten())
