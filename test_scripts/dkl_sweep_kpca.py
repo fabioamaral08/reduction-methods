@@ -143,7 +143,7 @@ if __name__ == '__main__':
     dx = 2 * np.pi / 2**6
     Re = 1
     for beta in betas:
-        pasta =  f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_autoencoder_Beta_{args.Beta:g}'
+        pasta =  f'/container/fabio/reduction-methods/ModelsTorch/Kernel_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_autoencoder_Beta_{beta:g}'
         autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound, pred=use_pred).to(device)
         autoencoder.load_state_dict(torch.load(f'{pasta}/best_autoencoder',map_location=device))
         autoencoder.eval()
