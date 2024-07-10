@@ -221,13 +221,14 @@ if __name__ == '__main__':
     # Early stop
     best_vloss = 1_000_000
     last_loss = best_vloss
-    annealing_agent = Autoencoder.AnnealerAgent(total_steps=1000, shape='logistic')
+    annealing_limit = 1000
+    annealing_agent = Autoencoder.AnnealerAgent(total_steps=annealing_limit, shape='logistic')
 
 
     #training
     kl_weight = args.Beta
     for e in range(epoch,num_epochs):
-        if last_loss < best_vloss:
+        if e > annealing_limit and last_loss < best_vloss:
                         best_vloss = last_loss
                         torch.save({'optimizer_state_dict':optimizer.state_dict(), 'loss':loss, 'epoch':e}, f'{folder}/optimizer_checkpoint.pt')
                         torch.save(autoencoder.state_dict(), f'{folder}/best_autoencoder')
