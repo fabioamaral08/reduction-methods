@@ -1,0 +1,15 @@
+Wi: 6.75, beta: 0.9, theta: 0.0148148
+Rel. energy error: 0.0361898
+Rel. MSE    error: 0.214515
+Wi: 7.5, beta: 0.6, theta: 0.0533333
+Rel. energy error: 0.0745978
+Rel. MSE    error: 0.381717
+Wi: 5.5, beta: 0.1, theta: 0.163636
+Rel. energy error: 0.296163
+Rel. MSE    error: 0.443663
+Wi: 6, beta: 0.1, theta: 0.15
+Rel. energy error: 0.274526
+Rel. MSE    error: 0.439724
+Wi: 4, beta: 0.75, theta: 0.0625
+Rel. energy error: 0.0835002
+Rel. MSE    error: 0.306115
