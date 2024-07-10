@@ -138,7 +138,7 @@ if __name__ == '__main__':
     for ker in kernels:
         R_mat = np.memmap(f'{dspath}/R_{ker}.dat',dtype='float32', mode='r', shape=(2*latent_dim+2, npoints))
 
-        train_dataset = FileDataset(f'/home/fabio/npz_data/Kernel_dataset_train/Kernel_{ker}',rec_dir = f'{dir_prefix}_train/Kernel_reconstruction', take_time = False)
+        train_dataset = FileDataset(f'{dir_prefix}/Kernel_{ker}',rec_dir = f'{dir_prefix}/Kernel_reconstruction', take_time = False)
         batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
         train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train, num_workers=0)
         
