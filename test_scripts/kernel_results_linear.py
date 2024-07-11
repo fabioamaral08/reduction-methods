@@ -138,7 +138,7 @@ if __name__ == '__main__':
     for ker in kernels:
         R_mat = np.memmap(f'{dspath}/R_{ker}.dat',dtype='float32', mode='r', shape=(2*latent_dim+2, npoints))
 
-        train_dataset = FileDataset(f'{dir_prefix}/Kernel_{ker}',rec_dir = f'{dir_prefix}/Kernel_reconstruction', take_time = False)
+        train_dataset = FileDataset(f'{dir_prefix}/Kernel_train_{ker}',rec_dir = f'{dir_prefix}/Kernel_train_reconstruction', take_time = False)
         batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
         train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train, num_workers=0)
         
@@ -177,8 +177,8 @@ if __name__ == '__main__':
             #Frobenius Norm
             mse_error = np.linalg.norm(X - X_ae) / np.linalg.norm(X)
 
-            unique_train_energy[:,i] = np.abs(total - total_ae)/np.abs(total)
-            unique_train_mse[:,i] = np.linalg.norm((X - X_ae), axis = 0) / np.linalg.norm(X, axis = 0)
+            unique_train_energy[:,i] = np.abs(total - total_ae)/np.abs(total).mean()
+            unique_train_mse[:,i] = np.linalg.norm((X - X_ae), axis = 0) / np.linalg.norm(X)
             fname = f'/home/fabio/reduction-methods/test_scripts/Results/results_Kernel_linear_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_Kernel_{ker}_train'
 
             with open(f'{fname}.txt', 'a+') as f:
@@ -232,8 +232,8 @@ if __name__ == '__main__':
             #Frobenius Norm
             mse_error = np.linalg.norm(X - X_ae) / np.linalg.norm(X)
 
-            unique_test_energy[:,i] = np.abs(total - total_ae)/np.abs(total)
-            unique_test_mse[:,i] = np.linalg.norm((X - X_ae), axis = 0) / np.linalg.norm(X, axis = 0)
+            unique_test_energy[:,i] = np.abs(total - total_ae)/np.abs(total).mean()
+            unique_test_mse[:,i] = np.linalg.norm((X - X_ae), axis = 0) / np.linalg.norm(X)
             fname = f'/home/fabio/reduction-methods/test_scripts/Results/results_Kernel_linear_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_Kernel_{ker}_test'
 
             with open(f'{fname}.txt', 'a+') as f:
