@@ -13,3 +13,18 @@ Rel. MSE    error: 0.461039
 Wi: 4, beta: 0.75, theta: 0.0625
 Rel. energy error: 0.0997711
 Rel. MSE    error: 0.167496
+Wi: 6.75, beta: 0.9, theta: 0.0148148
+Rel. energy error: 0.0552274
+Rel. MSE    error: 0.216333
+Wi: 7.5, beta: 0.6, theta: 0.0533333
+Rel. energy error: 0.162869
+Rel. MSE    error: 0.342044
+Wi: 5.5, beta: 0.1, theta: 0.163636
+Rel. energy error: 0.504413
+Rel. MSE    error: 0.463264
+Wi: 6, beta: 0.1, theta: 0.15
+Rel. energy error: 0.512488
+Rel. MSE    error: 0.460999
+Wi: 4, beta: 0.75, theta: 0.0625
+Rel. energy error: 0.0997711
+Rel. MSE    error: 0.167527
