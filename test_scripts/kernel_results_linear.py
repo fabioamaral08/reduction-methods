@@ -144,11 +144,9 @@ if __name__ == '__main__':
         
         unique_train_energy = np.zeros((bs, len(train_loader)))
         unique_train_mse = np.zeros((bs, len(train_loader)))
-        print(unique_train_mse.shape, len(train_loader))
-        print(train_dataset.filenames[:5], flush=True)
         for i, (code, data,param) in enumerate(train_loader):
             data = data.to(device)
-            code = code.to(device)
+            code = code.to(device).numpy()
             param = param.to(device)
             with torch.no_grad():
                 X = torch2np(data)
@@ -163,8 +161,8 @@ if __name__ == '__main__':
 
                 theta_data = ((1-beta_data)/(Re * Wi_data))[:,None]
 
-
-            Q = np.concatenate([ones_fit]+ [ones_fit / theta_data ]  + [(code)**(k+1) for k in range(degree)] + [(code / theta_data)**(k+1) for k in range(degree)], axis=1)
+            sqrt_theta = np.sqrt(theta_data)
+            Q = np.concatenate([ones_fit]+ [ones_fit / sqrt_theta ]  + [(code)**(k+1) for k in range(degree)] + [(code / sqrt_theta)**(k+1) for k in range(degree)], axis=1)
             X_ae = (Q @ R_mat).T
             # Energy From data
             _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
@@ -203,7 +201,7 @@ if __name__ == '__main__':
 
         for i, (code, data,param) in enumerate(test_loader):
             data = data.to(device)
-            code = code.to(device)
+            code = code.to(device).numpy()
             param = param.to(device)
             with torch.no_grad():
                 X = torch2np(data)
@@ -218,8 +216,8 @@ if __name__ == '__main__':
 
                 theta_data = ((1-beta_data)/(Re * Wi_data))[:,None]
 
-
-            Q = np.concatenate([ones_fit]+ [ones_fit / theta_data ]  + [(code)**(k+1) for k in range(degree)] + [(code / theta_data)**(k+1) for k in range(degree)], axis=1)
+            sqrt_theta = np.sqrt(theta_data)
+            Q = np.concatenate([ones_fit]+ [ones_fit / sqrt_theta ]  + [(code)**(k+1) for k in range(degree)] + [(code / sqrt_theta)**(k+1) for k in range(degree)], axis=1)
             X_ae = (Q @ R_mat).T
             # Energy From data
             _, _, total = calc_energy(X,Wi,b,Re, dx = dx)
