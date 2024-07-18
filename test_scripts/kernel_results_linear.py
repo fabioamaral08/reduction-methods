@@ -99,13 +99,14 @@ class CaseBatchSampler(torch.utils.data.Sampler[List[int]]):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
+    parser.add_argument('--Latent', '-d', default=20, type=int, help="Latent dimension") 
 
     args = parser.parse_args()
     torch.manual_seed(42) # reprodutibility
     device_type =  "cpu"
     device = torch.device(device_type)
     
-    latent_dim = 20
+    latent_dim = parser.Latent
     use_pred = False
 
     ## Data reading
@@ -136,7 +137,7 @@ if __name__ == '__main__':
     ones_fit = np.ones((bs,1), dtype='float32')
     degree = 1
     for ker in kernels:
-        R_mat = np.memmap(f'{dspath}/R_{ker}.dat',dtype='float32', mode='r', shape=(2*latent_dim+2, npoints))
+        R_mat = np.memmap(f'{dspath}/R_{ker}_{latent_dim}_Modes.dat',dtype='float32', mode='r', shape=(2*latent_dim+2, npoints))
 
         train_dataset = FileDataset(f'{dir_prefix}/Kernel_train_{ker}',rec_dir = f'{dir_prefix}/Kernel_train_reconstruction', take_time = False)
         batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)

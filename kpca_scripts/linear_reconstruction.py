@@ -4,6 +4,7 @@ sys.path.append(os.path.join(os.path.split(sys.path[0])[0], 'src'))
 import numpy as np
 from KPCA import *
 import glob
+import argparse
 import os.path as path
 
 DX = 1/(2**6)
@@ -42,6 +43,8 @@ def get_matrix(filename):
     return X.T, theta_sqrt
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--Latent', '-d', default=20, type=int, help="Latent dimension") 
     dspath = '/home/fabio/npz_data/KPCA_4roll'
     files = glob.glob('4_roll6*', root_dir=dspath)
     X = []
@@ -68,13 +71,14 @@ if __name__ == '__main__':
         RBF_KWD,
         COS_KWD
     ]
-    n_components = 20
+    total_components = 20
+    n_components = parser.Latent
     nfiles= 12
     n_data = 3000 * nfiles
     npoints = 4096*5
     degree = 1
 
-    PCA_MAT = [np.memmap(f'{dspath}/X_{x}.npz',dtype='float32', mode='r', shape=(n_data,n_components)) for x in kpca_files]
+    PCA_MAT = [np.memmap(f'{dspath}/X_{x}.npz',dtype='float32', mode='r', shape=(n_data,total_components))[:,:n_components] for x in kpca_files]
     datset_matrix = np.memmap(f'{dspath}/dataset.dat',dtype='float32', mode='r', shape=(n_data, npoints))
     datset_theta = np.memmap(f'{dspath}/dataset_theta.dat',dtype='float32', mode='r', shape=(n_data,1))    
 
@@ -94,8 +98,8 @@ if __name__ == '__main__':
 
         print(f'Ending {kernel}...', flush=True)
         print(f'Saving {kernel}...', flush=True)
-        R_save = np.memmap(f'{dspath}/R_{kernel}.dat',dtype='float32', mode='w+', shape=R.shape)
-        reconst = np.memmap(f'{dspath}/reconst_{kernel}.dat',dtype='float32', mode='w+', shape=(n_data, npoints))
+        R_save = np.memmap(f'{dspath}/R_{kernel}_{n_components}_Modes.dat',dtype='float32', mode='w+', shape=R.shape)
+        reconst = np.memmap(f'{dspath}/reconst_{kernel}_{n_components}_Modes.dat',dtype='float32', mode='w+', shape=(n_data, npoints))
         R_save[:] = R[:]
         R_save.flush()
 
