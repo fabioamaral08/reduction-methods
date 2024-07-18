@@ -148,6 +148,7 @@ if __name__ == '__main__':
         for i, (code, data,param) in enumerate(train_loader):
             data = data.to(device)
             code = code.to(device).numpy()
+            code = code[:,:latent_dim]
             param = param.to(device)
             with torch.no_grad():
                 X = torch2np(data)
