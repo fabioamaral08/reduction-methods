@@ -45,6 +45,8 @@ def get_matrix(filename):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--Latent', '-d', default=20, type=int, help="Latent dimension") 
+
+    args = parser.parse_args()
     dspath = '/home/fabio/npz_data/KPCA_4roll'
     files = glob.glob('4_roll6*', root_dir=dspath)
     X = []
@@ -72,7 +74,7 @@ if __name__ == '__main__':
         COS_KWD
     ]
     total_components = 20
-    n_components = parser.Latent
+    n_components = args.Latent
     nfiles= 12
     n_data = 3000 * nfiles
     npoints = 4096*5

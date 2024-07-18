@@ -106,7 +106,7 @@ if __name__ == '__main__':
     device_type =  "cpu"
     device = torch.device(device_type)
     
-    latent_dim = parser.Latent
+    latent_dim = args.Latent
     use_pred = False
 
     ## Data reading
