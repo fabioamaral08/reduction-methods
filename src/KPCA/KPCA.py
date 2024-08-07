@@ -1,4 +1,5 @@
 import numpy as np
+from sklearn.gaussian_process.kernels import Matern
 
 __all__ = [
     'compute_kernel_matrix',
@@ -40,6 +41,9 @@ def compute_kernel_matrix(X1, X2, kernel_type, theta=None, eps=None, dx = 1, dy 
         return np.tanh(eps * np.dot(X1, X2.T) + 1)
     elif kernel_type == 'cosine':
         return np.dot(X1, X2.T) / (np.linalg.norm(X1, axis=1, keepdims=True) * np.linalg.norm(X2, axis=1, keepdims=True).T)
+    elif kernel_type == 'matern':
+        gamma, nu = eps
+        return Matern(length_scale=gamma, nu=nu)(X1,X2)
 
     else:
 
@@ -123,7 +127,7 @@ def compute_kernel_matrix(X1, X2, kernel_type, theta=None, eps=None, dx = 1, dy 
 
         
         else:
-            raise ValueError("Invalid kernel type. Options are 'linear', 'oldroyd', 'ptt', 'giesekus' or 'fene-p'.")
+            raise ValueError("Invalid kernel type. Options are 'linear', 'cosine', 'sigmoid', 'poly', 'rbf', 'oldroyd', 'ptt', 'giesekus' or 'fene-p'.")
         
 def kpca(X, n_components=2, kernel='linear', theta=None, eps = None, norm='DIV', dx = 1, dy = None):
     """
@@ -260,7 +264,10 @@ class KernelPCA():
 
         # for inverse transform:
         #Get reconst matrix
-        self.thetas_fit = np.diag(theta)[None,:]
+        try:
+            self.thetas_fit = np.diag(theta)[None,:]
+        except ValueError as e:
+            self.thetas_fit = theta
         self.train_R(degree, center,n_components, use_chol)
         self._is_fitted = True
 
@@ -300,8 +307,7 @@ class KernelPCA():
             M = np.eye(m) - np.full((m,m), 1.0/m)
             self.U_fit = M@self.normalized_eigenvector
 
-
-            X_kpca = self.normalized_eigenvector * self.eigenvalues
+            X_kpca = eigenvectors * np.sqrt(eigenvalues[:self.n_components])
             sqrt_theta = np.sqrt(self.thetas_fit).T 
             ones_fit = np.ones((self.X_fit.shape[0],1))
             Q2 = np.concatenate([ones_fit]+ [ones_fit / sqrt_theta ]  + [(X_kpca)**(k+1) for k in range(self.degree)] + [(X_kpca / sqrt_theta)**(k+1) for k in range(self.degree)], axis=1)
@@ -310,7 +316,10 @@ class KernelPCA():
 
     def transform(self,X, theta=None, eps = None, dx = 1, dy = None):
         if theta is not None:
-            theta = np.sqrt(theta@self.thetas_fit)
+            try:
+                theta = np.sqrt(theta@self.thetas_fit)
+            except TypeError:
+                theta = np.sqrt(theta*self.thetas_fit)
         K = compute_kernel_matrix(X, self.X_fit, self.kernel, theta, eps,dx,dy)
         # ones  = np.full(K.shape, 1/self.K_fit.shape[0])
         # X_kpca = (K - ones@self.K_fit) @ self.U_fit
