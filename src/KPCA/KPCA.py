@@ -268,46 +268,54 @@ class KernelPCA():
             self.thetas_fit = np.diag(theta)[None,:]
         except ValueError as e:
             self.thetas_fit = theta
-        self.train_R(degree, center,n_components, use_chol)
+        self.center = center
+        self.train_R(degree, center,n_components, use_chol,recalc_eig=True)
         self._is_fitted = True
 
 
-    def train_R(self,degree = 1, center= True, n_components = 3, use_chol = 0):
+    def train_R(self,degree = 1, center= True, n_components = 3, use_chol = 0, recalc_eig = False):
             # Eigen decomposition 
             self.degree = degree
-            self.center = center
+            if center != self.center:
+                self.center = center
+                recalc_eig = True
             self.n_components = n_components
             K = self.K_fit
-            if center:
-                K_row = np.mean(K, axis=0)
-                K_col = np.mean(K, axis=1)[:,None]
-                K_all = np.mean(K)
-                K_centered = K - K_row - K_col + K_all
-            else:
-                K_centered = K
+            if not self._is_fitted or recalc_eig:
+                if center:
+                    K_row = np.mean(K, axis=0)
+                    K_col = np.mean(K, axis=1)[:,None]
+                    K_all = np.mean(K)
+                    K_centered = K - K_row - K_col + K_all
+                else:
+                    K_centered = K
 
-            if use_chol > 0:
-                F,_ = chol(K_centered,use_chol) # how to get a good value for k?
-                eigenvectors,singularvalues,_ = np.linalg.svd(F,full_matrices=False)
-                self.normalized_eigenvector = eigenvectors[:, :self.n_components] / singularvalues[:self.n_components]
-                self.eigenvalues = singularvalues[:self.n_components]**2
-            else:
-                eigenvalues, eigenvectors = np.linalg.eigh(K_centered)
-                # Sort eigenvalues and eigenvectors in descending order
-                indices = np.argsort(eigenvalues)[::-1]
-                eigenvalues = eigenvalues[indices]
-                eigenvectors = eigenvectors[:, indices]
+                if use_chol > 0:
+                    F,_ = chol(K_centered,use_chol) # how to get a good value for k?
+                    eigenvectors,singularvalues,_ = np.linalg.svd(F,full_matrices=False)
+                    self.all_eignevectors = eigenvectors
+                    self.normalized_eigenvector = eigenvectors[:, :self.n_components] / singularvalues[:self.n_components]
+                    self.eigenvalues = singularvalues**2
+                else:
+                    eigenvalues, eigenvectors = np.linalg.eigh(K_centered)
+                    # Sort eigenvalues and eigenvectors in descending order
+                    indices = np.argsort(eigenvalues)[::-1]
+                    eigenvalues = eigenvalues[indices]
+                    eigenvectors = eigenvectors[:, indices]
 
-                # Select top n_components eigenvectors
-                eigenvectors = eigenvectors[:, :self.n_components]
-                self.normalized_eigenvector = eigenvectors / np.sqrt(eigenvalues[:self.n_components])
-                self.eigenvalues = eigenvalues[:self.n_components]
-                    # for transform:
+                    # Select top n_components eigenvectors
+                    self.all_eignevectors = eigenvectors
+                    eigenvectors = eigenvectors[:, :self.n_components]
+                    self.normalized_eigenvector = eigenvectors / np.sqrt(eigenvalues[:self.n_components])
+                    self.eigenvalues = eigenvalues
+            else:
+                self.normalized_eigenvector = self.all_eignevectors[:, :self.n_components] / np.sqrt(self.eigenvalues[:self.n_components])
+                        # for transform:
             m = self.K_fit.shape[0]
             M = np.eye(m) - np.full((m,m), 1.0/m)
             self.U_fit = M@self.normalized_eigenvector
 
-            X_kpca = eigenvectors * np.sqrt(eigenvalues[:self.n_components])
+            X_kpca = self.normalized_eigenvector * self.eigenvalues[:self.n_components]
             sqrt_theta = np.sqrt(self.thetas_fit).T 
             ones_fit = np.ones((self.X_fit.shape[0],1))
             Q2 = np.concatenate([ones_fit]+ [ones_fit / sqrt_theta ]  + [(X_kpca)**(k+1) for k in range(self.degree)] + [(X_kpca / sqrt_theta)**(k+1) for k in range(self.degree)], axis=1)
@@ -324,8 +332,11 @@ class KernelPCA():
         # ones  = np.full(K.shape, 1/self.K_fit.shape[0])
         # X_kpca = (K - ones@self.K_fit) @ self.U_fit
         if self.center:
-            mean = self.K_fit.mean(0)[None,:]
-            X_kpca = (K - mean) @ self.U_fit
+            K_row = np.mean(self.K_fit, axis=0)
+            K_col = np.mean(self.K_fit, axis=1)[:,None]
+            K_all = np.mean(self.K_fit)
+            K_centered = K - K_row - K_col + K_all
+            X_kpca = K_centered @ self.normalized_eigenvector
         else:
             X_kpca = K @ self.normalized_eigenvector
         return X_kpca
