@@ -147,7 +147,7 @@ def get_min_max(dataset):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
-    parser.add_argument('--Beta', '-b', default=1.0, type=float, help="KL divergence weight") 
+    parser.add_argument('--Beta', '-b', default=0.0025, type=float, help="KL divergence weight") 
     parser.add_argument('--Latent', '-d', default=3, type=int, help="Latent dimension") 
     parser.add_argument('--Pred', '-p', default=0, type=int, help="Use the predictor") 
     args = parser.parse_args()
