@@ -21,7 +21,7 @@ def get_matrix(filename, ndata = 3000):
     Wi = float(f_split[3].replace('Wi',''))
     beta = float(f_split[4].replace('beta',''))
     fields = np.load(f'{dspath}/{filename}', allow_pickle=True)["fields"].item()
-    param =  np.repeat((Re,Wi,beta), 3000).reshape((3,-1)).T
+    param =  np.repeat((Re,Wi,beta), ntimes).reshape((3,-1)).T
     #Extract the fields
     u = fields["vel-u"]
     v = fields["vel-v"]
@@ -66,8 +66,8 @@ if __name__ == '__main__':
     Nx = Ny = 80
     npoints = (Nx * Ny)*5
     nfiles = len(files)
-    datset_matrix = np.memmap(f'{dspath}/dataset.dat',dtype='float32', mode='w+', shape=(3000*nfiles, npoints))
-    datset_theta = np.memmap(f'{dspath}/dataset_theta.dat',dtype='float32', mode='w+', shape=(3000*nfiles,1))
+    datset_matrix = np.memmap(f'{dspath}/dataset.dat',dtype='float32', mode='w+', shape=(ntimes*nfiles, npoints))
+    datset_theta = np.memmap(f'{dspath}/dataset_theta.dat',dtype='float32', mode='w+', shape=(ntimes*nfiles,1))
     for i in range(len(files)):
         X1, t = get_matrix(files[i], ntimes)
         datset_matrix[i*ntimes:(i+1)*ntimes,:] = X1[:]
