@@ -52,19 +52,12 @@ if __name__ == '__main__':
     X = []
     P = []
 
-    mat_files = [   
-        f'{dspath}/Kernel_oldroyd.npz',
-        f'{dspath}/Kernel_linear.npz',
-        f'{dspath}/Kernel_poly.npz',
-        f'{dspath}/Kernel_rbf.npz',
-        f'{dspath}/Kernel_cosine.npz'
-        ]
     kpca_files = [   
         f'oldroyd',
         f'linear',
-        f'poly',
-        f'rbf',
-        f'cosine'
+        # f'poly',
+        # f'rbf',
+        # f'cosine'
         ]
     k_args = [
         OLD_KWD,
