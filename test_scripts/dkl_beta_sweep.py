@@ -108,7 +108,7 @@ def calc_dkl(X,param, ae):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
+    parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse', 'energy' , 'both']")
 
     args = parser.parse_args()
     torch.manual_seed(42) # reprodutibility

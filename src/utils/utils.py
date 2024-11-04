@@ -3,7 +3,7 @@ import torch
 import glob
 __all__ = ['get_data', 'calc_energy', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk', 'strip_cross', 'reconstruct_cross', 'np2torch', 'torch2np']
 
-def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data', cross_center = False):
+def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data', cross_center = False, cut_first = True):
     """
     Reads a file that contains the data of the simulation given the paramters.
 
@@ -81,7 +81,10 @@ def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= Fa
     if from_end:
         X = T[:,-n_data:-1]
     else:
-        X = T[:,1:n_data+1]
+        if cut_first:
+            X = T[:,1:n_data+1]
+        else:
+            X = T[:,:n_data]
     
     # Compute the temporal mean
     Xmean = X.mean(1).reshape(-1,1)

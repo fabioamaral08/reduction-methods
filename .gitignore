@@ -165,6 +165,7 @@ cython_debug/
 
 ModelsTorch/*
 Logs/
+test_scripts/Results/video*
 
 save_dataset_ae.py
 
