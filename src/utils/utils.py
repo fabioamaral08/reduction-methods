@@ -3,7 +3,7 @@ import torch
 import glob
 __all__ = ['get_data', 'calc_energy', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk', 'strip_cross', 'reconstruct_cross', 'np2torch', 'torch2np']
 
-def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data', cross_center = False):
+def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data', cross_center = False, cut_first = True):
     """
     Reads a file that contains the data of the simulation given the paramters.
 
@@ -35,8 +35,8 @@ def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= Fa
         in_filename = glob.glob(f"cross*_data_Re{Re:g}_Wi{Wi:g}_beta{beta:g}.npz",root_dir=dir_path)[0] # u,v,B
     elif case == '4roll': # 4-roll geometry
         in_filename = f"4_roll6_Re{Re:g}_Wi{Wi:g}_beta{beta:g}_dataset.npz"
-    elif case == 'giesekus': # cavity - Giesekus Fluid
-        in_filename = f"cavity_data_Re{Re:g}_Wi{Wi:g}_beta{beta:g}.npz" # u,v,B
+    elif case == '4roll7': # 4-roll geometry
+        in_filename = f"4_roll7_Re{Re:g}_Wi{Wi:g}_beta{beta:g}_dataset.npz"
     elif case == 'cavity': #cavity - Oldroyd fluid
         in_filename = f"cavitytransU_data_Re{Re:g}_Wi{Wi:g}_beta{beta:g}.npz" # u,v,B
     elif case == 'cavity_ref': #refined mesh - Oldroyd fluid
@@ -81,7 +81,10 @@ def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= Fa
     if from_end:
         X = T[:,-n_data:-1]
     else:
-        X = T[:,1:n_data+1]
+        if cut_first:
+            X = T[:,1:n_data+1]
+        else:
+            X = T[:,:n_data]
     
     # Compute the temporal mean
     Xmean = X.mean(1).reshape(-1,1)
@@ -124,7 +127,7 @@ def calc_energy(X, Wi, beta, Re, dx = 0.0125, dy = None):
 
     elastic =  0.5 * ((txx + tyy)/(Re)*area).sum(0)
 
-
+    
     total_energy = (kinetic+elastic) + (1-beta)/(Wi*Re)
     return elastic, kinetic, total_energy
 

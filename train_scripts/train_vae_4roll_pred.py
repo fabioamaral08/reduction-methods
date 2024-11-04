@@ -180,22 +180,31 @@ if __name__ == '__main__':
 
     train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train, num_workers=0)
     test_loader =  DataLoader(test_dataset, batch_sampler=batch_sampler_test)
-    loss_energy = args.Loss.upper() == 'ENERGY'
+    loss_energy = args.Loss.upper()
     mse_loss = torch.nn.MSELoss()
-    if loss_energy:
+    if loss_energy == 'ENERGY':
         def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor, kld_weight = 0.0025):
                 # reconst_loss = torch.nn.MSELoss()(input, target)
                 reconst_loss = energy_loss(input, target, param)
                 kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
                 # kld_weight = 0.0025
                 return reconst_loss, kld_loss*kld_weight
-    else:
+    elif loss_energy == 'MSE':
         def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor = None, kld_weight = 0.0025):
                 reconst_loss = mse_loss(input, target)
                 # reconst_loss = energy_loss(input, target, param)
                 kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
                 # kld_weight = 0.0025
                 return reconst_loss, kld_loss*kld_weight
+    elif loss_energy == 'BOTH':
+            def loss_fn(input:torch.Tensor, target:torch.Tensor, mu:torch.Tensor, log_var:torch.Tensor, param:torch.tensor, kld_weight = 0.0025):
+                # reconst_loss = torch.nn.MSELoss()(input, target)
+                reconst_loss = energy_loss(input, target, param) + mse_loss(input, target)
+                kld_loss = torch.mean(-0.5 * torch.sum(1 + log_var - mu ** 2 - log_var.exp(), dim = 1), dim = 0)
+                # kld_weight = 0.0025
+                return reconst_loss, kld_loss*kld_weight
+    else:
+         raise Exception("Invalid loss function. Values are ['ENERGY', 'MSE', 'BOTH']")
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
     num_batches = len(train_loader)

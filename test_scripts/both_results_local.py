@@ -115,12 +115,12 @@ if __name__ == '__main__':
     device_type = "cuda" if torch.cuda.is_available() else "cpu"
     device = torch.device(device_type)
     
-    latent_dim = 20
+    latent_dim = 10
     use_pred = False
 
     ## Data reading
-    train_dataset = FileDataset('/container/fabio/npz_data/four_roll_train_osc', take_time = False)
-    test_dataset = FileDataset('/container/fabio/npz_data/four_roll_test_osc', take_time = False)
+    train_dataset = FileDataset('../../npz_data/four_roll_train_osc', take_time = False)
+    test_dataset = FileDataset('../../npz_data/four_roll_test_osc', take_time = False)
 
     #normalize data inside autoencoder
     lower_bound,  upper_bound = get_min_max(train_dataset)
@@ -128,7 +128,7 @@ if __name__ == '__main__':
     upper_bound = upper_bound.to(device)
 
     bs = 3000
-    loss_energy = args.Loss.upper() == 'ENERGY'
+    loss_energy = args.Loss.upper()
 
     # sampler = CaseSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir)
     batch_sampler_train = CaseBatchSampler(train_dataset.filenames, train_dataset.cases, train_dataset.root_dir, bs)
@@ -137,12 +137,12 @@ if __name__ == '__main__':
     train_loader = DataLoader(train_dataset, batch_sampler=batch_sampler_train, num_workers=0)
     test_loader =  DataLoader(test_dataset, batch_sampler=batch_sampler_test)
 
-    betas = [10**i for i in range(-4,2,1)]
+    betas = [10**i for i in range(-4,0,1)]
 
     dx = 2 * np.pi / 2**6
     Re = 1
     for beta in betas:
-        pasta = f'/container/fabio/reduction-methods/ModelsTorch/VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}'
+        pasta = f'../../ModelsTorch/VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}'
         autoencoder = Autoencoder.ParametricVAEModule(n_input= train_dataset[0][0].shape[-1],latent_dim = latent_dim, num_params=2, max_in=upper_bound, min_in=lower_bound, pred=use_pred).to(device)
         autoencoder.load_state_dict(torch.load(f'{pasta}/best_autoencoder',map_location=device))
         autoencoder.eval()
@@ -180,7 +180,7 @@ if __name__ == '__main__':
 
             #DKL:
             dkl = -0.5 * torch.mean(1 + log_var - mu ** 2 - log_var.exp(), dim = 0)
-            with open(f'/container/fabio/reduction-methods/test_scripts/Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_train.txt', 'a+') as f:
+            with open(f'Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_train.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error MSE: {energy_err:g}\n')
                 f.write(f'KL Divergence: {[f"{x:g}" for x in dkl]}\n\n')
@@ -219,7 +219,7 @@ if __name__ == '__main__':
 
             #DKL:
             dkl = -0.5 * torch.mean(1 + log_var - mu ** 2 - log_var.exp(), dim = 0)
-            with open(f'/container/fabio/reduction-methods/test_scripts/Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_test.txt', 'a+') as f:
+            with open(f'Results/results_VAE_4RollOSC_Latent_{latent_dim}_energy_{loss_energy}_beta_{beta:g}_test.txt', 'a+') as f:
                 f.write(f'Wi: {Wi:g}, beta: {b:g}, theta: {theta_data[0].item():g}\n')
                 f.write(f'Rel. energy error MSE: {energy_err:g}\n')
                 f.write(f'KL Divergence: {[f"{x:g}" for x in dkl]}\n\n')
