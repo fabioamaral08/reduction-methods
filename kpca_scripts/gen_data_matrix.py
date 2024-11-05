@@ -15,7 +15,7 @@ COS_KWD = {'kernel_type':'cosine', 'theta':None, 'eps':None, 'dx' : DX, 'dy' : D
 
 def get_matrix(filename, ndata = 3000):
     #reads the file
-    filename_no_ext = "".join(filename.split('.')[:-1])
+    filename_no_ext = ".".join(filename.split('.')[:-1])
     f_split = filename_no_ext.split('_')
     Re = float(f_split[2].replace('Re',''))
     Wi = float(f_split[3].replace('Wi',''))
