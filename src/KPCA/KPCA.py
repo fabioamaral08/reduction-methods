@@ -268,6 +268,10 @@ class KernelPCA():
             self.thetas_fit = np.diag(theta)[None,:]
         except ValueError as e:
             self.thetas_fit = theta
+        try:
+            self.eps_fit = np.diag(eps)[None,:]
+        except ValueError as e:
+            self.eps_fit = eps
         self.center = center
         self.train_R(degree, center,n_components, use_chol,recalc_eig=True)
         self._is_fitted = True
@@ -311,14 +315,17 @@ class KernelPCA():
             else:
                 self.normalized_eigenvector = self.all_eignevectors[:, :self.n_components] / np.sqrt(self.eigenvalues[:self.n_components])
                         # for transform:
-            m = self.K_fit.shape[0]
-            M = np.eye(m) - np.full((m,m), 1.0/m)
-            self.U_fit = M@self.normalized_eigenvector
+            # m = self.K_fit.shape[0]
+            # M = np.eye(m) - np.full((m,m), 1.0/m)
+            # self.U_fit = M@self.normalized_eigenvector
 
             X_kpca = self.normalized_eigenvector * self.eigenvalues[:self.n_components]
             sqrt_theta = np.sqrt(self.thetas_fit).T 
             ones_fit = np.ones((self.X_fit.shape[0],1))
             Q2 = np.concatenate([ones_fit]+ [ones_fit / sqrt_theta ]  + [(X_kpca)**(k+1) for k in range(self.degree)] + [(X_kpca / sqrt_theta)**(k+1) for k in range(self.degree)], axis=1)
+            if self.kernel == 'giesekus':
+                sqrt_alpha = np.sqrt(self.eps_fit).T * sqrt_theta
+                Q2 = np.concatenate([Q2] + [ones_fit / sqrt_alpha] + [(X_kpca / sqrt_alpha)**(k+1) for k in range(self.degree)], axis=1)
             R, _, _, _ = np.linalg.lstsq(Q2, self.X_fit, rcond=None)
             self.R = R.T
 
@@ -328,6 +335,11 @@ class KernelPCA():
                 theta = np.sqrt(theta@self.thetas_fit)
             except TypeError:
                 theta = np.sqrt(theta*self.thetas_fit)
+        if self.kernel == 'giesekus':
+            try:
+                eps = np.sqrt(eps@self.eps_fit)
+            except TypeError:
+                eps = np.sqrt(eps*self.eps_fit)
         K = compute_kernel_matrix(X, self.X_fit, self.kernel, theta, eps,dx,dy)
         # ones  = np.full(K.shape, 1/self.K_fit.shape[0])
         # X_kpca = (K - ones@self.K_fit) @ self.U_fit
@@ -341,10 +353,13 @@ class KernelPCA():
             X_kpca = K @ self.normalized_eigenvector
         return X_kpca
     
-    def invert_transform(self, Phi, theta):
-        sqrt_theta = np.sqrt(theta).T
+    def invert_transform(self, Phi, theta, eps = None):
+        sqrt_theta = np.sqrt(theta)
         ones_phi = np.ones((Phi.shape[0],1))
         Phi_ext = np.concatenate([ones_phi] + [ones_phi / sqrt_theta] + [Phi**(k+1) for k in range(self.degree)]+ [(Phi / sqrt_theta)**(k+1) for k in range(self.degree)], axis=1)
+        if self.kernel == 'giesekus':
+            sqrt_alpha = np.sqrt(eps) * sqrt_theta
+            Phi_ext = np.concatenate([Phi_ext] + [ones_phi / sqrt_alpha] + [(Phi / sqrt_alpha)**(k+1) for k in range(self.degree)], axis=1)
         #reconstruction
         X = self.R@Phi_ext.T
         return X
