@@ -1,4 +1,5 @@
 import sys 
+import os
 sys.path.append(os.path.join(os.path.split(sys.path[0])[0], 'src'))
 import numpy as np
 #for some reason, matplotlib crashes without these lines
@@ -13,7 +14,6 @@ from torch.utils.data import TensorDataset, DataLoader
 
 from utils import calc_energy, np2torch
 import glob
-import os
 import time
 # from importlib import reload
 import argparse
