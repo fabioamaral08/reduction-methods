@@ -121,7 +121,7 @@ if __name__ == '__main__':
 
     X_torch = np2torch(X.T).float()
     train_dataset = TensorDataset(X_torch)
-    train_loader = DataLoader(train_dataset, batch_size=1000)
+    train_loader = DataLoader(train_dataset, batch_size=ntimes)
     num_batches = len(train_loader)
 
     loss_energy = args.Loss.upper()
@@ -164,7 +164,7 @@ if __name__ == '__main__':
     kl_weight = 1e-3
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
-    model_name  = files[file_ind].split('.')[0]
+    model_name  = ".".join(files[file_ind].split('.')[:-1])
     pasta = f'{dir_prefix}/reduction-methods/ModelsTorch/VAE_Latent_{latent_dim}_energy_{loss_energy}_{model_name}'
     os.makedirs(pasta, exist_ok=True)
 
