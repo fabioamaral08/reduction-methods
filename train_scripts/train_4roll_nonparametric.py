@@ -91,7 +91,7 @@ def get_matrix(filename, dspath, ndata = 3000):
     T22 = q[:,:,:,4].reshape((q.shape[0]**2, q.shape[2]))
     T = np.concatenate((TU, TV, T11,T12,T22), axis=1).reshape(-1, q.shape[2]) # by column axis=1(intercal..), by row axis=0
     theta_sqrt = np.sqrt((1-param[:,2])/(param[:,0] * param[:,1])).reshape((-1,1))
-    X =  T[:, -ndata:]
+    X =  T[:, 200:200+ndata]
     return X.T, theta_sqrt, (Re, Wi, beta)
 if __name__ == '__main__':
 
@@ -104,10 +104,11 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     # dspath = '/home/fabio/npz_data/KPCA_4roll' # Four roll
-    dspath = f'{dir_prefix}/npz_data/KPCA_4roll' # cavity
+    # dspath = f'{dir_prefix}/npz_data/KPCA_4roll' # cavity
+    dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc' # cavity
     file_ind = args.Index
     files = glob.glob('*.npz', root_dir=dspath)
-    ntimes = 1000
+    ntimes = 4000
     n_data = ntimes * len(files)
     X, sqrt_theta, param = get_matrix(files[file_ind], dspath, ntimes)
 
