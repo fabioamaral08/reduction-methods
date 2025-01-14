@@ -105,10 +105,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
     # dspath = '/home/fabio/npz_data/KPCA_4roll' # Four roll
     # dspath = f'{dir_prefix}/npz_data/KPCA_4roll' # cavity
-    dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc6' # cavity
+    dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc' # cavity
     file_ind = args.Index
     files = glob.glob('*.npz', root_dir=dspath)
-    ntimes = 3000
+    ntimes = 4000
     n_data = ntimes * len(files)
     X, sqrt_theta, param = get_matrix(files[file_ind], dspath, ntimes)
 
