@@ -111,7 +111,7 @@ if __name__ == '__main__':
     for file in files:
         print(file)
     print('\n\n')
-    ntimes = 4000
+    ntimes = 3000
     n_data = ntimes * len(files)
     X, sqrt_theta, param = get_matrix(files[file_ind], dspath, ntimes)
 
@@ -120,12 +120,12 @@ if __name__ == '__main__':
     beta = param[2]
     theta_mult = sqrt_theta @ sqrt_theta.T
     theta = np.diag(theta_mult)[:,None]
-    dx = dy = (np.pi)/32
+    dx = dy = (np.pi)/64
     _, _, energy_X = calc_energy(X.T,Wi,beta, Re, dx, dy)
 
     X_torch = np2torch(X.T).float()
     train_dataset = TensorDataset(X_torch)
-    train_loader = DataLoader(train_dataset, batch_size=ntimes)
+    train_loader = DataLoader(train_dataset, batch_size=ntimes//2)
     num_batches = len(train_loader)
 
     loss_energy = args.Loss.upper()
