@@ -108,6 +108,9 @@ if __name__ == '__main__':
     dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc' # cavity
     file_ind = args.Index
     files = glob.glob('*.npz', root_dir=dspath)
+    for file in files:
+        print(file)
+    print('\n\n')
     ntimes = 4000
     n_data = ntimes * len(files)
     X, sqrt_theta, param = get_matrix(files[file_ind], dspath, ntimes)
