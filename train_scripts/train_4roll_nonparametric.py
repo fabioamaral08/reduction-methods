@@ -94,7 +94,7 @@ def get_matrix(filename, dspath, ndata = 3000):
     X =  T[:, 200:200+ndata]
     return X.T, theta_sqrt, (Re, Wi, beta)
 if __name__ == '__main__':
-
+    print(np.version.version)
     parser = argparse.ArgumentParser()
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
     parser.add_argument('--Latent', '-d', default=3, type=int, help="Latent dimension") 
