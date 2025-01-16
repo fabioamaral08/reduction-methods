@@ -104,8 +104,8 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
     # dspath = '/home/fabio/npz_data/KPCA_4roll' # Four roll
-    # dspath = f'{dir_prefix}/npz_data/KPCA_4roll' # cavity
-    dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc' # cavity
+    dspath = f'{dir_prefix}/npz_data/KPCA_4roll' # cavity
+    # dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc' # cavity
     file_ind = args.Index
     files = glob.glob('*.npz', root_dir=dspath)
     for file in files:
@@ -120,7 +120,7 @@ if __name__ == '__main__':
     beta = param[2]
     theta_mult = sqrt_theta @ sqrt_theta.T
     theta = np.diag(theta_mult)[:,None]
-    dx = dy = (np.pi)/64
+    dx = dy = (np.pi)/32
     _, _, energy_X = calc_energy(X.T,Wi,beta, Re, dx, dy)
 
     X_torch = np2torch(X.T).float()
