@@ -182,7 +182,7 @@ if __name__ == '__main__':
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
     model_name  = ".".join(files[file_ind].split('.')[:-1])
-    pasta = f'{dir_prefix}/reduction-methods/ModelsTorch/VAE_Latent_{latent_dim}_energy_{loss_energy}_{model_name}'
+    pasta = f'{dir_prefix}/reduction-methods/ModelsTorch/VAE_Latent_{latent_dim}_energy_{loss_energy}_kl_{kl_weight}_{model_name}'
     os.makedirs(pasta, exist_ok=True)
 
     # Early stop
