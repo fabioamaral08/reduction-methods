@@ -66,6 +66,19 @@ def energy_loss(x,y,param, dx = 1/2**6):
     return loss.mean()
 
 def get_matrix(filename, dspath, ndata = 3000):
+    """
+    Reads a file containing fluid dynamics data, extracts relevant fields, and processes them into a matrix format.
+    Parameters:
+    filename (str): The name of the file to read.
+    dspath (str): The directory path where the file is located.
+    ndata (int, optional): The number of data points to process. Default is 3000.
+    Returns:
+    tuple: A tuple containing:
+        - X.T (numpy.ndarray): The processed data matrix of shape (ndata, number of features).
+        - theta_sqrt (numpy.ndarray): The square root of the theta parameter of shape (ndata, 1).
+        - (Re, Wi, beta) (tuple): A tuple containing the Reynolds number (Re), Weissenberg number (Wi), and beta parameter.
+    """
+
     #reads the file
     filename_no_ext = ".".join(filename.split('.')[:-1])
     f_split = filename_no_ext.split('_')
@@ -99,13 +112,13 @@ if __name__ == '__main__':
     parser.add_argument('--Loss', '-l', default='mse', type=str, help="Type of the loss ['mse' or 'energy']")
     parser.add_argument('--Latent', '-d', default=3, type=int, help="Latent dimension") 
     parser.add_argument('--Index', '-i', default=0, type=int, help="File Index") 
+    parser.add_argument('--KLWeight', '-k', default=1e-3, type=float, help="Weight for the KL divergence term")
 
     dir_prefix = '/container/fabio'
 
     args = parser.parse_args()
-    # dspath = '/home/fabio/npz_data/KPCA_4roll' # Four roll
-    dspath = f'{dir_prefix}/npz_data/KPCA_4roll' # cavity
-    # dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc' # cavity
+    dspath = f'{dir_prefix}/npz_data/KPCA_4roll' # Four roll mesh lv 7
+    # dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc' # Four roll mesh lv 6
     file_ind = args.Index
     files = glob.glob('*.npz', root_dir=dspath)
     for file in files:
@@ -120,7 +133,7 @@ if __name__ == '__main__':
     beta = param[2]
     theta_mult = sqrt_theta @ sqrt_theta.T
     theta = np.diag(theta_mult)[:,None]
-    dx = dy = (np.pi)/32
+    dx = dy = (np.pi)/64
     _, _, energy_X = calc_energy(X.T,Wi,beta, Re, dx, dy)
 
     X_torch = np2torch(X.T).float()
@@ -165,7 +178,7 @@ if __name__ == '__main__':
     autoencoder = Autoencoder.VariationalAutoencoderModule(X_torch.shape[-1], latent_dim, max_in, min_in).to(device)
 
     learning_rate = 1e-4
-    kl_weight = 1e-3
+    kl_weight = args.KLWeight
     optimizer = torch.optim.Adam(autoencoder.parameters(),lr = learning_rate)
 
     model_name  = ".".join(files[file_ind].split('.')[:-1])
