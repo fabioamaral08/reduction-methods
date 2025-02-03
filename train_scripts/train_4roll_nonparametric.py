@@ -117,8 +117,8 @@ if __name__ == '__main__':
     dir_prefix = '/container/fabio'
 
     args = parser.parse_args()
-    dspath = f'{dir_prefix}/npz_data/KPCA_4roll' # Four roll mesh lv 7
-    # dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc' # Four roll mesh lv 6
+    dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc' # Four roll mesh lv 7
+    # dspath = f'{dir_prefix}/npz_data/KPCA_4roll_osc6' # Four roll mesh lv 6
     file_ind = args.Index
     files = glob.glob('*.npz', root_dir=dspath)
     for file in files:
