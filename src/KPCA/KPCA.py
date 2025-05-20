@@ -341,12 +341,12 @@ class KernelPCA():
             except TypeError:
                 eps = np.sqrt(eps*self.eps_fit)
         K = compute_kernel_matrix(X, self.X_fit, self.kernel, theta, eps,dx,dy)
-        # ones  = np.full(K.shape, 1/self.K_fit.shape[0])
-        # X_kpca = (K - ones@self.K_fit) @ self.U_fit
+
         if self.center:
             K_row = np.mean(self.K_fit, axis=0)
-            K_col = np.mean(self.K_fit, axis=1)[:,None]
+            K_col = (np.sum(K, axis=1) / K_row.shape[0])[:, None]
             K_all = np.mean(self.K_fit)
+
             K_centered = K - K_row - K_col + K_all
             X_kpca = K_centered @ self.normalized_eigenvector
         else:
