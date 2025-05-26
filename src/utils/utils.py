@@ -131,6 +131,47 @@ def calc_energy(X, Wi, beta, Re, dx = 0.0125, dy = None):
     total_energy = (kinetic+elastic) + (1-beta)/(Wi*Re)
     return elastic, kinetic, total_energy
 
+def calc_energy_point(X, Wi, beta, Re, dx = 0.0125, dy = None):
+    """
+    Compute the total energy of a visco-elastic flow
+
+    Parameters
+    ----------
+    X : array_like
+        Simulation data
+    Wi, beta, Re : float
+                    Simulation paramters
+    dx : float
+        uniform mesh spacing
+
+    Returns
+    -------
+    elastic : array
+            The elastic energy on each snapshot of the input
+    kinetic : array
+            The kinect energy on each snapshot of the input
+    total_energy: array
+            The total energy on each snapshot of the input
+    """
+    if dy is None:
+        dy = dx
+    area = dx * dy
+    u = X[0::5]
+    v = X[1::5]
+    bxx = X[2::5]
+    bxy = X[3::5]
+    byy = X[4::5]
+
+    kinetic = 0.5 * ((u**2 + v**2)*area)
+    txx = (bxx**2 + bxy**2 -1) * (1-beta)/Wi
+    tyy = (bxy**2 + byy**2 -1) * (1-beta)/Wi
+
+    elastic =  0.5 * ((txx + tyy)/(Re)*area)
+
+    
+    total_energy = (kinetic+elastic) + (1-beta)/(Wi*Re)
+    return elastic, kinetic, total_energy
+
 def tau2conf(T,Wi, beta):
     A = T * Wi/(1-beta)
     A[...,0] +=1
