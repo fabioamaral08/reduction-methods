@@ -353,7 +353,9 @@ class KernelPCA():
             X_kpca = K @ self.normalized_eigenvector
         return X_kpca
     
-    def invert_transform(self, Phi, theta, eps = None):
+    def invert_transform(self, Phi, theta=None, eps = None):
+        if theta is None:
+            theta = 1
         sqrt_theta = np.sqrt(theta)
         ones_phi = np.ones((Phi.shape[0],1))
         Phi_ext = np.concatenate([ones_phi] + [ones_phi / sqrt_theta] + [Phi**(k+1) for k in range(self.degree)]+ [(Phi / sqrt_theta)**(k+1) for k in range(self.degree)], axis=1)
