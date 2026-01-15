@@ -1,0 +1,18 @@
+exp_id,geom,constitutive_model,kernel,task,Re,Wi,beta,theta,r,poly_deg,relax_coeff_nu,reg_weight_lam,frob_mean,frob_max,energy_mean,energy_max,stable,n_terms,coef_norm,run_dir,metrics_path,fig_recon_path,fig_rollout_path,sindy_model_path,timestamp_utc,notes
+modes_cavity_oldroyd_Re_0.01_Wi_5_beta_0.5_kernel_linear_nmodes_4,cavity,Oldroyd-B,linear,create_modes,,5.0,0.5,,4,,,,,,,,,,,,,,,,2026-01-15T18:49:28Z,Create data for reduction
+modes_cavity_oldroyd_Re_0.01_Wi_5_beta_0.5_kernel_oldroyd_nmodes_4,cavity,Oldroyd-B,oldroyd,create_modes,,5.0,0.5,,4,,,,,,,,,,,,,,,,2026-01-15T18:49:28Z,Create data for reduction
+modes_cavity_oldroyd_Re_100_Wi_5_beta_0.5_kernel_linear_nmodes_4,cavity,Oldroyd-B,linear,create_modes,,5.0,0.5,,4,,,,,,,,,,,,,,,,2026-01-15T18:49:28Z,Create data for reduction
+modes_cavity_oldroyd_Re_100_Wi_5_beta_0.5_kernel_oldroyd_nmodes_4,cavity,Oldroyd-B,oldroyd,create_modes,,5.0,0.5,,4,,,,,,,,,,,,,,,,2026-01-15T18:49:28Z,Create data for reduction
+modes_cavity_oldroyd_Re_10_Wi_5_beta_0.5_kernel_linear_nmodes_4,cavity,Oldroyd-B,linear,create_modes,,5.0,0.5,,4,,,,,,,,,,,,,,,,2026-01-15T18:49:28Z,Create data for reduction
+modes_cavity_oldroyd_Re_10_Wi_5_beta_0.5_kernel_oldroyd_nmodes_4,cavity,Oldroyd-B,oldroyd,create_modes,,5.0,0.5,,4,,,,,,,,,,,,,,,,2026-01-15T18:49:28Z,Create data for reduction
+modes_cavity_oldroyd_Re_0.001_Wi_0.5_beta_0.5_kernel_linear_nmodes_4,cavity,Oldroyd-B,linear,create_modes,,0.5,0.5,,4,,,,,,,,,,,,,,,,2026-01-15T18:49:29Z,Create data for reduction
+modes_cavity_oldroyd_Re_0.001_Wi_0.5_beta_0.5_kernel_oldroyd_nmodes_4,cavity,Oldroyd-B,oldroyd,create_modes,,0.5,0.5,,4,,,,,,,,,,,,,,,,2026-01-15T18:49:29Z,Create data for reduction
+optuna_cavity_oldroyd_Re_100_Wi_5_beta_0.5_kernel_linear_nmodes_2,cavity,Oldroyd-B,linear,create_modes,,5.0,0.5,,2,,,,,,,,,,,,,,,,2026-01-15T18:54:37Z,Run Optuna for hyperparameter tuning
+optuna_cavity_oldroyd_Re_100_Wi_5_beta_0.5_kernel_oldroyd_nmodes_2,cavity,Oldroyd-B,oldroyd,create_modes,,5.0,0.5,,2,,,,,,,,,,,,,,,,2026-01-15T19:45:43Z,Run Optuna for hyperparameter tuning
+optuna_cavity_oldroyd_Re_10_Wi_5_beta_0.5_kernel_linear_nmodes_2,cavity,Oldroyd-B,linear,create_modes,,5.0,0.5,,2,,,,,,,,,,,,,,,,2026-01-09T01:49:08Z,Run Optuna for hyperparameter tuning
+optuna_cavity_oldroyd_Re_10_Wi_5_beta_0.5_kernel_oldroyd_nmodes_2,cavity,Oldroyd-B,oldroyd,create_modes,,5.0,0.5,,2,,,,,,,,,,,,,,,,2026-01-15T19:59:41Z,Run Optuna for hyperparameter tuning
+optuna_cavity_oldroyd_Re_0.01_Wi_5_beta_0.5_kernel_linear_nmodes_2,cavity,Oldroyd-B,linear,create_modes,,5.0,0.5,,2,,,,,,,,,,,,,,,,2026-01-09T02:00:48Z,Run Optuna for hyperparameter tuning
+optuna_cavity_oldroyd_Re_0.01_Wi_5_beta_0.5_kernel_oldroyd_nmodes_2,cavity,Oldroyd-B,oldroyd,create_modes,,5.0,0.5,,2,,,,,,,,,,,,,,,,2026-01-09T02:14:13Z,Run Optuna for hyperparameter tuning
+optuna_cavity_oldroyd_Re_0.001_Wi_0.5_beta_0.5_kernel_linear_nmodes_2,cavity,Oldroyd-B,linear,create_modes,,0.5,0.5,,2,,,,,,,,,,,,,,,,2026-01-09T02:25:22Z,Run Optuna for hyperparameter tuning
+optuna_cavity_oldroyd_Re_0.001_Wi_0.5_beta_0.5_kernel_oldroyd_nmodes_2,cavity,Oldroyd-B,oldroyd,create_modes,,0.5,0.5,,2,,,,,,,,,,,,,,,,2026-01-09T02:26:23Z,Run Optuna for hyperparameter tuning
+optuna_cavity_oldroyd_Re_100_Wi_5_beta_0.5_kernel_linear_nmodes_3,cavity,Oldroyd-B,linear,create_modes,,5.0,0.5,,3,,,,,,,,,,,,,,,,2026-01-15T19:58:15Z,Run Optuna for hyperparameter tuning
