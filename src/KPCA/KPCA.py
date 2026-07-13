@@ -26,12 +26,14 @@ def chol(A,k):
         s.append(si)
     return F,s
 
-def compute_kernel_matrix(X1, X2, kernel_type, theta=None, eps=None, dx = 1, dy = None):
+def compute_kernel_matrix(X1, X2, kernel_type, theta=None, eps=None, dx = 1., dy = None):
     if kernel_type == 'linear':
         return np.dot(X1, X2.T)
     elif kernel_type == 'poly':
         return (np.dot(X1, X2.T) + 1) ** eps
     elif kernel_type == 'rbf':
+        if eps is None:
+            raise ValueError("eps parameter is required for rbf.")
         eps = 1.0 / (2 * eps**2)
         X1_norm = np.sum(X1**2, axis=1)
         X2_norm = np.sum(X2**2, axis=1)
@@ -42,10 +44,14 @@ def compute_kernel_matrix(X1, X2, kernel_type, theta=None, eps=None, dx = 1, dy 
     elif kernel_type == 'cosine':
         return np.dot(X1, X2.T) / (np.linalg.norm(X1, axis=1, keepdims=True) * np.linalg.norm(X2, axis=1, keepdims=True).T)
     elif kernel_type == 'matern':
+        if eps is None:
+            raise ValueError("eps parameter is required for matern.")
         gamma, nu = eps
         return Matern(length_scale=gamma, nu=nu)(X1,X2)
 
     else:
+        if theta is None:
+            raise ValueError("theta parameter is required for custom kernels.")
 
         #Separate the variables
         u1 = X1[...,0::5] # first velocity component
@@ -114,13 +120,26 @@ def compute_kernel_matrix(X1, X2, kernel_type, theta=None, eps=None, dx = 1, dy 
             return 0.5 * ptt
 
         elif kernel_type == 'fene-p':
+            ## Nested Version
+            # fenep = np.zeros((X1.shape[0], X2.shape[0]))# store the computations
+            # for i in range(X1.shape[0]): # For each snapshot of X1
+            #     for j in range(X2.shape[0]): # For each snapshot of X2
+            #         t = (bxx1[i]*bxx2[j] + 2*(bxy1[i]*bxy2[j]) + byy1[i]*byy2[j]) # Trace of (sqrt(C1) * sqrt(C2)) 
+            #         c = area * (eps*t)/(eps - t) 
+            #         if (t > eps).any():
+            #             print('ERRO NOS DADOS')
+            #         fenep[i,j] = c.sum()
 
-            fenep = np.zeros((X1.shape[0], X2.shape[0]))# store the computations
-            for i in range(X1.shape[0]): # For each snapshot of X1
-                for j in range(X2.shape[0]): # For each snapshot of X2
-                    t = (bxx1[i]*bxx2[j] + 2*(bxy1[i]*bxy2[j]) + byy1[i]*byy2[j]) # Trace of (sqrt(C1) * sqrt(C2)) 
-                    c = area * (eps*t)/(eps - t) 
-                    fenep[i,j] = c.sum()
+            ## GPT Version (more memory)
+            t = (
+                bxx1[:, None, :] * bxx2[None, :, :]
+                + 2.0 * (bxy1[:, None, :] * bxy2[None, :, :])
+                + byy1[:, None, :] * byy2[None, :, :]
+            )
+
+            if np.any(t > eps):
+                print("ERRO NOS DADOS")
+            fenep = (area * (eps * t) / (eps - t)).sum(axis=-1)
 
             fene = (area * u1)@u2.T + (area * v1)@v2.T + theta * (fenep) # Add the kinectic term
             return 0.5 * fene
@@ -219,7 +238,21 @@ class KernelPCA():
     def __init__(self) -> None:
         self._is_fitted = False
 
-    def fit(self,X, n_components=2, kernel='linear', theta=None, eps = None, dx = 1, dy = None, degree = 1, center = True , use_chol = 0):
+    def to_dict(self, include_private=True):
+        """Serialize instance attributes into a plain dictionary."""
+        data = {}
+        for name, value in vars(self).items():
+            if not include_private and name.startswith('_'):
+                continue
+            data[name] = value
+        return data
+
+    def from_dict(self, data):
+        """Restore instance attributes from a dictionary."""
+        for name, value in data.items():
+            setattr(self, name, value)
+
+    def fit(self,X, n_components=2, kernel='linear', theta=None, eps = None, dx = 1., dy = None, degree = 1, center = True , use_chol = 0):
         """
         Perform Kernel Principal Component Analysis (PCA) on input data X.
 
@@ -329,13 +362,15 @@ class KernelPCA():
             R, _, _, _ = np.linalg.lstsq(Q2, self.X_fit, rcond=None)
             self.R = R.T
 
-    def transform(self,X, theta=None, eps = None, dx = 1, dy = None):
+    def transform(self,X, theta=None, eps = None, dx = 1., dy = None):
         if theta is not None:
             try:
                 theta = np.sqrt(theta@self.thetas_fit)
             except TypeError:
                 theta = np.sqrt(theta*self.thetas_fit)
         if self.kernel == 'giesekus':
+            if eps is None:
+                raise ValueError("eps can't be None for giesekus kernel")
             try:
                 eps = np.sqrt(eps@self.eps_fit)
             except TypeError:
@@ -368,21 +403,23 @@ class KernelPCA():
     
     def save_model(self, filename, compressed = True):
         if self._is_fitted:
+            model_data = self.to_dict(include_private=True)
             if compressed:
-                np.savez_compressed(filename, eigvec = self.normalized_eigenvector, eigvalue = self.eigenvalues, K = self.K_fit, X = self.X_fit, kernel = self.kernel, U = self.U_fit, R = self.R)
+                np.savez_compressed(filename, **model_data)
             else:
-                np.savez(filename, eigvec = self.normalized_eigenvector, eigvalue = self.eigenvalues, K = self.K_fit, X = self.X_fit, kernel = self.kernel, U = self.U_fit, R = self.R)
+                np.savez(filename, **model_data)
         else:
             print('Nothing to save!')
 
 
     def load_model(self, filename):
         data = np.load(filename, allow_pickle=True)
-        self._is_fitted = True
-        self.normalized_eigenvector = data['eigvec']
-        self.eigenvalues = data['eigvalue']
-        self.K_fit = data['K']
-        self.X_fit = data['X']
-        self.kernel = data['kernel']
-        self.U_fit = data['U']
-        self.R = data['R']
+        restored = {}
+        for key in data.files:
+            value = data[key]
+            # Convert 0-d object arrays back to plain Python objects.
+            if isinstance(value, np.ndarray) and value.dtype == object and value.shape == ():
+                value = value.item()
+            restored[key] = value
+        self.from_dict(restored)
+        

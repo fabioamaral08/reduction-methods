@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 import glob
-__all__ = ['get_data', 'calc_energy', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk', 'strip_cross', 'reconstruct_cross', 'np2torch', 'torch2np']
+__all__ = ['get_data', 'calc_energy', 'calc_energy_point', 'tau2conf', 'newton_B', 'get_data_toy', 'get_mesh_vtk', 'strip_cross', 'reconstruct_cross', 'np2torch', 'torch2np']
 
 def get_data(Re, Wi, beta = 0.5, case = 'cavity_ref', n_data = 100, from_end= False, eps = None, dir_path = 'npz_data', cross_center = False, cut_first = True):
     """
@@ -322,6 +322,16 @@ def np2torch(X):
     # convert data
     X_torch = torch.from_numpy(X_data)
     return X_torch
+
+def np2torch(X, convert=True):
+    Nt = X.shape[1] # number of snapshots
+    X_data = X.reshape((-1,5,Nt))
+    X_data = np.moveaxis(X_data,[0,2],[2,0]) # (Nx, Nc, Nt) -> (Nt, Nc, Nx)
+
+    # convert data
+    if convert:
+        X_data = torch.from_numpy(X_data)
+    return X_data
 
 def torch2np(X_torch):
     if X_torch.device.type != 'cpu':

@@ -13,16 +13,35 @@ import argparse
 
 import multiprocessing as mp
 import time
+
 class Objective:
-    def __init__(self, Phi, bias):
+    def __init__(self, Phi, bias, norm = False):
         self.Phi = Phi
         self.bias = bias
+        self.Phi_min = None
+        self.Phi_max = None
+        if norm:
+            self.is_norm = True
+            self.norm_data()
+        else:
+            self.is_norm = False
+
+    def norm_data(self):
+        if self.Phi_min is None or self.Phi_max is None:
+            self.Phi_min = self.Phi.min(axis=0)
+            self.Phi_max = self.Phi.max(axis=0)
+        self.Phi = (self.Phi - self.Phi_min) / (self.Phi_max - self.Phi_min)
+
+    def denorm_data(self):
+        if self.is_norm:
+            self.Phi = self.Phi * (self.Phi_max - self.Phi_min) + self.Phi_min # type: ignore
+
     def __call__(self, trial):
         """Objective function for Optuna optimization."""
         
         # Define hyperparameters to optimize
-        threshold = trial.suggest_float('relax_coeff_nu', 1e-6, 1, log=True)
-        nu = trial.suggest_float('reg_weight_lam', 1e-4, 1.5, log=True)
+        threshold = trial.suggest_float('reg_weight_lam', 1e-6, 1, log=True)
+        nu = trial.suggest_float('relax_coeff_nu', 1e-4, 1.5, log=True)
         max_iter = 2000
         
         # Initialize SR3 optimizer
@@ -74,18 +93,20 @@ def constraints_func(trial: optuna.trial.FrozenTrial):
     # > 0  => viola constraint (inviável)
     return trial.user_attrs.get("constraints", (0.0,))
 
-def optimize(Re, Wi, beta, kernel_type, n_modes_file = 10, n_modes_model=3,  bias=True, n_trials=100,verbose=True):
+def optimize(Re, Wi, beta,eps, kernel_type, n_modes_file = 10, n_modes_model=3,  bias=True, n_trials=100, normalize=False, verbose=True):
     """Run Optuna optimization."""
     
     if not verbose:
         optuna.logging.set_verbosity(optuna.logging.WARNING)
-    exp_id = f'optuna_cavity_oldroyd_Re_{Re:g}_Wi_{Wi:g}_beta_{beta:g}_kernel_{kernel_type}_nmodes_{n_modes_model}'
+    exp_id = f'optuna_cavity_oldroyd_Re_{Re:g}_Wi_{Wi:g}_beta_{beta:g}_kernel_{kernel_type}_nmodes_{n_modes_model}_norm_{normalize}'
+    if eps is not None:
+        exp_id += f'_eps_{eps:g}'
     storage_name = "sqlite:///runs/{}.db".format(exp_id)
     # Optuna optimization
-    Phi = load_modes(Re, Wi, beta, kernel_type, n_modes_file)[:,:n_modes_model]
+    Phi = load_modes(Re, Wi, beta, kernel_type, n_modes_file, eps)[:,:n_modes_model]
     sampler = TPESampler(seed=42, constraints_func=constraints_func)
     pruner = MedianPruner()
-    objective = Objective(Phi, bias)
+    objective = Objective(Phi, bias, norm=normalize)
     study = optuna.create_study(study_name = exp_id, storage=storage_name,
                                 sampler=sampler, pruner=pruner,load_if_exists=True)
     study.optimize(objective, n_trials=n_trials, catch=(RuntimeError, ValueError, FloatingPointError))
@@ -121,10 +142,12 @@ if __name__ == "__main__":
     parser.add_argument('-Re', type=float, help='Reynolds number')
     parser.add_argument('-Wi', type=float, help='Weissenberg number')
     parser.add_argument('-beta', type=float, help='Beta parameter')
+    parser.add_argument('-eps', type=float, help='non-linear parameter')
     parser.add_argument('-kernel_type', type=str, help='Kernel type')
     parser.add_argument('--n_modes_file', type=int, default=10, help='Number of modes in file')
     parser.add_argument('--n_modes_model', type=int, default=3, help='Number of modes for model')
-    parser.add_argument('--bias', type=bool, default=True, help='Include bias term')
+    parser.add_argument('--bias', type=bool, default=True, help='Include bias term', action=argparse.BooleanOptionalAction)
+    parser.add_argument('--norm', type=bool, default=False, help='Normalize data', action=argparse.BooleanOptionalAction)
     parser.add_argument('--n_trials', type=int, default=100, help='Number of trials')
     parser.add_argument('--verbose', type=bool, default=False, help='Show Info during optimization', action=argparse.BooleanOptionalAction)
     args = parser.parse_args()
@@ -132,13 +155,18 @@ if __name__ == "__main__":
     Re = args.Re
     Wi = args.Wi
     beta = args.beta
+    if args.eps:
+        eps = args.eps
+    else:
+        eps = None
     kernel_type = args.kernel_type
     n_modes_file = args.n_modes_file
     n_modes_model = args.n_modes_model
     bias = args.bias
+    norm = args.norm
     n_trials = args.n_trials
     verbose = args.verbose
     start_time = time.time()
-    optimize(Re, Wi, beta, kernel_type, n_modes_file=n_modes_file, n_modes_model=n_modes_model, bias=bias, n_trials=n_trials, verbose=verbose)
+    optimize(Re, Wi, beta, eps, kernel_type, n_modes_file=n_modes_file, n_modes_model=n_modes_model, bias=bias, n_trials=n_trials,normalize=norm, verbose=verbose)
     total_time = time.time() - start_time
     print(f'Exec time: {total_time:g}s')
