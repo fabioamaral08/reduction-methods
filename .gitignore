@@ -174,3 +174,4 @@ save_dataset_ae.py
 
 frame_*.png
 .npz
+/kpca_rom
