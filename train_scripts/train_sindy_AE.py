@@ -15,12 +15,12 @@ from optuna import TrialPruned
 class SnapshotDataset(Dataset):
     def __init__(self, folder):
         self.folder = folder
-        self.files = sorted(glob.glob(os.path.join(folder, "A_*.pt")))
+        self.files = sorted(glob.glob(os.path.join(folder, "B_*.pt")))
     def __len__(self):
         return len(self.files)
     def __getitem__(self, i):
         A = torch.load(self.files[i]).float()        # shape (H,W,C)
-        dA = torch.load(os.path.join(self.folder, f"dA_dt_{i:05d}.pt")).float()
+        dA = torch.load(os.path.join(self.folder, f"dB_dt_{i:05d}.pt")).float()
         # conv net expects (C,H,W)
         A = A.permute(2,0,1)
         dA = dA.permute(2,0,1)
