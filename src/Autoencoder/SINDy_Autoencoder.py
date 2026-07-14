@@ -191,7 +191,7 @@ def loss_sindy_ae(
     # JVP of decoder: x_hat = ψ(z),  dx_hat/dt = J_ψ(z) · dz/dt_hat
     x_hat, dxdt_hat = jvp(cae.decoder, (z,), (dzdt,), create_graph=True)
 
-    loss_rec  = kernel_loss(x, x_hat,L2) if rec_energy else mse(x, x_hat)
+    loss_rec  = kernel_loss(x, x_hat,L2).mean() if rec_energy else mse(x, x_hat)
     loss_dxdt = mse(x_dot, dxdt_hat)
     loss_dzdt = mse(dzdt_true, dzdt)
     loss_reg  = cae.sindy.coefficients.abs().mean()
