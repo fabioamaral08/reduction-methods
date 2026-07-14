@@ -88,9 +88,10 @@ def main():
     args = parser.parse_args()
 
     print(args.train_dir)
-    print(args.val_dir)
     sample_A, _ = SnapshotDataset(args.train_dir)[0]
     channels, H, W = sample_A.shape
+    print(sample_A.shape)
+
     save_dir = '../ModelsTorch/SINDy_AE'
 
     save_dir += '_Kernel' if args.rec_energy else '_MSE'
