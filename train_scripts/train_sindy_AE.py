@@ -93,8 +93,8 @@ def main():
     print(sample_A.shape)
 
     save_dir = '../ModelsTorch/SINDy_AE'
-
     save_dir += '_Kernel' if args.rec_energy else '_MSE'
+    os.makedirs(save_dir, exist_ok=True)
     L2 = args.L2 if args.rec_energy else None
     def objective(trial):
         n_filters = trial.suggest_int("n_filters", 8, 16, step=8)
@@ -122,6 +122,7 @@ def main():
     study.optimize(objective, n_trials=args.n_trials, n_jobs=1)
 
     best = study.best_params
+    print(best)
     model = SINDyAutoencoderModule(best["n_filters"], best["n_layers"], args.latent_dim, (channels, H, W), args.degree, args.include_bias).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=best["lr"], weight_decay=best["weight_decay"])
     _, _, train_loader, val_loader = build_loaders(args.train_dir, args.val_dir, args.batch_size)
