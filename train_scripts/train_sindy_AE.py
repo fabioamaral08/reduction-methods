@@ -97,13 +97,13 @@ def main():
     save_dir += '_Kernel' if args.rec_energy else '_MSE'
     L2 = args.L2 if args.rec_energy else None
     def objective(trial):
-        n_filters = trial.suggest_int("n_filters", 8, 64, step=8)
+        n_filters = trial.suggest_int("n_filters", 8, 16, step=8)
         n_layers = trial.suggest_int("n_layers", 1, 4)
         lr = trial.suggest_float("lr", 1e-4, 1e-2, log=True)
         weight_decay = trial.suggest_float("weight_decay", 1e-7, 1e-4, log=True)
-        lambda1 = trial.suggest_float("lambda1", 1e-3, 10.0, log=True)
-        lambda2 = trial.suggest_float("lambda2", 1e-3, 10.0, log=True)
-        lambda3 = trial.suggest_float("lambda3", 1e-6, 1e-2, log=True)
+        lambda1 = trial.suggest_float("lambda1", 1e-3, 1, log=True)
+        lambda2 = trial.suggest_float("lambda2", 1e-3, 1, log=True)
+        lambda3 = trial.suggest_float("lambda3", 1e-6, 1e-1, log=True)
 
         model = SINDyAutoencoderModule(n_filters, n_layers, args.latent_dim, (channels, H, W), args.degree, args.include_bias).to(device)
         optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
