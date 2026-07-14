@@ -21,7 +21,7 @@ class SINDyTorch(nn.Module):
         self.n_output_features_ = len(self._poly_com)
 
         self.coefficients = nn.Parameter(torch.ones(self.n_output_features_, n_latent))
-        self.mask = torch.ones_like(self.coefficients, requires_grad=False)
+        self.register_buffer('mask', torch.ones_like(self.coefficients))
     
 
     @staticmethod
@@ -49,8 +49,9 @@ class SINDyTorch(nn.Module):
         return Theta.matmul(self.coefficients * self.mask)
 
     def threshold(self, eps):
-        self.mask = 1. * self.coefficients > eps
-        self.coefficients = self.coefficients * self.mask
+        with torch.no_grad():
+            self.mask = (1. * self.coefficients > eps).to(self.coefficients.dtype)
+            self.coefficients.mul_(self.mask)
 
 
 
