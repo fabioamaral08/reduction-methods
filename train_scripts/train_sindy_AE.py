@@ -89,6 +89,8 @@ def main():
     parser.add_argument("--include_bias", action="store_true")
     args = parser.parse_args()
 
+    print(args.train_dir)
+    print(args.val_dir)
     sample_A, _ = SnapshotDataset(args.train_dir)[0]
     channels, H, W = sample_A.shape
     save_dir = '../ModelsTorch/SINDy_AE'
