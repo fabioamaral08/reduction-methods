@@ -78,8 +78,10 @@ class _SINDyEncoder(nn.Module):
         for i in range(n_layers):
             out_channels = n_filters * (i + 1)
             convs.append(_ConvBlock(channels, out_channels))
-            channels, h, w = out_channels, h // 2, w // 2
+            # matches nn.MaxPool2d(kernel_size=2, ceil_mode=True) below, which rounds up
+            channels, h, w = out_channels, (h + 1) // 2, (w + 1) // 2
 
+        self.out_channels, self.out_h, self.out_w = channels, h, w
         self.convs = nn.ModuleList(convs)
         self.pool = nn.MaxPool2d(kernel_size=2, ceil_mode=True)
         self.flatten = nn.Flatten()
@@ -144,7 +146,7 @@ class SINDyAutoencoderModule(nn.Module):
 
         self.encoder = _SINDyEncoder(channels, (h, w), n_filters, n_layers, latent_dim)
         self.sindy = SINDyTorch(latent_dim, degree, include_bias)
-        old_shape = (n_filters * n_layers, h // 2 ** n_layers, w // 2 ** n_layers)
+        old_shape = (self.encoder.out_channels, self.encoder.out_h, self.encoder.out_w)
         self.decoder = _SINDyDecoder(n_filters, n_layers, latent_dim, old_shape, channels)
 
     def forward(self, x):
