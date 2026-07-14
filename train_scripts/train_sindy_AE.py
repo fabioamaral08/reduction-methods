@@ -19,11 +19,8 @@ class SnapshotDataset(Dataset):
     def __len__(self):
         return len(self.files)
     def __getitem__(self, i):
-        A = torch.load(self.files[i]).float()        # shape (H,W,C)
+        A = torch.load(self.files[i]).float()
         dA = torch.load(os.path.join(self.folder, f"dB_dt_{i:05d}.pt")).float()
-        # conv net expects (C,H,W)
-        A = A.permute(2,0,1)
-        dA = dA.permute(2,0,1)
         return A, dA
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
