@@ -45,14 +45,14 @@ def build_loaders(train_dir, val_dir, batch_size):
     return train_ds, val_ds, train_loader, val_loader
 
 
-def train_epoch(model, loader, optimizer, lambda1, lambda2, lambda3, rec_energy):
+def train_epoch(model, loader, optimizer, lambda1, lambda2, lambda3, rec_energy, L2):
     model.train()
     total = 0.0
     for A_batch, dA_batch in loader:
         A_batch = A_batch.to(device)
         dA_batch = dA_batch.to(device)
         A_batch.requires_grad_(True)
-        loss = loss_sindy_ae(A_batch, model, dA_batch, lambda1=lambda1, lambda2=lambda2, lambda3=lambda3, rec_energy=rec_energy)
+        loss = loss_sindy_ae(A_batch, model, dA_batch, lambda1=lambda1, lambda2=lambda2, lambda3=lambda3, rec_energy=rec_energy, L2=L2)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
@@ -60,7 +60,7 @@ def train_epoch(model, loader, optimizer, lambda1, lambda2, lambda3, rec_energy)
     return total / len(loader.dataset)
 
 
-def eval_epoch(model, loader, lambda1, lambda2, lambda3, rec_energy):
+def eval_epoch(model, loader, lambda1, lambda2, lambda3, rec_energy, L2):
     model.eval()
     total = 0.0
     with torch.enable_grad():
@@ -68,7 +68,7 @@ def eval_epoch(model, loader, lambda1, lambda2, lambda3, rec_energy):
             A_batch = A_batch.to(device)
             dA_batch = dA_batch.to(device)
             A_batch.requires_grad_(True)
-            loss = loss_sindy_ae(A_batch, model, dA_batch, lambda1=lambda1, lambda2=lambda2, lambda3=lambda3, rec_energy=rec_energy)
+            loss = loss_sindy_ae(A_batch, model, dA_batch, lambda1=lambda1, lambda2=lambda2, lambda3=lambda3, rec_energy=rec_energy, L2=L2)
             total += loss.item() * A_batch.size(0)
     return total / len(loader.dataset)
 
@@ -86,6 +86,7 @@ def main():
     parser.add_argument("--train_dir", type=str, required=True)
     parser.add_argument("--val_dir", type=str, required=True)
     parser.add_argument("--degree", type=int, default=2)
+    parser.add_argument("--L2", type=float, default=20)
     parser.add_argument("--include_bias", action="store_true")
     args = parser.parse_args()
 
@@ -96,7 +97,7 @@ def main():
     save_dir = '../ModelsTorch/SINDy_AE'
 
     save_dir += '_Kernel' if args.rec_energy else '_MSE'
-
+    L2 = args.L2 if args.rec_energy else None
     def objective(trial):
         n_filters = trial.suggest_int("n_filters", 8, 64, step=8)
         n_layers = trial.suggest_int("n_layers", 1, 4)
@@ -112,8 +113,8 @@ def main():
 
         val_loss = 0.0
         for ep in range(1, min(5, args.num_epochs) + 1):
-            train_epoch(model, train_loader, optimizer, lambda1, lambda2, lambda3, args.rec_energy)
-            val_loss = eval_epoch(model, val_loader, lambda1, lambda2, lambda3, args.rec_energy)
+            train_epoch(model, train_loader, optimizer, lambda1, lambda2, lambda3, args.rec_energy, L2)
+            val_loss = eval_epoch(model, val_loader, lambda1, lambda2, lambda3, args.rec_energy, L2)
             trial.report(val_loss, ep)
             if trial.should_prune():
                 raise TrialPruned()
@@ -131,10 +132,10 @@ def main():
     best_checkpoint_path = save_dir + "/best_sindy_ae_checkpoint.pt"
 
     for ep in range(1, args.num_epochs + 1):
-        train_epoch(model, train_loader, optimizer, best["lambda1"], best["lambda2"], best["lambda3"], args.rec_energy)
+        train_epoch(model, train_loader, optimizer, best["lambda1"], best["lambda2"], best["lambda3"], args.rec_energy, L2)
         if ep % args.epoch_threshold == 0:
             model.sindy.threshold(eps= args.eps_sindy)
-        current_val = eval_epoch(model, val_loader, best["lambda1"], best["lambda2"], best["lambda3"], args.rec_energy)
+        current_val = eval_epoch(model, val_loader, best["lambda1"], best["lambda2"], best["lambda3"], args.rec_energy, L2)
         print(f"Epoch {ep}: val_loss={current_val:.6f}")
         if current_val < best_val_loss:
             best_val_loss = current_val
@@ -146,6 +147,7 @@ def main():
                 "best_params": best,
                 "latent_dim": args.latent_dim,
                 "rec_energy": args.rec_energy,
+                "L2": L2,
                 "degree": args.degree,
                 "include_bias": args.include_bias,
                 "input_shape": (channels, H, W),
@@ -154,8 +156,8 @@ def main():
 
     # Coeff refinement
     for ep in range(1, args.epoch_ref + 1):
-        train_epoch(model, train_loader, optimizer, best["lambda1"], best["lambda2"], 0.0, args.rec_energy)
-        current_val = eval_epoch(model, val_loader, best["lambda1"], best["lambda2"], 0.0, args.rec_energy)
+        train_epoch(model, train_loader, optimizer, best["lambda1"], best["lambda2"], 0.0, args.rec_energy, L2)
+        current_val = eval_epoch(model, val_loader, best["lambda1"], best["lambda2"], 0.0, args.rec_energy, L2)
         print(f"Coeff Refinement Epoch {ep}: val_loss={current_val:.6f}")
         if current_val < best_val_loss:
             best_val_loss = current_val
@@ -167,6 +169,7 @@ def main():
                 "best_params": best,
                 "latent_dim": args.latent_dim,
                 "rec_energy": args.rec_energy,
+                "L2": L2,
                 "degree": args.degree,
                 "include_bias": args.include_bias,
                 "input_shape": (channels, H, W),
