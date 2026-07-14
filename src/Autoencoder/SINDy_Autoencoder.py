@@ -158,6 +158,7 @@ def kernel_fenep(x:torch.Tensor, y:torch.Tensor, L2:float):
     return L2 * trace / (L2 - trace)
 
 def kernel_loss (x:torch.Tensor, y:torch.Tensor, L2:float):
+    print(x.shape, y.shape)
     return (kernel_fenep(x,x,L2) + kernel_fenep(y,y,L2) - 2 * kernel_fenep(x,y,L2))
 
 def loss_sindy_ae(
