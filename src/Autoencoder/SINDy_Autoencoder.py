@@ -99,7 +99,7 @@ class _SINDyEncoder(nn.Module):
 
 
 class _SINDyDecoder(nn.Module):
-    def __init__(self, n_filters, n_layers, latent_dim, old_shape, output_channels) -> None:
+    def __init__(self, n_filters, n_layers, latent_dim, old_shape, output_channels, upsample_mode="deconv") -> None:
         super().__init__()
 
         self.old_shape = old_shape  # (C, H, W)
@@ -114,11 +114,24 @@ class _SINDyDecoder(nn.Module):
         deconvs = []
         for i in range(n_layers, 0, -1):
             out_channels = n_filters * i
-            deconvs.append(nn.Sequential(
-                nn.ConvTranspose2d(channels, out_channels, kernel_size=3, stride=2, padding=1, output_padding=1, bias=False),
-                nn.BatchNorm2d(out_channels),
-                nn.ReLU(),
-            ))
+            if upsample_mode == "resize_conv":
+                # nearest-upsample + stride-1 conv avoids the checkerboard artifacts that
+                # ConvTranspose2d(kernel_size=3, stride=2) produces (uneven kernel overlap)
+                block = nn.Sequential(
+                    nn.Upsample(scale_factor=2, mode="nearest"),
+                    nn.Conv2d(channels, out_channels, kernel_size=3, stride=1, padding=1, bias=False),
+                    nn.BatchNorm2d(out_channels),
+                    nn.ReLU(),
+                )
+            elif upsample_mode == "deconv":
+                block = nn.Sequential(
+                    nn.ConvTranspose2d(channels, out_channels, kernel_size=3, stride=2, padding=1, output_padding=1, bias=False),
+                    nn.BatchNorm2d(out_channels),
+                    nn.ReLU(),
+                )
+            else:
+                raise ValueError(f"Unknown upsample_mode: {upsample_mode!r}")
+            deconvs.append(block)
             channels = out_channels
 
         self.deconvs = nn.ModuleList(deconvs)
@@ -135,7 +148,7 @@ class _SINDyDecoder(nn.Module):
 
 
 class SINDyAutoencoderModule(nn.Module):
-    def __init__(self, n_filters, n_layers, latent_dim, input_shape, degree = 2, include_bias=False) -> None:
+    def __init__(self, n_filters, n_layers, latent_dim, input_shape, degree = 2, include_bias=False, decoder_upsample="deconv") -> None:
         super().__init__()
 
         self.n_filters = n_filters
@@ -148,7 +161,7 @@ class SINDyAutoencoderModule(nn.Module):
         self.encoder = _SINDyEncoder(channels, (h, w), n_filters, n_layers, latent_dim)
         self.sindy = SINDyTorch(latent_dim, degree, include_bias)
         old_shape = (self.encoder.out_channels, self.encoder.out_h, self.encoder.out_w)
-        self.decoder = _SINDyDecoder(n_filters, n_layers, latent_dim, old_shape, channels)
+        self.decoder = _SINDyDecoder(n_filters, n_layers, latent_dim, old_shape, channels, upsample_mode=decoder_upsample)
 
     def forward(self, x):
         latent = self.encoder(x)
