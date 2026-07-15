@@ -138,6 +138,7 @@ def main():
 
     lambda4 = best.get("lambda4", 1.0)
     lambda5 = best.get("lambda5", 1.0)
+    current_val = 0.0
     best_weights = [best["lambda1"], best["lambda2"], best["lambda3"], lambda4, lambda5]
     for ep in range(1, args.num_epochs + 1):
         train_epoch(model, train_loader, optimizer, best_weights, args.rec_energy, L2)
@@ -186,6 +187,19 @@ def main():
     print("Best value:", study.best_value)
     print("Best params:", study.best_params)
     study.trials_dataframe().to_csv(save_dir + "optuna_sindy_ae_trials.csv", index=False)
+    torch.save({
+        "epoch": args.num_epochs + args.epoch_ref,
+        "model_state_dict": model.state_dict(),
+        "optimizer_state_dict": optimizer.state_dict(),
+        "last_val_loss": current_val,
+        "best_params": best,
+        "latent_dim": args.latent_dim,
+        "rec_energy": args.rec_energy,
+        "L2": L2,
+        "degree": args.degree,
+        "include_bias": args.include_bias,
+        "input_shape": (channels, H, W),
+    }, save_dir + "/last_sindy_ae_checkpoint.pt")
 
 
 if __name__ == '__main__':
