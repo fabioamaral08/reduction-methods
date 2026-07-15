@@ -42,14 +42,14 @@ def build_loaders(train_dir, val_dir, batch_size):
     return train_ds, val_ds, train_loader, val_loader
 
 
-def train_epoch(model, loader, optimizer, lambda1, lambda2, lambda3, rec_energy, L2):
+def train_epoch(model, loader, optimizer, weights, rec_energy, L2):
     model.train()
     total = 0.0
     for A_batch, dA_batch in loader:
         A_batch = A_batch.to(device)
         dA_batch = dA_batch.to(device)
         A_batch.requires_grad_(True)
-        loss = loss_sindy_ae(A_batch, model, dA_batch, lambda1=lambda1, lambda2=lambda2, lambda3=lambda3, rec_energy=rec_energy, L2=L2)
+        loss = loss_sindy_ae(A_batch, model, dA_batch, weights=weights, rec_energy=rec_energy, L2=L2)
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
@@ -57,7 +57,7 @@ def train_epoch(model, loader, optimizer, lambda1, lambda2, lambda3, rec_energy,
     return total / len(loader.dataset)
 
 
-def eval_epoch(model, loader, lambda1, lambda2, lambda3, rec_energy, L2):
+def eval_epoch(model, loader, weights, rec_energy, L2):
     model.eval()
     total = 0.0
     with torch.enable_grad():
@@ -65,7 +65,7 @@ def eval_epoch(model, loader, lambda1, lambda2, lambda3, rec_energy, L2):
             A_batch = A_batch.to(device)
             dA_batch = dA_batch.to(device)
             A_batch.requires_grad_(True)
-            loss = loss_sindy_ae(A_batch, model, dA_batch, lambda1=lambda1, lambda2=lambda2, lambda3=lambda3, rec_energy=rec_energy, L2=L2)
+            loss = loss_sindy_ae(A_batch, model, dA_batch, weights=weights, rec_energy=rec_energy, L2=L2)
             total += loss.item() * A_batch.size(0)
     return total / len(loader.dataset)
 
@@ -104,15 +104,21 @@ def main():
         lambda1 = trial.suggest_float("lambda1", 1e-3, 1, log=True)
         lambda2 = trial.suggest_float("lambda2", 1e-3, 1, log=True)
         lambda3 = trial.suggest_float("lambda3", 1e-6, 1e-1, log=True)
+        if args.rec_energy:
+            lambda4 = trial.suggest_float("lambda4", 1e-3, 1, log=True)
+            lambda5 = trial.suggest_float("lambda5", 1e-3, 1, log=True)
+        else:
+            lambda4 = lambda5 = 1.0
 
         model = SINDyAutoencoderModule(n_filters, n_layers, args.latent_dim, (channels, H, W), args.degree, args.include_bias).to(device)
         optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
         _, _, train_loader, val_loader = build_loaders(args.train_dir, args.val_dir, args.batch_size)
 
+        weights = [lambda1, lambda2, lambda3, lambda4, lambda5]
         val_loss = 0.0
         for ep in range(1, min(5, args.num_epochs) + 1):
-            train_epoch(model, train_loader, optimizer, lambda1, lambda2, lambda3, args.rec_energy, L2)
-            val_loss = eval_epoch(model, val_loader, lambda1, lambda2, lambda3, args.rec_energy, L2)
+            train_epoch(model, train_loader, optimizer, weights, args.rec_energy, L2)
+            val_loss = eval_epoch(model, val_loader, weights, args.rec_energy, L2)
             trial.report(val_loss, ep)
             if trial.should_prune():
                 raise TrialPruned()
@@ -130,11 +136,14 @@ def main():
     best_val_loss = float("inf")
     best_checkpoint_path = save_dir + "/best_sindy_ae_checkpoint.pt"
 
+    lambda4 = best.get("lambda4", 1.0)
+    lambda5 = best.get("lambda5", 1.0)
+    best_weights = [best["lambda1"], best["lambda2"], best["lambda3"], lambda4, lambda5]
     for ep in range(1, args.num_epochs + 1):
-        train_epoch(model, train_loader, optimizer, best["lambda1"], best["lambda2"], best["lambda3"], args.rec_energy, L2)
+        train_epoch(model, train_loader, optimizer, best_weights, args.rec_energy, L2)
         if ep % args.epoch_threshold == 0:
             model.sindy.threshold(eps= args.eps_sindy)
-        current_val = eval_epoch(model, val_loader, best["lambda1"], best["lambda2"], best["lambda3"], args.rec_energy, L2)
+        current_val = eval_epoch(model, val_loader, best_weights, args.rec_energy, L2)
         print(f"Epoch {ep}: val_loss={current_val:.6f}")
         if current_val < best_val_loss:
             best_val_loss = current_val
@@ -154,9 +163,10 @@ def main():
 
 
     # Coeff refinement
+    refine_weights = [best["lambda1"], best["lambda2"], 0.0, lambda4, lambda5]
     for ep in range(1, args.epoch_ref + 1):
-        train_epoch(model, train_loader, optimizer, best["lambda1"], best["lambda2"], 0.0, args.rec_energy, L2)
-        current_val = eval_epoch(model, val_loader, best["lambda1"], best["lambda2"], 0.0, args.rec_energy, L2)
+        train_epoch(model, train_loader, optimizer, refine_weights, args.rec_energy, L2)
+        current_val = eval_epoch(model, val_loader, refine_weights, args.rec_energy, L2)
         print(f"Coeff Refinement Epoch {ep}: val_loss={current_val:.6f}")
         if current_val < best_val_loss:
             best_val_loss = current_val
