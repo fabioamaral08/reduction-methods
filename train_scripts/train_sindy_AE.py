@@ -82,6 +82,7 @@ def main():
     parser.add_argument("--n_trials", type=int, default=50)
     parser.add_argument("--train_dir", type=str, required=True)
     parser.add_argument("--val_dir", type=str, required=True)
+    parser.add_argument("--upsample_mode", type=str, default='deconv', options = ['deconv', 'resize_conv'])
     parser.add_argument("--degree", type=int, default=2)
     parser.add_argument("--L2", type=float, default=20)
     parser.add_argument("--include_bias", action="store_true")
@@ -94,6 +95,7 @@ def main():
 
     save_dir = '/container/fabio/reduction-methods/ModelsTorch/SINDy_AE'
     save_dir += '_Kernel' if args.rec_energy else '_MSE'
+    save_dir += args.upsample_mode
     os.makedirs(save_dir, exist_ok=True)
     L2 = args.L2 if args.rec_energy else None
     def objective(trial):
@@ -110,7 +112,7 @@ def main():
         else:
             lambda4 = lambda5 = 1.0
 
-        model = SINDyAutoencoderModule(n_filters, n_layers, args.latent_dim, (channels, H, W), args.degree, args.include_bias).to(device)
+        model = SINDyAutoencoderModule(n_filters, n_layers, args.latent_dim, (channels, H, W), args.degree, args.include_bias, decoder_upsample=args.upsample_mode).to(device)
         optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
         _, _, train_loader, val_loader = build_loaders(args.train_dir, args.val_dir, args.batch_size)
 
@@ -129,7 +131,7 @@ def main():
 
     best = study.best_params
     print(best)
-    model = SINDyAutoencoderModule(best["n_filters"], best["n_layers"], args.latent_dim, (channels, H, W), args.degree, args.include_bias).to(device)
+    model = SINDyAutoencoderModule(best["n_filters"], best["n_layers"], args.latent_dim, (channels, H, W), args.degree, args.include_bias, decoder_upsample=args.upsample_mode).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=best["lr"], weight_decay=best["weight_decay"])
     _, _, train_loader, val_loader = build_loaders(args.train_dir, args.val_dir, args.batch_size)
 
