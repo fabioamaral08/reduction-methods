@@ -200,8 +200,8 @@ def loss_sindy_ae(
     """
     lambda1, lambda2, lambda3, lambda4, lambda5 = weights
     mse = nn.MSELoss()
-    if L2 is None and not rec_energy:
-        raise ValueError('L2 must be assigned a float if using rec_energy= True')
+    # if L2 is None and not rec_energy:
+    #     raise ValueError('L2 must be assigned a float if using rec_energy= True')
 
     # JVP of encoder: z = φ(x),  dz/dt_true = J_φ(x) · ẋ
     z, dzdt_true = jvp(cae.encoder, (x,), (x_dot,), create_graph=True)
