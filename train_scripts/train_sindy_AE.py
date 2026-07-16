@@ -73,7 +73,7 @@ def eval_epoch(model, loader, weights, rec_energy, L2):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--latent_dim", type=int, required=True)
-    parser.add_argument("--rec_energy", type=parse_bool, required=True)
+    parser.add_argument("--rec_energy", action="store_true")
     parser.add_argument("--batch_size", type=int, default=1024)
     parser.add_argument("--eps_sindy", type=float, default=1e-3)
     parser.add_argument("--num_epochs", type=int, default=3000)
