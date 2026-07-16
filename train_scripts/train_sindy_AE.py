@@ -74,7 +74,7 @@ def main():
     parser.add_argument("--n_trials", type=int, default=50)
     parser.add_argument("--train_dir", type=str, required=True)
     parser.add_argument("--val_dir", type=str, required=True)
-    parser.add_argument("--upsample_mode", type=str, default='deconv', options = ['deconv', 'resize_conv'])
+    parser.add_argument("--upsample_mode", type=str, default='deconv', choices=['deconv', 'resize_conv'])
     parser.add_argument("--degree", type=int, default=2)
     parser.add_argument("--L2", type=float, default=20)
     parser.add_argument("--include_bias", action="store_true")
