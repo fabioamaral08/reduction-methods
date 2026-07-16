@@ -169,9 +169,10 @@ class SINDyAutoencoderModule(nn.Module):
     
 
     
-def kernel_fenep(x:torch.Tensor, y:torch.Tensor, L2:float):
+def kernel_fenep(x:torch.Tensor, y:torch.Tensor, L2:float, eps:float = 1e-8):
     trace = x[:,0] * y[:,0] + x[:,2] * y[:,2] + 2* x[:,1] * y[:,1]
-    return L2 * trace / (L2 - trace)
+    denom = torch.clamp(L2 - trace, min=eps)
+    return L2 * trace / denom
 
 def kernel_loss (x:torch.Tensor, y:torch.Tensor, L2:float):
     return (kernel_fenep(x,x,L2) + kernel_fenep(y,y,L2) - 2 * kernel_fenep(x,y,L2))
