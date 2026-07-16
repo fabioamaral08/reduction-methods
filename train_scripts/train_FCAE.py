@@ -6,7 +6,7 @@ import torch
 from torch.utils.data import DataLoader, Dataset
 import glob
 from utils import *
-from Autoencoder.SINDy_Autoencoder import SINDyAutoencoderModule, loss_sindy_ae
+from Autoencoder.SINDy_Autoencoder import FullyConnectedAutoencoderModule, loss_sindy_ae
 import argparse
 import optuna
 from optuna import TrialPruned
@@ -74,7 +74,6 @@ def main():
     parser.add_argument("--n_trials", type=int, default=50)
     parser.add_argument("--train_dir", type=str, required=True)
     parser.add_argument("--val_dir", type=str, required=True)
-    parser.add_argument("--upsample_mode", type=str, default='deconv', options = ['deconv', 'resize_conv'])
     parser.add_argument("--degree", type=int, default=2)
     parser.add_argument("--L2", type=float, default=20)
     parser.add_argument("--include_bias", action="store_true")
@@ -82,17 +81,16 @@ def main():
 
     print(args.train_dir)
     sample_A, _ = SnapshotDataset(args.train_dir)[0]
-    channels, H, W = sample_A.shape
-    print(sample_A.shape)
+    input_shape = tuple(sample_A.shape)
+    print(input_shape)
 
-    save_dir = '/container/fabio/reduction-methods/ModelsTorch/SINDy_AE'
+    save_dir = '/container/fabio/reduction-methods/ModelsTorch/FC_AE'
+    save_dir += f'_latent_{args.latent_dim}'
     save_dir += '_Kernel' if args.rec_energy else '_MSE'
-    save_dir += args.upsample_mode
     os.makedirs(save_dir, exist_ok=True)
     L2 = args.L2 if args.rec_energy else None
+
     def objective(trial):
-        n_filters = trial.suggest_int("n_filters", 8, 16, step=2)
-        n_layers = trial.suggest_int("n_layers", 1, 4)
         lr = trial.suggest_float("lr", 1e-4, 1e-2, log=True)
         weight_decay = trial.suggest_float("weight_decay", 1e-7, 1e-4, log=True)
         lambda1 = trial.suggest_float("lambda1", 1e-3, 1, log=True)
@@ -104,7 +102,8 @@ def main():
         else:
             lambda4 = lambda5 = 1.0
 
-        model = SINDyAutoencoderModule(n_filters, n_layers, args.latent_dim, (channels, H, W), args.degree, args.include_bias, decoder_upsample=args.upsample_mode).to(device)
+        widths = [256]
+        model = FullyConnectedAutoencoderModule(widths, args.latent_dim, input_shape, args.degree, args.include_bias).to(device)
         optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=weight_decay)
         _, _, train_loader, val_loader = build_loaders(args.train_dir, args.val_dir, args.batch_size)
 
@@ -123,12 +122,13 @@ def main():
 
     best = study.best_params
     print(best)
-    model = SINDyAutoencoderModule(best["n_filters"], best["n_layers"], args.latent_dim, (channels, H, W), args.degree, args.include_bias, decoder_upsample=args.upsample_mode).to(device)
+    best_widths = [256]
+    model = FullyConnectedAutoencoderModule(best_widths, args.latent_dim, input_shape, args.degree, args.include_bias).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=best["lr"], weight_decay=best["weight_decay"])
     _, _, train_loader, val_loader = build_loaders(args.train_dir, args.val_dir, args.batch_size)
 
     best_val_loss = float("inf")
-    best_checkpoint_path = save_dir + "/best_sindy_ae_checkpoint.pt"
+    best_checkpoint_path = save_dir + "/best_fc_ae_checkpoint.pt"
 
     lambda4 = best.get("lambda4", 1.0)
     lambda5 = best.get("lambda5", 1.0)
@@ -137,7 +137,7 @@ def main():
     for ep in range(1, args.num_epochs + 1):
         train_epoch(model, train_loader, optimizer, best_weights, args.rec_energy, L2)
         if ep % args.epoch_threshold == 0:
-            model.sindy.threshold(eps= args.eps_sindy)
+            model.sindy.threshold(eps=args.eps_sindy)
         current_val = eval_epoch(model, val_loader, best_weights, args.rec_energy, L2)
         print(f"Epoch {ep}: val_loss={current_val:.6f}")
         if current_val < best_val_loss:
@@ -153,7 +153,7 @@ def main():
                 "L2": L2,
                 "degree": args.degree,
                 "include_bias": args.include_bias,
-                "input_shape": (channels, H, W),
+                "input_shape": input_shape,
             }, best_checkpoint_path)
 
 
@@ -176,11 +176,11 @@ def main():
                 "L2": L2,
                 "degree": args.degree,
                 "include_bias": args.include_bias,
-                "input_shape": (channels, H, W),
+                "input_shape": input_shape,
             }, best_checkpoint_path)
     print("Best value:", study.best_value)
     print("Best params:", study.best_params)
-    study.trials_dataframe().to_csv(save_dir + "optuna_sindy_ae_trials.csv", index=False)
+    study.trials_dataframe().to_csv(save_dir + "/optuna_fc_ae_trials.csv", index=False)
     torch.save({
         "epoch": args.num_epochs + args.epoch_ref,
         "model_state_dict": model.state_dict(),
@@ -192,8 +192,8 @@ def main():
         "L2": L2,
         "degree": args.degree,
         "include_bias": args.include_bias,
-        "input_shape": (channels, H, W),
-    }, save_dir + "/last_sindy_ae_checkpoint.pt")
+        "input_shape": input_shape,
+    }, save_dir + "/last_fc_ae_checkpoint.pt")
 
 
 if __name__ == '__main__':

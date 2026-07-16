@@ -4,7 +4,7 @@ from itertools import chain, combinations
 from torch.autograd.functional import jvp
 from typing import Sequence
 
-__all__ = ['SINDyAutoencoderModule', 'loss_sindy_ae']
+__all__ = ['SINDyAutoencoderModule', 'loss_sindy_ae', 'FullyConnectedAutoencoderModule']
 
 """
 Convolutional autoencoder for inputs with shape (Ns, Nc, Nx, Ny).
@@ -167,6 +167,8 @@ class SINDyAutoencoderModule(nn.Module):
         latent = self.encoder(x)
         return self.decoder(latent)
     
+
+    
 def kernel_fenep(x:torch.Tensor, y:torch.Tensor, L2:float):
     trace = x[:,0] * y[:,0] + x[:,2] * y[:,2] + 2* x[:,1] * y[:,1]
     return L2 * trace / (L2 - trace)
@@ -223,3 +225,79 @@ def loss_sindy_ae(
         loss_barrier = trace_const(x_hat, L2)
         loss_sum += lambda4 * loss_energy + lambda5 * loss_barrier
     return loss_sum
+
+
+class _FCEncoder(nn.Module):
+    """Simple fully-connected encoder. Expects input as (batch, *) and will flatten."""
+    def __init__(self, input_dim: int, widths: list, latent_dim: int) -> None:
+        """Constructor now accepts a list of widths for each hidden layer.
+
+        widths: list of integers specifying the output size of each hidden layer
+        in order. The final layer maps to latent_dim.
+        """
+        super().__init__()
+        layers = []
+        in_dim = input_dim
+        for out_dim in widths:
+            layers.append(nn.Linear(in_dim, out_dim))
+            layers.append(nn.ReLU())
+            in_dim = out_dim
+        layers.append(nn.Linear(in_dim, latent_dim))
+        self.net = nn.Sequential(*layers)
+
+    def forward(self, x):
+        x = x.view(x.size(0), -1)
+        return self.net(x)
+
+
+class _FCDecoder(nn.Module):
+    """Fully-connected decoder mirroring the encoder. Reshapes back to output_shape."""
+    def __init__(self, output_shape, widths: list, latent_dim: int) -> None:
+        """Constructor accepts a list of widths for each hidden layer.
+
+        widths: list of integers specifying the output size of each hidden layer
+        in order. The final layer maps to prod(output_shape).
+        """
+        super().__init__()
+        self.output_shape = (output_shape,) if isinstance(output_shape, int) else tuple(output_shape)
+        output_dim = 1
+        for v in self.output_shape:
+            output_dim *= v
+
+        layers = []
+        in_dim = latent_dim
+        for out_dim in widths:
+            layers.append(nn.Linear(in_dim, out_dim))
+            layers.append(nn.ReLU())
+            in_dim = out_dim
+        layers.append(nn.Linear(in_dim, output_dim))
+        self.net = nn.Sequential(*layers)
+
+    def forward(self, x):
+        x = self.net(x)
+        return x.view(x.size(0), *self.output_shape)
+
+
+class FullyConnectedAutoencoderModule(nn.Module):
+    """Conventional (non-convolutional) autoencoder.
+
+    Parameters mirror SINDyAutoencoderModule but input_shape may be any shape; it will be flattened.
+    n_filters acts as a base unit count for hidden layers.
+    """
+    def __init__(self, widths, latent_dim, input_shape, degree = 2, include_bias=False) -> None:
+        super().__init__()
+        # compute flat dimension
+        if isinstance(input_shape, int):
+            input_dim = input_shape
+        else:
+            input_dim = 1
+            for v in input_shape:
+                input_dim *= v
+
+        self.encoder = _FCEncoder(input_dim, widths, latent_dim)
+        self.sindy = SINDyTorch(latent_dim, degree, include_bias)
+        self.decoder = _FCDecoder(input_shape, widths[::-1], latent_dim)
+
+    def forward(self, x):
+        latent = self.encoder(x)
+        return self.decoder(latent)
