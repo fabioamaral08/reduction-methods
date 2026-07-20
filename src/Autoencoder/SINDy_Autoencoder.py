@@ -1,10 +1,11 @@
 import torch
 import torch.nn as nn
-from itertools import chain, combinations
+from itertools import chain
 from torch.autograd.functional import jvp
 from typing import Sequence
-
-__all__ = ['SINDyAutoencoderModule', 'loss_sindy_ae', 'FullyConnectedAutoencoderModule']
+from typing import Iterator, Tuple
+from sklearn.preprocessing import PolynomialFeatures
+__all__ = ['SINDyAutoencoderModule', 'loss_sindy_ae', 'FullyConnectedAutoencoderModule', 'SINDyTorch']
 
 """
 Convolutional autoencoder for inputs with shape (Ns, Nc, Nx, Ny).
@@ -18,25 +19,48 @@ class SINDyTorch(nn.Module):
     def __init__(self, n_latent, degree, include_bias = False) -> None:
         super().__init__()
         # Materialise as a list — the generator would be exhausted on first iteration otherwise
-        self._poly_com = list(self._combinations(n_latent, int(not include_bias), degree, False, include_bias))
+        self._poly_com = list(self._combinations(n_latent, degree, True, False, include_bias))
         self.n_output_features_ = len(self._poly_com)
 
         self.coefficients = nn.Parameter(torch.ones(self.n_output_features_, n_latent))
         self.register_buffer('mask', torch.ones_like(self.coefficients))
     
 
+    """ Code From PySINDy Module"""
     @staticmethod
     def _combinations(
-        n_features, min_degree, max_degree, interaction_only, include_bias
-    ):
-        comb = combinations
-        start = max(1, min_degree)
-        iter = chain.from_iterable(
-            comb(range(n_features), i) for i in range(start, max_degree + 1)
+        n_features: int,
+        degree: int,
+        include_interaction: bool,
+        interaction_only: bool,
+        include_bias: bool,
+    ) -> Iterator[Tuple[int, ...]]:
+        """
+        Create selection tuples of input indexes for each polynomail term
+
+        Selection tuple iterates the input indexes present in a single term.
+        For example, (x+y+1)^2 would be in iterator of the tuples:
+        (), (0,), (1,), (0, 0), (0, 1), (1, 1)
+        1    x     y      x^2     x*y     y^2
+
+        Order of terms is preserved regardless of include_interation.
+        """
+        if not include_interaction:
+            return chain(
+                [()] if include_bias else [],
+                (
+                    exponent * (feat_idx,)
+                    for exponent in range(1, degree + 1)
+                    for feat_idx in range(n_features)
+                ),
+            )
+        return PolynomialFeatures._combinations(
+            n_features=n_features,
+            min_degree=int(not include_bias),
+            max_degree=degree,
+            interaction_only=interaction_only,
+            include_bias=include_bias,
         )
-        if include_bias:
-            iter = chain(comb(range(n_features), 0), iter)
-        return iter
     
     def transform(self, X: torch.Tensor):
         # torch.stack keeps gradients flowing; in-place assignment into a zeros tensor would not
