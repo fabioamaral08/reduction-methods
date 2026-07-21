@@ -26,7 +26,7 @@ class SINDyTorch(nn.Module):
         self.register_buffer('mask', torch.ones_like(self.coefficients))
     
 
-    """ Code From PySINDy Module"""
+    """Code snippet adapted from PySINDy code."""
     @staticmethod
     def _combinations(
         n_features: int,
@@ -192,65 +192,6 @@ class SINDyAutoencoderModule(nn.Module):
         return self.decoder(latent)
     
 
-    
-def kernel_fenep(x:torch.Tensor, y:torch.Tensor, L2:float, eps:float = 1e-8):
-    trace = x[:,0] * y[:,0] + x[:,2] * y[:,2] + 2* x[:,1] * y[:,1]
-    denom = torch.clamp(L2 - trace, min=eps)
-    return L2 * trace / denom
-
-def kernel_loss (x:torch.Tensor, y:torch.Tensor, L2:float):
-    return (kernel_fenep(x,x,L2) + kernel_fenep(y,y,L2) - 2 * kernel_fenep(x,y,L2))
-
-def trace_const(x:torch.Tensor, L2:float, margin:float = 1e-1):
-    trace_hat = x[:,0]**2 + x[:,2]**2 + 2*x[:,1]**2
-    return torch.relu(trace_hat - (L2 - margin)).pow(2).mean()
-
-def loss_sindy_ae(
-    x: torch.Tensor,
-    cae: SINDyAutoencoderModule,
-    x_dot: torch.Tensor,
-    weights: Sequence[float] = (1.0, 1.0, 1e-4, 1.0, 1.0),
-    rec_energy = False,
-    L2:float | None = None,
-) -> torch.Tensor:
-    """
-    Champion et al. (2019) SINDy-autoencoder loss.
-
-    Terms (matching the paper's formula):
-      L_rec   = ||x - ψ(z)||²
-      L_dxdt  = ||ẋ - (∇_z ψ(z)) Θ(z)Ξ||²   (SINDy loss in x-space)
-      L_dzdt  = ||(∇_x z) ẋ - Θ(z)Ξ||²        (SINDy loss in z-space)
-      L_reg   = λ₃ ||Ξ||₁
-
-    weights: [lambda_dxdt, lambda_dzdt, lambda_reg, lambda_energy, lambda_barrier]
-    lambda_energy and lambda_barrier are only applied when rec_energy=True.
-    """
-    lambda1, lambda2, lambda3, lambda4, lambda5 = weights
-    mse = nn.MSELoss()
-    # if L2 is None and not rec_energy:
-    #     raise ValueError('L2 must be assigned a float if using rec_energy= True')
-
-    # JVP of encoder: z = φ(x),  dz/dt_true = J_φ(x) · ẋ
-    z, dzdt_true = jvp(cae.encoder, (x,), (x_dot,), create_graph=True)
-
-    # SINDy prediction: dz/dt_hat = Θ(z) Ξ
-    dzdt = cae.sindy(z)
-
-    # JVP of decoder: x_hat = ψ(z),  dx_hat/dt = J_ψ(z) · dz/dt_hat
-    x_hat, dxdt_hat = jvp(cae.decoder, (z,), (dzdt,), create_graph=True)
-
-    
-    loss_rec  = mse(x, x_hat)
-    loss_dxdt = mse(x_dot, dxdt_hat)
-    loss_dzdt = mse(dzdt_true, dzdt)
-    loss_reg  = cae.sindy.coefficients.abs().mean()
-    loss_sum = loss_rec + lambda1 * loss_dxdt + lambda2 * loss_dzdt + lambda3 * loss_reg
-    if rec_energy:
-        loss_energy = torch.relu(kernel_loss(x, x_hat,L2)).mean()
-        loss_barrier = trace_const(x_hat, L2)
-        loss_sum += lambda4 * loss_energy + lambda5 * loss_barrier
-    return loss_sum
-
 
 class _FCEncoder(nn.Module):
     """Simple fully-connected encoder. Expects input as (batch, *) and will flatten."""
@@ -326,3 +267,61 @@ class FullyConnectedAutoencoderModule(nn.Module):
     def forward(self, x):
         latent = self.encoder(x)
         return self.decoder(latent)
+
+def kernel_fenep(x:torch.Tensor, y:torch.Tensor, L2:float, eps:float = 1e-8):
+    trace = x[:,0] * y[:,0] + x[:,2] * y[:,2] + 2* x[:,1] * y[:,1]
+    denom = torch.clamp(L2 - trace, min=eps)
+    return L2 * trace / denom
+
+def kernel_loss (x:torch.Tensor, y:torch.Tensor, L2:float):
+    return (kernel_fenep(x,x,L2) + kernel_fenep(y,y,L2) - 2 * kernel_fenep(x,y,L2))
+
+def trace_const(x:torch.Tensor, L2:float, margin:float = 1e-1):
+    trace_hat = x[:,0]**2 + x[:,2]**2 + 2*x[:,1]**2
+    return torch.relu(trace_hat - (L2 - margin)).pow(2).mean()
+
+def loss_sindy_ae(
+    x: torch.Tensor,
+    cae: SINDyAutoencoderModule,
+    x_dot: torch.Tensor,
+    weights: Sequence[float] = (1.0, 1.0, 1e-4, 1.0, 1.0),
+    rec_energy = False,
+    L2:float | None = None,
+) -> torch.Tensor:
+    """
+    Champion et al. (2019) SINDy-autoencoder loss.
+
+    Terms (matching the paper's formula):
+      L_rec   = ||x - ψ(z)||²
+      L_dxdt  = ||ẋ - (∇_z ψ(z)) Θ(z)Ξ||²   (SINDy loss in x-space)
+      L_dzdt  = ||(∇_x z) ẋ - Θ(z)Ξ||²        (SINDy loss in z-space)
+      L_reg   = λ₃ ||Ξ||₁
+
+    weights: [lambda_dxdt, lambda_dzdt, lambda_reg, lambda_energy, lambda_barrier]
+    lambda_energy and lambda_barrier are only applied when rec_energy=True.
+    """
+    lambda1, lambda2, lambda3, lambda4, lambda5 = weights
+    mse = nn.MSELoss()
+    # if L2 is None and not rec_energy:
+    #     raise ValueError('L2 must be assigned a float if using rec_energy= True')
+
+    # JVP of encoder: z = φ(x),  dz/dt_true = J_φ(x) · ẋ
+    z, dzdt_true = jvp(cae.encoder, (x,), (x_dot,), create_graph=True)
+
+    # SINDy prediction: dz/dt_hat = Θ(z) Ξ
+    dzdt = cae.sindy(z)
+
+    # JVP of decoder: x_hat = ψ(z),  dx_hat/dt = J_ψ(z) · dz/dt_hat
+    x_hat, dxdt_hat = jvp(cae.decoder, (z,), (dzdt,), create_graph=True)
+
+    
+    loss_rec  = mse(x, x_hat)
+    loss_dxdt = mse(x_dot, dxdt_hat)
+    loss_dzdt = mse(dzdt_true, dzdt)
+    loss_reg  = cae.sindy.coefficients.abs().mean()
+    loss_sum = loss_rec + lambda1 * loss_dxdt + lambda2 * loss_dzdt + lambda3 * loss_reg
+    if rec_energy:
+        loss_energy = torch.relu(kernel_loss(x, x_hat,L2)).mean()
+        loss_barrier = trace_const(x_hat, L2)
+        loss_sum += lambda4 * loss_energy + lambda5 * loss_barrier
+    return loss_sum
